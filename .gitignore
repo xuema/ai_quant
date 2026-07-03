@@ -1,3 +1,18 @@
 __pycache__/
 *.pyc
 .DS_Store
+
+# Sensitive / large artifacts
+*.xlsx
+*.pkl
+*.parquet
+data/pdf_cache/
+data/raw_json/_raw_*.json
+data/raw_json/_llm_input_*.json
+data/raw_json/_scoring_checkpoint_*.json
+data_cache_sector/
+*_sector_resume.txt
+
+# Python env
+venv_stock/
+.hermes/

@@ -1,0 +1,42 @@
+{
+  "latest_date": "2026-07-03",
+  "latest_close": 217.33,
+  "latest_open": 210.0,
+  "latest_chg": -0.39,
+  "latest_vol_wan": 40.3,
+  "latest_turnover": 5.16,
+  "year_high": 279.0,
+  "year_low": 44.0,
+  "year_avg_vol": 50.79,
+  "ma5": 234.17,
+  "ma20": 235.17,
+  "ma60": 189.34,
+  "rsi14": 53.6,
+  "dif": 8.8718,
+  "dea": 14.4424,
+  "boll_up": 283.22,
+  "boll_dn": 187.12,
+  "boll_mid": 235.17,
+  "signals": [
+    {
+      "category": "趋势",
+      "description": "均线纠缠，方向不明",
+      "tone": "neutral"
+    },
+    {
+      "category": "MACD",
+      "description": "死叉形成，短期看空",
+      "tone": "bearish"
+    },
+    {
+      "category": "RSI14",
+      "description": "53.6 中性区间",
+      "tone": "neutral"
+    },
+    {
+      "category": "布林",
+      "description": "价格位于中轨之下，偏弱整理",
+      "tone": "bearish"
+    }
+  ]
+}

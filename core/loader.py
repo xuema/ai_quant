@@ -6,40 +6,80 @@ import json
 # =========================
 # 1️⃣ 公告数据加载
 # =========================
-def load_announcements(folder_path="data/raw_json"):
+def _load_ranking_csv(path: str) -> pd.DataFrame:
+    """从 ranking CSV 加载公告数据。"""
+    df = pd.read_csv(path, dtype={"code": str})
+    # 确保 code 6 位
+    df["code"] = df["code"].str.zfill(6)
+    # 兼容：如果 CSV 没有 title 列但有 title
+    col_map = {}
+    if "title" not in df.columns and "name" in df.columns:
+        df = df.rename(columns={"name": "title"})
+    if "name" not in df.columns and "title" in df.columns:
+        df.loc[:, "name"] = df["title"]
+    return df
 
-    files = glob.glob(os.path.join(folder_path, "ranking_*.json"))
+
+def _load_ranking_json(path: str, date_str: str) -> pd.DataFrame:
+    """从 ranking JSON 加载公告数据 (旧格式兼容)。"""
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    df = pd.DataFrame(data)
+    if "title" not in df.columns and "name" in df.columns:
+        df["title"] = df["name"]
+    df["code"] = df["code"].astype(str).str.zfill(6)
+    df["date"] = pd.to_datetime(date_str)
+    df["score"] = pd.to_numeric(df["score"], errors="coerce")
+    df = df.dropna(subset=["code", "date", "score"])
+    return df
+
+
+def load_announcements(folder_path="data/raw_json"):
+    """
+    加载所有 ranking 文件（优先 .csv，兼容 .json 旧格式）。
+    返回 DataFrame：[code, date, score, title, name, event_type, confidence, label, reason, holding_days]
+    """
+
+    csv_files = glob.glob(os.path.join(folder_path, "ranking_*.csv"))
+    json_files = glob.glob(os.path.join(folder_path, "ranking_*.json"))
 
     all_data = []
 
-    for file in files:
-
-        # 提取日期
-        filename = os.path.basename(file)
-        date_str = filename.replace("ranking_", "").replace(".json", "")
-
-        with open(file, "r", encoding="utf-8") as f:
-            data = json.load(f)
-
-        df = pd.DataFrame(data)
-
-        # ✔ 标准字段
-        # 你当前JSON里是 name / title 混用 → 统一
-        if "title" not in df.columns and "name" in df.columns:
-            df["title"] = df["name"]
-
-        # ✔ code统一
-        df["code"] = df["code"].astype(str).str.zfill(6)
-
-        # ✔ 日期
-        df["date"] = pd.to_datetime(date_str)
-
-        # ✔ score（确保是float）
+    # 优先处理 CSV 文件
+    for file in sorted(csv_files):
+        basename = os.path.basename(file)
+        date_str = basename.replace("ranking_", "").replace(".csv", "")
+        df = _load_ranking_csv(file)
+        if df.empty:
+            continue
+        if "date" not in df.columns:
+            df["date"] = pd.to_datetime(date_str)
+        elif pd.to_datetime(df["date"]).dt.year.max() < 2000:
+            # date 列可能是 score 值而非日期
+            df["date"] = pd.to_datetime(date_str)
         df["score"] = pd.to_numeric(df["score"], errors="coerce")
+        df = df.dropna(subset=["code", "score"])
 
-        df = df.dropna(subset=["code", "date", "score"])
+        meta_cols = ["code", "date", "score"]
+        extra_cols = [c for c in ["title", "name", "event_type", "confidence", "label", "reason", "holding_days"]
+                       if c in df.columns]
+        all_data.append(df[meta_cols + extra_cols])
 
-        all_data.append(df[["code", "date", "score", "title"]])
+    # 处理 JSON 文件（旧格式兼容），但跳过已有 CSV 的日期
+    csv_dates = {os.path.basename(f).replace("ranking_", "").replace(".csv", "") for f in csv_files}
+    for file in sorted(json_files):
+        basename = os.path.basename(file)
+        date_str = basename.replace("ranking_", "").replace(".json", "")
+        if date_str in csv_dates:
+            continue  # CSV 已覆盖此日期，跳过
+        df = _load_ranking_json(file, date_str)
+        if df.empty:
+            continue
+
+        meta_cols = ["code", "date", "score", "title"]
+        extra_cols = [c for c in ["name", "event_type", "confidence", "label", "reason", "holding_days"]
+                       if c in df.columns]
+        all_data.append(df[meta_cols + extra_cols])
 
     if len(all_data) == 0:
         return pd.DataFrame(columns=["code", "date", "score", "title"])

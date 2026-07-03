@@ -21,6 +21,20 @@ def build_factor(df: pd.DataFrame) -> pd.DataFrame:
     # 1. Aggregate: sum scores per (code, date)
     base = df.groupby(["code", "date"])["score"].sum().reset_index()
 
+    # 保留每组的元数据列（取第一条非空）
+    for col in ["reason", "name", "event_type", "confidence", "label", "holding_days"]:
+        if col not in df.columns:
+            continue
+        if col in ("confidence", "holding_days"):
+            # Numeric: use max
+            vals = df.groupby(["code", "date"])[col].max().reset_index()
+        else:
+            # Text: use first non-empty
+            vals = df[df[col].notna() & (df[col] != "")].groupby(
+                ["code", "date"]
+            )[col].first().reset_index()
+        base = base.merge(vals, on=["code", "date"], how="left")
+
     # 2. Volatility adjustment (per-stock std of raw scores)
     vol = df.groupby("code")["score"].std().reset_index()
     vol.columns = ["code", "vol"]
@@ -29,9 +43,5 @@ def build_factor(df: pd.DataFrame) -> pd.DataFrame:
 
     # 3. Raw factor = score / vol
     base["factor"] = base["score"] / base["vol"]
-
-    # ✂️ REMOVED: cross-sectional z-score standardization
-    #    → risk_model.py now does winsorize → z-score in correct order
-    #    Keeping it here caused double-standardization.
 
     return base

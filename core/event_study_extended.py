@@ -16,17 +16,17 @@ def calc_return(df: pd.DataFrame) -> pd.DataFrame:
 # 2️⃣ Main CAR function (full event decomposition)
 # =========================
 #
-# Timeline (trading days):
+# Timeline (trading days) — 公告当天可买：
 #
-#  |--pre_window--| EVENT | post_window |
-#   -5  -4  -3  -2  -1     0     +1  +2  +3
+# |--pre_window--| EVENT(当天买入) | post_window |
+#   -5  -4  -3  -2        0            +1  +2  +3
 #
-# car_pre  = abnormal returns during [event_idx - pre_window, event_idx]
-#            (includes event day → information leakage detection)
-# car_post = abnormal returns during [event_idx + 1, event_idx + post_window]
+# event_date   = 公告发布日期（视为当天可买入）
+#
+# car_pre  = 事件日前 pre_window 个交易日（不含事件日）→ 泄露检测
+# car_post = 从事件日当天起（含当天！）到 +post_window → 实际可获得的收益
 # car_total = car_pre + car_post
-# leakage  = car_pre / car_total  (> 0.5 means more returns came before
-#            announcement → possible insider leakage)
+# leakage  = car_pre / car_total  (> 0.5 表示公告前已提前反应 → 消息泄露)
 # =========================
 
 def calc_event_car(
@@ -82,10 +82,12 @@ def calc_event_car(
         event_idx = future.index[0]
 
     # --- Define windows ---
+    # car_pre: 不含事件日，只看事件日前 N 个交易日（纯泄露检测）
+    # car_post: 从事件日当天开始（含当天！）→ 真正可获得的收益
     pre_start = max(0, event_idx - pre_window)
-    pre_end = event_idx  # INCLUDES event day (day 0)
+    pre_end = event_idx - 1  # 不含事件日
 
-    post_start = event_idx + 1
+    post_start = event_idx    # 从事件日当天开始（含当天）
     post_end = min(len(df), post_start + post_window)
 
     # --- Calculate CAR ---
