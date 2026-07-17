@@ -1,0 +1,172 @@
+{
+  "逻辑回归 LogisticRegression": {
+    "accuracy": 0.48,
+    "precision": 0.4852941176470588,
+    "recall": 0.5238095238095238,
+    "f1": 0.5038167938931297,
+    "auc": 0.46646185355862774,
+    "classification_report": {
+      "跌(0)": {
+        "precision": 0.47368421052631576,
+        "recall": 0.43548387096774194,
+        "f1-score": 0.453781512605042,
+        "support": 62.0
+      },
+      "涨(1)": {
+        "precision": 0.4852941176470588,
+        "recall": 0.5238095238095238,
+        "f1-score": 0.5038167938931297,
+        "support": 63.0
+      },
+      "accuracy": 0.48,
+      "macro avg": {
+        "precision": 0.4794891640866873,
+        "recall": 0.47964669738863286,
+        "f1-score": 0.47879915324908584,
+        "support": 125.0
+      },
+      "weighted avg": {
+        "precision": 0.4795356037151703,
+        "recall": 0.48,
+        "f1-score": 0.4789992943742382,
+        "support": 125.0
+      }
+    }
+  },
+  "决策树 DecisionTree": {
+    "accuracy": 0.528,
+    "precision": 0.55,
+    "recall": 0.3492063492063492,
+    "f1": 0.42718446601941745,
+    "auc": 0.5399385560675882,
+    "classification_report": {
+      "跌(0)": {
+        "precision": 0.5176470588235295,
+        "recall": 0.7096774193548387,
+        "f1-score": 0.5986394557823129,
+        "support": 62.0
+      },
+      "涨(1)": {
+        "precision": 0.55,
+        "recall": 0.3492063492063492,
+        "f1-score": 0.42718446601941745,
+        "support": 63.0
+      },
+      "accuracy": 0.528,
+      "macro avg": {
+        "precision": 0.5338235294117648,
+        "recall": 0.5294418842805939,
+        "f1-score": 0.5129119609008652,
+        "support": 125.0
+      },
+      "weighted avg": {
+        "precision": 0.5339529411764706,
+        "recall": 0.528,
+        "f1-score": 0.5122261409418136,
+        "support": 125.0
+      }
+    }
+  },
+  "随机森林 RandomForest": {
+    "accuracy": 0.6,
+    "precision": 0.6065573770491803,
+    "recall": 0.5873015873015873,
+    "f1": 0.5967741935483871,
+    "auc": 0.5762928827444956,
+    "classification_report": {
+      "跌(0)": {
+        "precision": 0.59375,
+        "recall": 0.6129032258064516,
+        "f1-score": 0.6031746031746031,
+        "support": 62.0
+      },
+      "涨(1)": {
+        "precision": 0.6065573770491803,
+        "recall": 0.5873015873015873,
+        "f1-score": 0.5967741935483871,
+        "support": 63.0
+      },
+      "accuracy": 0.6,
+      "macro avg": {
+        "precision": 0.6001536885245902,
+        "recall": 0.6001024065540195,
+        "f1-score": 0.5999743983614951,
+        "support": 125.0
+      },
+      "weighted avg": {
+        "precision": 0.600204918032787,
+        "recall": 0.6,
+        "f1-score": 0.5999487967229902,
+        "support": 125.0
+      }
+    }
+  },
+  "梯度提升 GradientBoost": {
+    "accuracy": 0.496,
+    "precision": 0.5,
+    "recall": 0.5714285714285714,
+    "f1": 0.5333333333333333,
+    "auc": 0.5230414746543779,
+    "classification_report": {
+      "跌(0)": {
+        "precision": 0.49056603773584906,
+        "recall": 0.41935483870967744,
+        "f1-score": 0.45217391304347826,
+        "support": 62.0
+      },
+      "涨(1)": {
+        "precision": 0.5,
+        "recall": 0.5714285714285714,
+        "f1-score": 0.5333333333333333,
+        "support": 63.0
+      },
+      "accuracy": 0.496,
+      "macro avg": {
+        "precision": 0.49528301886792453,
+        "recall": 0.49539170506912444,
+        "f1-score": 0.49275362318840576,
+        "support": 125.0
+      },
+      "weighted avg": {
+        "precision": 0.4953207547169811,
+        "recall": 0.496,
+        "f1-score": 0.49307826086956524,
+        "support": 125.0
+      }
+    }
+  },
+  "XGBoost": {
+    "accuracy": 0.584,
+    "precision": 0.5873015873015873,
+    "recall": 0.5873015873015873,
+    "f1": 0.5873015873015873,
+    "auc": 0.5773169482846902,
+    "classification_report": {
+      "跌(0)": {
+        "precision": 0.5806451612903226,
+        "recall": 0.5806451612903226,
+        "f1-score": 0.5806451612903226,
+        "support": 62.0
+      },
+      "涨(1)": {
+        "precision": 0.5873015873015873,
+        "recall": 0.5873015873015873,
+        "f1-score": 0.5873015873015873,
+        "support": 63.0
+      },
+      "accuracy": 0.584,
+      "macro avg": {
+        "precision": 0.583973374295955,
+        "recall": 0.583973374295955,
+        "f1-score": 0.583973374295955,
+        "support": 125.0
+      },
+      "weighted avg": {
+        "precision": 0.584,
+        "recall": 0.584,
+        "f1-score": 0.584,
+        "support": 125.0
+      }
+    }
+  }
+}

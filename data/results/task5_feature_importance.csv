@@ -1,0 +1,117 @@
+﻿model,feature,importance
+XGBoost,wr_42,0.05962121859192848
+XGBoost,vol,0.0524880588054657
+XGBoost,low,0.0512796975672245
+XGBoost,expma_diff_29,0.04712994769215584
+XGBoost,volatility_5,0.04307151958346367
+XGBoost,rsi_56,0.039705462753772736
+XGBoost,ma_diff_20,0.037668779492378235
+XGBoost,close,0.037627823650836945
+XGBoost,rsi_12,0.03536427021026611
+XGBoost,ma_diff_5,0.035357765853405
+XGBoost,turnover_rate,0.035242050886154175
+XGBoost,amount,0.03393489122390747
+XGBoost,change,0.03320586681365967
+XGBoost,high,0.03311055526137352
+XGBoost,expma_29,0.033077672123909
+XGBoost,vol_ratio_8_89,0.03189709782600403
+XGBoost,amp,0.03146502375602722
+XGBoost,cr_ma_53,0.0312873013317585
+XGBoost,cr_ma_19,0.031176742166280746
+XGBoost,ma_diff_10,0.03092617727816105
+XGBoost,cr,0.03033682331442833
+XGBoost,expma_diff_5,0.02965778112411499
+XGBoost,open,0.02893824316561222
+XGBoost,volatility_10,0.028847014531493187
+XGBoost,vol_ratio,0.02873247116804123
+XGBoost,cr_ma_35,0.027922818437218666
+XGBoost,expma_5,0.023985184729099274
+XGBoost,pct_chg,0.022750642150640488
+XGBoost,cr_ma_11,0.01419108547270298
+决策树 DecisionTree,rsi_12,0.21441406815236147
+决策树 DecisionTree,expma_diff_29,0.14199672717945414
+决策树 DecisionTree,wr_42,0.10162851643011991
+决策树 DecisionTree,volatility_10,0.08539380595688098
+决策树 DecisionTree,change,0.08521315732957428
+决策树 DecisionTree,vol_ratio_8_89,0.08143417829170106
+决策树 DecisionTree,ma_diff_10,0.0788941851067274
+决策树 DecisionTree,vol_ratio,0.07236442403569791
+决策树 DecisionTree,ma_diff_5,0.0516914700819278
+决策树 DecisionTree,cr_ma_53,0.04418074365976737
+决策树 DecisionTree,cr,0.03536635884094677
+决策树 DecisionTree,amount,0.00742236493484095
+决策树 DecisionTree,open,0.0
+决策树 DecisionTree,close,0.0
+决策树 DecisionTree,high,0.0
+决策树 DecisionTree,low,0.0
+决策树 DecisionTree,vol,0.0
+决策树 DecisionTree,amp,0.0
+决策树 DecisionTree,pct_chg,0.0
+决策树 DecisionTree,turnover_rate,0.0
+决策树 DecisionTree,ma_diff_20,0.0
+决策树 DecisionTree,volatility_5,0.0
+决策树 DecisionTree,rsi_56,0.0
+决策树 DecisionTree,expma_5,0.0
+决策树 DecisionTree,expma_29,0.0
+决策树 DecisionTree,expma_diff_5,0.0
+决策树 DecisionTree,cr_ma_11,0.0
+决策树 DecisionTree,cr_ma_19,0.0
+决策树 DecisionTree,cr_ma_35,0.0
+梯度提升 GradientBoost,amp,0.0685374590052988
+梯度提升 GradientBoost,volatility_10,0.06248976720224987
+梯度提升 GradientBoost,vol_ratio_8_89,0.05619524862060264
+梯度提升 GradientBoost,rsi_12,0.05530853230490871
+梯度提升 GradientBoost,ma_diff_20,0.054942771554223065
+梯度提升 GradientBoost,change,0.05463960121005934
+梯度提升 GradientBoost,volatility_5,0.05312577551956117
+梯度提升 GradientBoost,expma_diff_29,0.048014870664736795
+梯度提升 GradientBoost,rsi_56,0.04707477577606968
+梯度提升 GradientBoost,amount,0.043872608982390524
+梯度提升 GradientBoost,wr_42,0.0430691211606868
+梯度提升 GradientBoost,expma_29,0.04205341910665555
+梯度提升 GradientBoost,cr_ma_35,0.0374955583189144
+梯度提升 GradientBoost,high,0.029669333048884514
+梯度提升 GradientBoost,pct_chg,0.028418380921906062
+梯度提升 GradientBoost,vol_ratio,0.027922918704849472
+梯度提升 GradientBoost,ma_diff_5,0.026460615219134002
+梯度提升 GradientBoost,low,0.02574615500498049
+梯度提升 GradientBoost,vol,0.025275294165099434
+梯度提升 GradientBoost,ma_diff_10,0.024756120254044684
+梯度提升 GradientBoost,cr,0.02323734169314146
+梯度提升 GradientBoost,close,0.020975409753075505
+梯度提升 GradientBoost,cr_ma_11,0.018997073278807685
+梯度提升 GradientBoost,cr_ma_53,0.018853531574057086
+梯度提升 GradientBoost,cr_ma_19,0.018342870560446752
+梯度提升 GradientBoost,turnover_rate,0.014059931859666645
+梯度提升 GradientBoost,expma_diff_5,0.011122203380832217
+梯度提升 GradientBoost,open,0.010455759555533585
+梯度提升 GradientBoost,expma_5,0.008887551599183141
+随机森林 RandomForest,rsi_56,0.041509787330377336
+随机森林 RandomForest,volatility_10,0.041209571742832934
+随机森林 RandomForest,ma_diff_20,0.040822813448780734
+随机森林 RandomForest,amp,0.04076568088458694
+随机森林 RandomForest,expma_diff_29,0.04048309548919933
+随机森林 RandomForest,rsi_12,0.03855435165183557
+随机森林 RandomForest,expma_5,0.03838291464681658
+随机森林 RandomForest,wr_42,0.03810043885688281
+随机森林 RandomForest,vol_ratio_8_89,0.037925256623067276
+随机森林 RandomForest,volatility_5,0.03655423431912769
+随机森林 RandomForest,turnover_rate,0.036334877588308855
+随机森林 RandomForest,vol_ratio,0.035688892567946905
+随机森林 RandomForest,cr,0.03563798398449592
+随机森林 RandomForest,cr_ma_35,0.035307375294522964
+随机森林 RandomForest,ma_diff_10,0.03367042982321007
+随机森林 RandomForest,pct_chg,0.0334244899333639
+随机森林 RandomForest,expma_29,0.03243960153184218
+随机森林 RandomForest,ma_diff_5,0.032210249891136446
+随机森林 RandomForest,change,0.03215728055741035
+随机森林 RandomForest,high,0.03205797867543638
+随机森林 RandomForest,vol,0.031639444542718886
+随机森林 RandomForest,close,0.03147599101151633
+随机森林 RandomForest,cr_ma_19,0.030710210071948362
+随机森林 RandomForest,cr_ma_53,0.030028745062482955
+随机森林 RandomForest,amount,0.029686012643294797
+随机森林 RandomForest,low,0.028959356851169776
+随机森林 RandomForest,cr_ma_11,0.028848641327882115
+随机森林 RandomForest,open,0.028846848667138773
+随机森林 RandomForest,expma_diff_5,0.026567444980666866
