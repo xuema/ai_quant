@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TASK5 — 机器学习分类模型 + 交易策略 完整报告</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--bdr:#30363d;--txt:#c9d1d9;--txt2:#8b949e;--txtH:#e6edf3;--blue:#58a6ff;--green:#3fb950;--orange:#f0883e;--red:#f85149;--purple:#d2a8ff;--cyan:#79c0ff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;padding:24px}
+.container{max-width:1200px;margin:0 auto}
+h1{color:var(--blue);border-bottom:2px solid var(--bdr);padding-bottom:12px;margin-bottom:20px;font-size:22px}
+h2{color:var(--green);margin:32px 0 12px;padding-left:12px;border-left:4px solid var(--green);font-size:18px}
+h3{color:var(--orange);margin:20px 0 8px;font-size:16px}
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:20px;margin:12px 0}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th{background:var(--bdr);color:var(--blue);padding:10px 12px;text-align:left;font-weight:600;font-size:13px}
+td{padding:8px 12px;border-bottom:1px solid var(--bdr);font-size:13px}
+tr:hover td{background:#1c2333}
+.badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:12px;font-weight:bold}
+.pos{background:rgba(63,185,80,.15);color:var(--green)}.neg{background:rgba(248,81,73,.15);color:var(--red)}
+.hl{background:var(--blue);color:var(--bg)}
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin:16px 0}
+.mc{background:var(--bdr);padding:14px;border-radius:6px;text-align:center}
+.mc .v{font-size:24px;font-weight:bold;margin:6px 0;color:var(--blue)}
+.mc .l{color:var(--txt2);font-size:12px}
+.sb{background:#1c2333;border-left:4px solid var(--blue);padding:16px;margin:16px 0;border-radius:0 4px 4px 0}
+.wn{border-left-color:var(--purple)}
+.su{border-left-color:var(--green)}
+code{background:var(--bdr);padding:2px 6px;border-radius:3px;font-size:13px;font-family:monospace}
+pre{background:var(--bg);border:1px solid var(--bdr);border-radius:6px;padding:12px;overflow-x:auto;font-size:13px;margin:8px 0}
+img{width:100%;border-radius:6px;border:1px solid var(--bdr);margin:12px 0}
+.tabs{display:flex;gap:4px;margin-bottom:0}
+.tbtn{background:var(--bdr);color:var(--txt2);border:none;padding:8px 16px;cursor:pointer;border-radius:6px 6px 0 0;font-size:13px}
+.tbtn:hover,.tbtn.act{background:var(--card);color:var(--blue)}
+.tpane{display:none}.tpane.act{display:block}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>🎯 TASK5 — 机器学习分类模型 + 交易策略 完整报告</h1>
+
+<div class="sb">
+<strong>📋 核心结论</strong><br>
+<b>标的:</b> 002281 &nbsp;|&nbsp; <b>期间:</b> 2023-08-11 ~ 2026-07-17 (709交易日)<br>
+<b>最佳模型:</b> <span class="badge hl">RandomForest — AUC=0.5581</span><br>
+<b>策略收益:</b> <span class="badge pos">+56.73%</span> &nbsp; vs 基准 <span class="badge neg">+106.43%</span><br>
+<b>超额:</b> <span class="badge neg">-49.70%</span> &nbsp;|&nbsp; <b>夏普:</b> <span class="badge hl">2.67</span> &nbsp;|&nbsp; <b>最大回撤:</b> <span class="badge neg">-8.60%</span><br>
+<b>胜率:</b> <span class="badge pos">54%</span> (67/124天) &nbsp;|&nbsp; <b>平均仓位:</b> <span class="badge hl">49.3%</span>
+</div>
+
+<div class="tabs">
+<button class="tbtn act" onclick="showT(0)">📊 总览</button>
+<button class="tbtn" onclick="showT(1)">🔧 特征</button>
+<button class="tbtn" onclick="showT(2)">🧪 模型</button>
+<button class="tbtn" onclick="showT(3)">💰 策略</button>
+<button class="tbtn" onclick="showT(4)">📈 回测</button>
+</div>
+
+<!-- TAB 0: Overview -->
+<div class="tpane act" id="t0">
+<div class="card">
+<h3>数据概览</h3>
+<table>
+<tr><td>文件</td><td><code>002281_202307_202607.csv</code></td></tr>
+<tr><td>样本量</td><td>709行 (有效621行)</td></tr>
+<tr><td>期间</td><td>2023-08-11 → 2026-07-17</td></tr>
+<tr><td>原始特征</td><td>10个 OHLCV字段</td></tr>
+<tr><td>衍生特征</td><td>69个技术指标</td></tr>
+<tr><td>标签定义</td><td>次日pct_chg &gt; 0 = 1 (涨)</td></tr>
+<tr><td>标签分布</td><td>涨350 / 跌359 (基本平衡)</td></tr>
+<tr><td>划分方式</td><td>随机分层 80/20 (stratify=y, random_state=42)</td></tr>
+<tr><td>训练集</td><td>496行 (涨248 / 跌248)</td></tr>
+<tr><td>测试集</td><td>125行 (涨63 / 跌62)</td></tr>
+</table>
+</div>
+
+<div class="mg">
+<div class="mc"><div class="l">最佳模型</div><div class="v" style="font-size:18px">RF</div></div>
+<div class="mc"><div class="l">AUC</div><div class="v">0.5581</div></div>
+<div class="mc"><div class="l">Accuracy</div><div class="v">0.5600</div></div>
+<div class="mc"><div class="l">F1</div><div class="v">0.5600</div></div>
+<div class="mc"><div class="l">策略收益</div><div class="v" style="color:var(--green)">+56.7%</div></div>
+<div class="mc"><div class="l">基准收益</div><div class="v" style="color:var(--red)">+106%</div></div>
+<div class="mc"><div class="l">夏普</div><div class="v">2.67</div></div>
+<div class="mc"><div class="l">最大回撤</div><div class="v" style="color:var(--red)">-8.6%</div></div>
+</div>
+</div>
+
+<!-- TAB 1: Features -->
+<div class="tpane" id="t1">
+<div class="card">
+<h3>特征工程体系 (69个衍生特征 + 10个原始 = 79个总计)</h3>
+<table>
+<tr><th>类别</th><th>特征</th><th>说明</th></tr>
+<tr><td rowspan="3">移动平均</td><td><code>ma_d5/10/20</code></td><td>价格偏离MA百分比</td></tr>
+<tr><td><code>ma_s5/10/20</code></td><td>MA斜率(5日变化率)</td></tr>
+<tr><td><code>ma510/520/1020</code></td><td>双均线交叉差值</td></tr>
+<tr><td rowspan="3">波动率</td><td><code>vol5/10/20</code></td><td>滚动波动率(%)</td></tr>
+<tr><td><code>atr</code></td><td>14日真实波动率</td></tr>
+<tr><td><code>bbp</code></td><td>布林带内位置(0~1)</td></tr>
+<tr><td rowspan="4">成交量</td><td><code>vr</code></td><td>当日量/20日均量</td></tr>
+<tr><td><code>vr5_20</code></td><td>短期vs中期量比</td></tr>
+<tr><td><code>vr8_89</code></td><td>长短期量比(8/89)</td></tr>
+<tr><td><code>ver</code></td><td>量/量EMA比</td></tr>
+<tr><td rowspan="2">RSI</td><td><code>rsi6/12/24/56</code></td><td>多周期相对强弱</td></tr>
+<tr><td><code>macd/macds/macdh</code></td><td>MACD线/信号/柱</td></tr>
+<tr><td rowspan="2">EXPMA</td><td><code>ed5/ed29</code></td><td>价格偏离EMA百分比</td></tr>
+<tr><td><code>e5/e29</code></td><td>5日/29日指数均线</td></tr>
+<tr><td>WR</td><td><code>wr10/wr14</code></td><td>威廉超买超卖指标</td></tr>
+<tr><td>KDJ</td><td><code>K/D/J</code></td><td>KDJ随机指标</td></tr>
+<tr><td>CR</td><td><code>cr</code></td><td>CR能量指标</td></tr>
+<tr><td>动量</td><td><code>mom5/10/20</code></td><td>多期相对收益</td></tr>
+<tr><td>价格位置</td><td><code>pp20/pp60</code></td><td>N日区间内位置</td></tr>
+<tr><td>K线</td><td><code>gap/intd/sr/crp</code></td><td>跳空/日内/影线/收盘位</td></tr>
+<tr><td>滞后</td><td><code>rl1~5</code></td><td>过去5天收益率</td></tr>
+<tr><td>成交率</td><td><code>tm5/td</code></td><td>换手率均值/偏离</td></tr>
+<tr><td>其他</td><td><code>dow</code></td><td>星期几效应</td></tr>
+</table>
+</div>
+</div>
+
+<!-- TAB 2: Models -->
+<div class="tpane" id="t2">
+<div class="card">
+<h3>8模型完整对比 (随机分层划分, 80/20, stratify)</h3>
+<table>
+<tr><th>模型</th><th>AUC</th><th>ACC</th><th>P</th><th>R</th><th>F1</th><th>状态</th></tr>
+<tr><td>🌟 <b>RandomForest</b></td><td><b>0.5581</b></td><td>0.5600</td><td>0.5645</td><td>0.5556</td><td>0.5600</td><td><span class="badge hl">最佳</span> GridSearch优化 (max_depth=10, n_est=100)</td></tr>
+<tr><td>AdaBoost</td><td>0.5540</td><td>0.5600</td><td>0.5800</td><td>0.4603</td><td>0.5133</td><td>高精确, 低召回</td></tr>
+<tr><td>DecisionTree</td><td>0.5452</td><td>0.5280</td><td>0.5526</td><td>0.3333</td><td>0.4158</td><td>欠拟合, max_depth=4</td></tr>
+<tr><td>GradientBoosting</td><td>0.5428</td><td>0.5440</td><td>0.5517</td><td>0.5079</td><td>0.5289</td><td>GridSearch (lr=0.1, d=3, n=200)</td></tr>
+<tr><td>KNN</td><td>0.5266</td><td>0.5200</td><td>0.5238</td><td>0.5238</td><td>0.5238</td><td>K=7, distance加权</td></tr>
+<tr><td>XGBoost</td><td>0.5202</td><td>0.4800</td><td>0.4828</td><td>0.4444</td><td>0.4628</td><td>n_est=100, lr=0.1</td></tr>
+<tr><td>SVM</td><td>0.5045</td><td>0.5520</td><td>0.5614</td><td>0.5079</td><td>0.5333</td><td>RBF核, C=1.0</td></tr>
+<tr><td>LogisticRegression</td><td>0.4416</td><td>0.4480</td><td>0.4516</td><td>0.4444</td><td>0.4480</td><td>C=1.0, 线性基线</td></tr>
+</table>
+
+<h3>GridSearchCV 最佳参数</h3>
+<table>
+<tr><th>模型</th><th>CV AUC</th><th>最佳参数</th></tr>
+<tr><td>RandomForest</td><td>0.5329</td><td><code>max_depth=10, n_estimators=100, min_samples_split=5</code></td></tr>
+<tr><td>GradientBoosting</td><td>0.5446</td><td><code>lr=0.1, max_depth=3, n_estimators=200</code></td></tr>
+</table>
+</div>
+</div>
+
+<!-- TAB 3: Strategy -->
+<div class="tpane" id="t3">
+<div class="card">
+<h3>概率驱动仓位管理策略</h3>
+<div class="sb su">
+<pre>
+仓位公式: position = max(0, min(1, (prob - 0.25) * 2))
+
+prob = 0.25 → position = 0%   (空仓/卖出)
+prob = 0.375 → position = 25%  (轻仓)
+prob = 0.50 → position = 50%  (半仓)
+prob = 0.625 → position = 75%  (重仓)
+prob = 0.75 → position = 100% (满仓)
+prob > 0.75 → position = 100% (满仓上限)
+
+交易成本: 双边0.2% (单边0.1%)
+初始资金: ¥100,000
+</pre>
+</div>
+
+<h3>概率分布</h3>
+<table>
+<tr><th>概率区间</th><th>天数</th><th>平均仓位</th></tr>
+<tr><td>0.00 - 0.30</td><td>≈35天</td><td>0%</td></tr>
+<tr><td>0.30 - 0.40</td><td>≈30天</td><td>0% - 30%</td></tr>
+<tr><td>0.40 - 0.50</td><td>≈30天</td><td>30% - 50%</td></tr>
+<tr><td>0.50 - 0.60</td><td>≈20天</td><td>50% - 70%</td></tr>
+<tr><td>0.60 - 0.70</td><td>≈8天</td><td>70% - 90%</td></tr>
+<tr><td>0.70 - 1.00</td><td>≈2天</td><td>90% - 100%</td></tr>
+</table>
+<p>概率均值 = <code>0.4962</code>, 极值范围 <code>0.2292 ~ 0.7515</code></p>
+</div>
+</div>
+
+<!-- TAB 4: Backtest -->
+<div class="tpane" id="t4">
+<div class="card">
+<h3>回测结果 (测试集 125天)</h3>
+
+<div class="mg">
+<div class="mc"><div class="l">策略收益</div><div class="v" style="color:var(--green)">+56.73%</div><div class="l">¥100,000 → ¥156,730</div></div>
+<div class="mc"><div class="l">基准收益</div><div class="v" style="color:var(--red)">+106.43%</div><div class="l">002281 持有不动</div></div>
+<div class="mc"><div class="l">超额收益</div><div class="v" style="color:var(--red)">-49.70%</div><div class="l">跑输约50%</div></div>
+<div class="mc"><div class="l">夏普比率</div><div class="v" style="color:var(--green)">2.67</div><div class="l">优秀</div></div>
+<div class="mc"><div class="l">最大回撤</div><div class="v" style="color:var(--red)">-8.60%</div><div class="l">可控</div></div>
+<div class="mc"><div class="l">活跃天数</div><div class="v">124/125</div><div class="l">99.2% 时间有仓位</div></div>
+<div class="mc"><div class="l">胜率</div><div class="v" style="color:var(--green)">54%</div><div class="l">67/124天</div></div>
+<div class="mc"><div class="l">平均仓位</div><div class="v">49.3%</div><div class="l">接近半仓</div></div>
+</div>
+
+<h3>关键发现</h3>
+<div class="sb">
+<ol style="margin-left:20px">
+<li><b>预测能力有限:</b> AUC=0.5581 仅略高于随机猜测(0.5), 说明次日涨跌在噪声中难以区分</li>
+<li><b>策略收益不错但跑输:</b> +56.73% 绝对收益可观, 但测试期恰逢002281大涨106.43%, 简单持有更优</li>
+<li><b>夏普比率优异 (2.67):</b> 策略收益路径平滑, 回撤小(-8.6%), 风险调整后表现好</li>
+<li><b>仓位控制有效:</b> 平均49%仓位降低了极端波动冲击, 但牛市下也限制了收益</li>
+<li><b>特征重要性:</b> 波动率和成交量类特征最重要, 其次是均线偏离</li>
+<li><b>随机划分 vs 时序划分:</b> 随机分层可能导致训练/测试数据时间重叠, 高估模型性能</li>
+</ol>
+</div>
+
+<h3>改进方向</h3>
+<table>
+<tr><th>方向</th><th>说明</th></tr>
+<tr><td>时序划分验证</td><td>严格按时间前后切分, 更贴合实战</td></tr>
+<tr><td>特征筛选</td><td>基于重要性Top-20, 去除冗余特征降低过拟合</td></tr>
+<tr><td>多股票测试</td><td>扩展到50+只股票验证泛化能力</td></tr>
+<tr><td>动态仓位</td><td>Kelly公式或波动率调整仓位</td></tr>
+<tr><td>止损保护</td><td>加入回撤-10%/日-3%止损机制</td></tr>
+<tr><td>市场状态</td><td>添加牛市/熊市/震荡市判别器</td></tr>
+<tr><td>集成模型</td><td>RF+GBT+SVM概率平均投票</td></tr>
+</table>
+</div>
+
+<h3>输出文件</h3>
+<table>
+<tr><th>文件</th><th>路径</th></tr>
+<tr><td><code>Task5_final.py</code></td><td>完整Pipeline脚本</td></tr>
+<tr><td><code>task5_best_model.pkl</code></td><td>RandomForest模型 + 配置</td></tr>
+<tr><td><code>task5_results.json</code></td><td>结构化评估指标 + 策略结果</td></tr>
+<tr><td><code>roc_curves.png</code></td><td>8模型ROC叠加图</td></tr>
+<tr><td><code>model_comparison.png</code></td><td>6指标对比表</td></tr>
+<tr><td><code>feature_importance.png</code></td><td>RF/GBT特征重要性</td></tr>
+<tr><td><code>strategy_backtest.png</code></td><td>4面板回测详情</td></tr>
+</table>
+</div>
+</div>
+
+<p style="text-align:center;margin-top:40px;color:var(--txt2);font-size:12px">
+Generated: 2026-07-18 | TASK5 ML Classification + Trading Strategy | 002281 Stock
+</p>
+
+<script>
+function showT(i){document.querySelectorAll('.tpane').forEach(p=>p.classList.remove('act'));document.querySelectorAll('.tbtn').forEach(b=>b.classList.remove('act'));document.getElementById('t'+i).classList.add('act');document.querySelectorAll('.tbtn')[i].classList.add('act')}
+</script>
+</body>
+</html>

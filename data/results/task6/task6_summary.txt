@@ -1,0 +1,53 @@
+============================================================
+Task6: 机器学习选股策略与回测 - 汇总报告
+生成时间: 2026-07-18 16:55:01
+============================================================
+
+## 1. 数据概况
+   - 数据量: 39616 条 × 36 个特征
+   - 时间范围: 2020-03-31 ~ 2022-06-30
+   - 训练集: 7 个季度
+   - 测试集: 3 个季度
+
+## 2. 特征工程
+   - 基础特征: 19 个
+   - 衍生特征: 17 个
+   - 总特征: 36 个
+
+## 3. 模型性能
+   Ridge:
+     Train R²=0.0361, Test R²=-0.2329, DirAcc=50.92%
+   Lasso:
+     Train R²=0.0208, Test R²=-0.2767, DirAcc=32.78%
+   DecisionTree:
+     Train R²=0.1559, Test R²=-0.4324, DirAcc=45.57%
+   RandomForest:
+     Train R²=0.2684, Test R²=-0.4278, DirAcc=46.89%
+   GradientBoosting:
+     Train R²=0.2714, Test R²=-0.3717, DirAcc=46.56%
+   XGBoost:
+     Train R²=0.4316, Test R²=-0.0704, DirAcc=57.56%
+
+## 4. 策略回测 (Top30)
+   Top30_Equal_Weight:
+     总收益: -2.69%
+     年化: -3.57%
+     夏普: -0.38
+     最大回撤: 10.95%
+   Top30_Predicted_Weight:
+     总收益: -2.39%
+     年化: -3.17%
+     夏普: -0.37
+     最大回撤: 10.54%
+   Market_Benchmark:
+     总收益: -16.20%
+     年化: -20.99%
+     夏普: -2.70
+     最大回撤: 16.20%
+
+## 5. 输出文件
+   - 策略选股: /Users/skyler/workspace/stock_selection/ai_quant/data/results/task6/top30_selection_strategy.csv
+   - 回测指标: /Users/skyler/workspace/stock_selection/ai_quant/data/results/task6/task6_backtest_metrics.json
+   - 模型文件: /Users/skyler/workspace/stock_selection/ai_quant/data/results/task6/models/
+   - 特征重要性: /Users/skyler/workspace/stock_selection/ai_quant/data/results/task6/*_feature_importance.csv
+   - 可视化: /Users/skyler/workspace/stock_selection/ai_quant/data/results/task6/figures/

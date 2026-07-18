@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Task 1 — 量化交易分析报告</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: A4; margin: 18mm 18mm 20mm; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Hiragino Sans GB",
+                 "Noto Sans CJK SC", "Microsoft YaHei", SimSun, sans-serif;
+    color: #222; line-height: 1.7; font-size: 11.5pt;
+    background: #fff;
+  }
+  h1 { text-align: center; font-size: 26pt; margin-bottom: 6pt; color: #2c2c54; }
+  h1 + .sub { text-align: center; color: #777; font-size: 11pt; margin-bottom: 18pt; }
+  hr { border: none; height: 1px; background: #aaa; margin: 18pt 0; }
+  h2 {
+    font-size: 15pt; color: #3b3b8a; margin: 22pt 0 10pt;
+    border-left: 5px solid #3b3b8a; padding-left: 10pt;
+  }
+  h3 { font-size: 12pt; color: #444; margin: 14pt 0 5pt; }
+  p { margin: 4pt 0 8pt; text-align: justify; }
+  ul { margin: 4pt 0 10pt 22pt; }
+  li { margin-bottom: 4pt; }
+  .lead { background: #f5f5fa; padding: 9pt 12pt; border-radius: 5pt; margin: 6pt 0 10pt; }
+  table { width: 100%; border-collapse: collapse; margin: 10pt 0 14pt; font-size: 10.5pt; }
+  th, td { border: 1px solid #ccc; padding: 5pt 7pt; text-align: left; vertical-align: top; }
+  th { background: #eef0fa; color: #3b3b8a; }
+  .url { word-break: break-all; color: #1e5bb6; font-weight: 600; }
+  .page-break { page-break-after: always; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14pt; }
+  .cols > div { break-inside: avoid; }
+  .note {
+    margin-top: 18pt; padding: 8pt 10pt; font-size: 10pt;
+    background: #fff8e1; border-left: 4px solid #f5c518;
+    border-radius: 4pt;
+  }
+  .footer { margin-top: 20pt; font-size: 9.5pt; color: #888; text-align: center; }
+</style>
+</head>
+<body>
+
+<h1>量化交易分析报告</h1>
+<p class="sub">Task 1 — 理论问答与项目实践 &nbsp;|&nbsp; 完成日期：2026-07-04</p>
+<hr>
+
+<!-- ======================== Q1 ======================== -->
+<h2>问题 1：相较于传统手工操作交易，量化交易有哪些优势？</h2>
+
+<p>相较于传统手工操作交易的方法，量化交易具有以下显著优势：</p>
+
+<table>
+  <tr><th>维度</th><th>量化交易</th><th>传统手工交易</th></tr>
+  <tr><td><b>决策依据</b></td><td>模型与数据驱动，客观一致</td><td>主观经验，受情绪与偏见影响大</td></tr>
+  <tr><td><b>执行效率</b></td><td>毫秒级下单，可同时监控多品种多市场</td><td>人工速度受限，覆盖范围有限</td></tr>
+  <tr><td><b>数据处理</b></td><td>实时处理海量历史与实时数据</td><td>无法处理大规模信息维度</td></tr>
+  <tr><td><b>风险控制</b></td><td>系统化仓位管理、自动止损止盈</td><td>依赖人工纪律，易"扛单"破坏规则</td></tr>
+  <tr><td><b>策略验证</b></td><td>可历史回测，评估收益、回撤、夏普比率</td><td>难以系统化验证策略有效性</td></tr>
+  <tr><td><b>可扩展性</b></td><td>代码复制即可部署多账户多策略</td><td>依赖个人精力，难以规模化</td></tr>
+  <tr><td><b>纪律性</b></td><td>100% 严格执行，消除贪婪、恐惧与犹豫</td><td>容易追涨杀跌、频繁改变计划</td></tr>
+</table>
+
+<!-- ======================== Q2 ======================== -->
+<h2 class="page-break">问题 2：基本概念解释</h2>
+
+<h3>K 线（蜡烛图）</h3>
+<p>K线起源于日本米市，是记录单根交易周期（通常为一天）内<span class="lead"><b>四个关键价格：开盘价、收盘价、最高价、最低价</b></span>的图表工具。</p>
+<ul>
+  <li><b>实体：</b>开盘价与收盘价围成的矩形区域。收盘 &gt; 开盘为<b>阳线</b>（通常红色），收盘 &lt; 开盘为<b>阴线</b>（通常绿色）。</li>
+  <li><b>影线：</b>实体外延伸的细线。上影线 = 最高价到实体顶部；下影线 = 最低价到实体底部。</li>
+  <li><b>常用形态：</b>十字星、锤子线、吞没形态等，常被用于判断趋势反转或延续信号。</li>
+</ul>
+
+<h3>基本面分析</h3>
+<p>通过评估公司<b>内在价值</b>来判断股票合理定价的方法。</p>
+<ul>
+  <li><b>宏观层面：</b>GDP 增速、通胀、利率政策、行业动态、资金流向。</li>
+  <li><b>微观层面：</b>利润表/资产负债表/现金流量表；盈利能力（毛利率、净利率、ROE）；成长性（营收与净利润增速）；估值指标（PE、PB、PS）；护城河（品牌、技术壁垒、网络效应）。</li>
+  <li><b>核心逻辑：</b>市场价格围绕内在价值波动，<b>低估时买入，高估时卖出</b>。</li>
+</ul>
+
+<h3>技术面分析</h3>
+<p>通过研究<b>历史价格与成交量</b>的数据规律来预测未来走势的方法。三大核心假设：</p>
+<ol>
+  <li>市场行为包容消化一切信息</li>
+  <li>价格以趋势方式演变</li>
+  <li>历史会重演</li>
+</ol>
+<p>主要工具包括：趋势指标（MA5/10/20/60）、动量指标（MACD/RSI/KDJ）、通道指标（布林带）以及量价分析。</p>
+
+<p class="lead"><b>使用场景：</b>技术面擅长判断中短期买卖时机与止损位；基本面擅长判断中长期内在价值。两者结合效果最佳。</p>
+
+<!-- ======================== Q3 ======================== -->
+<div class="page-break"></div>
+<h2>问题 3：GitHub 项目展示</h2>
+
+<p>以<b>光迅科技（002281.SZ）</b>为例的完整技术分析报告，已部署在 GitHub Pages：</p>
+
+<p class="lead" style="font-size:12pt;">
+   <span class="url">https://xuema.github.io/ai_quant/</span>
+</p>
+
+<h3>项目概述</h3>
+<p>本项目对光迅科技进行了系统性的技术面分析，数据区间 <b class="url">2025-07-03</b> 至 <b class="url">2026-07-03</b>，共覆盖 <b>243 个交易日</b>。</p>
+
+<h3>页面模块</h3>
+<div class="cols">
+<div>
+  <ul>
+    <li>📈 <b>K 线走势图</b> + 均线系统（MA5/MA10/MA20/MA60） + 布林带</li>
+    <li> <b>MACD 指标</b>（DIF/DEA/柱体）</li>
+    <li>📊 <b>RSI 相对强弱</b>（RSI6/RSI14）</li>
+    <li>🎯 <b>技术信号解读</b>：趋势 / MACD / RSI / 布林四维度研判</li>
+  </ul>
+</div>
+<div>
+  <ul>
+    <li>💼 <b>基本面分析</b>：公司概况 + 核心驱动因素</li>
+    <li>💡 <b>操作建议</b>：短期观望、中期分批建仓</li>
+    <li>⚠️ <b>风险提示</b>：估值、竞争、迭代、市场情绪等六大维度</li>
+    <li>📝 <b>总结：长期看好，短期等企稳</b></li>
+  </ul>
+</div>
+</div>
+
+<h3>技术实现</h3>
+<table>
+  <tr><th>模块</th><th>技术选型</th></tr>
+  <tr><td>数据源</td><td>akshare（免费 A 股数据接口）</td></tr>
+  <tr><td>技术指标</td><td>pandas rolling/ewm 自研计算（MA/MACD/RSI/BOLL）</td></tr>
+  <tr><td>图表渲染</td><td>ECharts 5.4.3（交互式 K线 / MACD / RSI）</td></tr>
+  <tr><td>前端框架</td><td>Bootstrap 5.3.0 + 自定义 CSS</td></tr>
+  <tr><td>部署平台</td><td>GitHub Pages（static hosting）</td></tr>
+</table>
+
+<p class="lead"><b>核心结论：</b>光迅科技年内从 44 涨至 279（涨幅约 534%），当前 217 处于高位回调阶段。均线纠缠 + MACD 死叉 + 布林中轨下方，短期偏弱但中长期趋势未破坏。建议关注 187–189 区间（布林下轨 + MA60 双重支撑）的企稳信号。</p>
+
+<p class="note"><b>⚠️ 免责声明：</b>本 PDF 内容（含 GitHub Pages 页面）仅供参考，不构成投资建议。股市有风险，投资需谨慎。</p>
+
+<p class="footer">
+  报告生成时间：2026-07-04 &nbsp;|&nbsp;
+  GitHub 仓库：xuema/ai_quant &nbsp;|&nbsp;
+  在线访问：<span class="url">https://xuema.github.io/ai_quant/</span>
+</p>
+
+</body>
+</html>

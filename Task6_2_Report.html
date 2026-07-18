@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Task6_2 — 机器学习分类模型 + 交易策略</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
+    background: #0d1117;
+    color: #c9d1d9;
+    line-height: 1.6;
+}
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px;
+}
+h1 {
+    font-size: 28px;
+    color: #58a6ff;
+    margin-bottom: 8px;
+}
+h2 {
+    font-size: 22px;
+    color: #e6edf3;
+    margin: 32px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #30363d;
+}
+.sub {
+    color: #8b949e;
+    font-size: 15px;
+    margin-bottom: 32px;
+}
+.card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+th {
+    background: #1c2128;
+    color: #e6edf3;
+    padding: 12px 10px;
+    text-align: center;
+    border-bottom: 2px solid #30363d;
+}
+td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #21262d;
+}
+tr:hover {
+    background: #1c2128;
+}
+.hl {
+    color: #58a6ff;
+    font-weight: 600;
+}
+.pos {
+    color: #3fb950;
+}
+.neg {
+    color: #f85149;
+}
+.tag {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+.tag-blue { background: #1f6feb33; color: #58a6ff; border: 1px solid #1f6feb55; }
+.tag-green { background: #23863633; color: #3fb950; border: 1px solid #23863655; }
+.tag-orange { background: #d2992233; color: #d29922; border: 1px solid #d2992244; }
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+}
+.stat {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 16px;
+    text-align: center;
+}
+.stat-val {
+    font-size: 28px;
+    font-weight: 700;
+    color: #58a6ff;
+}
+.stat-label {
+    font-size: 12px;
+    color: #8b949e;
+    margin-top: 4px;
+}
+.bar-wrap {
+    display: flex;
+    align-items: center;
+    margin: 6px 0;
+}
+.bar-label {
+    width: 110px;
+    font-size: 12px;
+    color: #8b949e;
+    text-align: right;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+.bar-bg {
+    flex: 1;
+    background: #21262d;
+    border-radius: 4px;
+    height: 22px;
+    position: relative;
+    overflow: hidden;
+}
+.bar-fill {
+    height: 100%;
+    background: linear-gradient(to right, #58a6ff, #3b9eff);
+    border-radius: 4px;
+}
+.bar-val {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    font-weight: 600;
+    color: #e6edf3;
+}
+.feat-group {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 14px;
+    margin-bottom: 12px;
+}
+.feat-group h4 {
+    color: #58a6ff;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+.feat-group p {
+    color: #8b949e;
+    font-size: 12px;
+    line-height: 1.5;
+}
+.tab-bar {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 4px;
+}
+.tab {
+    padding: 8px 20px;
+    color: #8b949e;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+    font-size: 14px;
+}
+.tab.active {
+    background: #21262d;
+    color: #58a6ff;
+    border: 1px solid #30363d;
+    border-bottom: 1px solid #161b22;
+}
+.panel {
+    display: none;
+}
+.panel.active {
+    display: block;
+}
+.img-wrap {
+    text-align: center;
+    margin: 20px 0;
+}
+.img-wrap img {
+    max-width: 100%;
+    border-radius: 8px;
+    border: 1px solid #30363d;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Task6_2 — 机器学习分类模型 + 交易策略</h1>
+<p class="sub">002281 (2023-07-18 ~ 2026-07-17) | 69个技术面特征 | 8模型对比 | 门限 0.60/0.40 | 完整特征工程</p>
+
+<div class="tab-bar">
+    <div class="tab active" onclick="switchTab(0,this)">概览</div>
+    <div class="tab" onclick="switchTab(1,this)">8模型对比</div>
+    <div class="tab" onclick="switchTab(2,this)">特征工程</div>
+    <div class="tab" onclick="switchTab(3,this)">交易策略</div>
+    <div class="tab" onclick="switchTab(4,this)">结论</div>
+</div>
+
+<!-- 概览 -->
+<div id="tab0" class="panel active">
+<div class="stats">
+    <div class="stat">
+        <div class="stat-val">709</div>
+        <div class="stat-label">样本数</div>
+    </div>
+    <div class="stat">
+        <div class="stat-val">69</div>
+        <div class="stat-label">特征维度</div>
+    </div>
+    <div class="stat">
+        <div class="stat-val">0.5581</div>
+        <div class="stat-label">最佳AUC (RandomForest)</div>
+    </div>
+    <div class="stat">
+        <div class="stat-val">0.60 / 0.40</div>
+        <div class="stat-label">买入 / 卖出门限</div>
+    </div>
+</div>
+
+<div class="card">
+<h2>模型评估 (8模型)</h2>
+<table>
+<thead>
+<tr>
+<th>模型</th><th>AUC</th><th>ACC</th><th>精确率</th><th>召回率</th><th>F1</th>
+</tr>
+</thead>
+<tbody>
+<tr><td><strong style="color:#58a6ff">RandomForest</strong></td><td class="pos"><strong>0.5581</strong></td><td>0.5600</td><td>0.5645</td><td>0.5556</td><td>0.5600</td></tr>
+<tr><td>AdaBoost</td><td>0.5540</td><td>0.5600</td><td>0.5800</td><td>0.4603</td><td>0.5133</td></tr>
+<tr><td>DecisionTree</td><td>0.5452</td><td>0.5280</td><td>0.5526</td><td>0.3333</td><td>0.4158</td></tr>
+<tr><td>GradientBoosting</td><td>0.5428</td><td>0.5440</td><td>0.5517</td><td>0.5079</td><td>0.5289</td></tr>
+<tr><td>KNN</td><td>0.5266</td><td>0.5200</td><td>0.5238</td><td>0.5238</td><td>0.5238</td></tr>
+<tr><td>XGBoost</td><td>0.5202</td><td>0.4800</td><td>0.4828</td><td>0.4444</td><td>0.4628</td></tr>
+<tr><td>SVM</td><td>0.5045</td><td>0.5520</td><td>0.5614</td><td>0.5079</td><td>0.5333</td></tr>
+<tr><td>LogisticRegression</td><td>0.4416</td><td>0.4480</td><td>0.4516</td><td>0.4444</td><td>0.4480</td></tr>
+</tbody>
+</table>
+<p style="font-size:13px;color:#8b949e;margin-top:8px">
+注: RandomForest使用GridSearchCV超参调优 (CV=5, scoring=roc_auc)，CV AUC=0.5329<br>
+最佳模型为<strong>RandomForest</strong>，但8个模型AUC均处于0.44~0.56区间，说明单纯使用技术指标预测次日涨跌具有很大难度。
+</p>
+</div>
+</div>
+
+<!-- 8模型对比 -->
+<div id="tab1" class="panel">
+<div class="card">
+<h2>特征重要性 (RandomForest Top 10)</h2>
+<div style="padding:12px 0">
+<div class="bar-wrap"><div class="bar-label">gap</div><div class="bar-bg"><div class="bar-fill" style="width:100%"></div><span class="bar-val">0.0267</span></div></div>
+<div class="bar-wrap"><div class="bar-label">rl5</div><div class="bar-bg"><div class="bar-fill" style="width:97%"></div><span class="bar-val">0.0261</span></div></div>
+<div class="bar-wrap"><div class="bar-label">rsi56</div><div class="bar-bg"><div class="bar-fill" style="width:86%"></div><span class="bar-val">0.0229</span></div></div>
+<div class="bar-wrap"><div class="bar-label">intd</div><div class="bar-bg"><div class="bar-fill" style="width:84%"></div><span class="bar-val">0.0223</span></div></div>
+<div class="bar-wrap"><div class="bar-label">rl1</div><div class="bar-bg"><div class="bar-fill" style="width:78%"></div><span class="bar-val">0.0208</span></div></div>
+<div class="bar-wrap"><div class="bar-label">vol5</div><div class="bar-bg"><div class="bar-fill" style="width:76%"></div><span class="bar-val">0.0202</span></div></div>
+<div class="bar-wrap"><div class="bar-label">high</div><div class="bar-bg"><div class="bar-fill" style="width:73%"></div><span class="bar-val">0.0194</span></div></div>
+<div class="bar-wrap"><div class="bar-label">rl3</div><div class="bar-bg"><div class="bar-fill" style="width:71%"></div><span class="bar-val">0.0191</span></div></div>
+<div class="bar-wrap"><div class="bar-label">rl4</div><div class="bar-bg"><div class="bar-fill" style="width:70%"></div><span class="bar-val">0.0188</span></div></div>
+<div class="bar-wrap"><div class="bar-label">change</div><div class="bar-bg"><div class="bar-fill" style="width:69%"></div><span class="bar-val">0.0185</span></div></div>
+</div>
+<p style="font-size:13px;color:#8b949e;line-height:1.7">
+<strong>核心发现</strong>: 短期滞后收益率 (rl1, rl3, rl4, rl5)、跳空幅度 (gap)、长期RSI (rsi56)、日内实体 (intd) 是最重要的预测变量。
+传统技术指标 (MA, RSI, MACD) 重要性分布较为均匀，无单一因子能主导。
+</p>
+</div>
+</div>
+
+<!-- 特征工程 -->
+<div id="tab2" class="panel">
+<div class="card">
+<h2>69个特征工程说明</h2>
+<div class="feat-group">
+<h4>基础OHLCV + 衍生指标</h4>
+<p>close/open/high/low/vol/amount/pct_chg + 5/10/20日MA偏差、MA变化率</p>
+</div>
+<div class="feat-group">
+<h4>技术指标</h4>
+<p>RSI(6/12/24/56)、MACD(DIF/DEA/HIST)、EXPMA(5/29)、WR(10/14)、KDJ(K/D/J)、CR</p>
+</div>
+<div class="feat-group">
+<h4>波动率与位置</h4>
+<p>vol5/vol10/vol20、ATR、BBP、PP20/PP60</p>
+</div>
+<div class="feat-group">
+<h4>成交量与换手</h4>
+<p>vr/vr5_20/vr8_89/ver、tm5、td</p>
+</div>
+<div class="feat-group">
+<h4>滞后收益率</h4>
+<p>rl1~rl5 (1-5日前收益率)</p>
+</div>
+<div class="feat-group">
+<h4>K线与动量</h4>
+<p>gap、intd、sr、crp、mom5/10/20、rm5/10/20、ru5/10/20</p>
+</div>
+<p style="font-size:12px;color:#8b949e;margin-top:12px">
+共生成69个特征，经过NaN过滤，最终保留69个特征训练模型。
+特征工程是本项目核心，覆盖了常用技术指标、价格行为、成交量、滞后效应多个维度。
+</p>
+</div>
+</div>
+
+<!-- 策略 -->
+<div id="tab3" class="panel">
+<div class="card">
+<h2>0.60/0.40门限交易策略对比</h2>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>交易天</th>
+<th>胜率</th>
+<th>策略收益</th>
+<th>基准</th>
+<th>超额</th>
+<th>夏普比率</th>
+<th>最大回撤</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background:#1c2128">
+<td><strong style="color:#58a6ff">0.60/0.40 全仓</strong></td>
+<td>19</td>
+<td>52.6%</td>
+<td class="neg">-5.9%</td>
+<td>-16.6%</td>
+<td class="pos">+10.7%</td>
+<td class="neg">-0.50</td>
+<td>-12.8%</td>
+</tr>
+<tr>
+<td><strong style="color:#3fb950">0.60/0.40 仓位控制</strong></td>
+<td>50</td>
+<td>54.0%</td>
+<td class="pos">+8.5%</td>
+<td>-16.6%</td>
+<td class="pos">+25.2%</td>
+<td class="pos">1.36</td>
+<td class="pos">-3.9%</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top:16px;color:#8b949e;font-size:13px">
+<strong>结论</strong>: 在当前数据分布下，<span class="pos">仓位控制策略</span>显著优于全仓策略，实现了更高的收益、更优的风险控制。
+全仓虽然简单，但交易更频繁且胜率和夏普率较差。
+</p>
+</div>
+</div>
+
+<!-- 结论 -->
+<div id="tab4" class="panel">
+<div class="card">
+<h2>最终结论</h2>
+<div class="badge">⭐ 仓位控制策略是当前最优方案</div>
+<p style="font-size:14px;color:#c9d1d9;line-height:1.9">
+1. 8个模型中<strong>RandomForest</strong>表现最佳 (AUC 0.5581)，但所有模型的AUC均接近0.5，说明仅靠历史技术指标预测次日涨跌难度极大。
+<br><br>
+2. 特征重要性排名显示：<strong>短期滞后收益率 (rl1~5)</strong> 和 <strong>jump gap</strong> 是最重要的预测变量，
+传统技术指标 (RSI, MACD, MA) 没有压倒性优势，证明市场有效性较高。
+<br><br>
+3. <strong>0.60/0.40仓位控制策略</strong> 是最佳执行方式：50笔交易，胜率54%，收益+8.5%，超额+25.2%，夏普1.36，回撤仅-3.9%。全仓策略表现显著较差。
+<br><br>
+4. 2026牛市时序测试中，模型预测概率始终处于0.47~0.51之间，两个门限均未触发，策略完全踏空，说明模型无法捕捉趋势性牛市，需要加入趋势/量价特征或使用时序模型 (LSTM/Transformer)。
+</p>
+
+<h2 style="margin-top:24px">后续建议</h2>
+<ul style="padding-left:20px;color:#8b949e;font-size:14px;line-height:2">
+<li>加入市场制度特征、板块轮动特征、宏观指标</li>
+<li>使用时序模型 (LSTM, Transformer, LightGBM with time features)</li>
+<li>尝试分层抽样或Purged K-Fold避免前视偏差</li>
+<li>扩展至全市场多只股票验证</li>
+<li>增加交易成本、滑点、容量限制的真实回测</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+<script>
+function switchTab(n, el) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab' + n).classList.add('active');
+    if (el) el.classList.add('active');
+}
+</script>
+</body>
+</html>

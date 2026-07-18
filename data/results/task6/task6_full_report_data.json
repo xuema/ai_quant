@@ -1,0 +1,686 @@
+{
+  "model_results": {
+    "Ridge": {
+      "quarters": [
+        {
+          "quarter": "2021-12",
+          "market_mean": -0.0867,
+          "market_pos_pct": 0.2456,
+          "top30_eq_return": 0.0837,
+          "top30_pw_return": 0.0179,
+          "excess_return": 0.1703,
+          "win_rate": 0.5,
+          "top30_min_ret": -0.2566,
+          "top30_max_ret": 0.9157
+        },
+        {
+          "quarter": "2022-03",
+          "market_mean": 0.0105,
+          "market_pos_pct": 0.4447,
+          "top30_eq_return": 0.1491,
+          "top30_pw_return": 0.1538,
+          "excess_return": 0.1386,
+          "win_rate": 0.7667,
+          "top30_min_ret": -0.1908,
+          "top30_max_ret": 0.8162
+        },
+        {
+          "quarter": "2022-06",
+          "market_mean": -0.092,
+          "market_pos_pct": 0.1893,
+          "top30_eq_return": -0.0121,
+          "top30_pw_return": -0.0098,
+          "excess_return": 0.0799,
+          "win_rate": 0.4667,
+          "top30_min_ret": -0.274,
+          "top30_max_ret": 0.343
+        }
+      ],
+      "cum_eq": [
+        1.0,
+        1.0837,
+        1.2452,
+        1.2302
+      ],
+      "cum_pw": [
+        1.0,
+        1.0179,
+        1.1744,
+        1.1629
+      ],
+      "cum_mkt": [
+        1.0,
+        0.9133,
+        0.9229,
+        0.838
+      ],
+      "total_eq": 0.2302,
+      "total_pw": 0.1629,
+      "annual_eq": 0.3182,
+      "sharpe": 2.0,
+      "mdd": 0.0121,
+      "total_mkt": -0.162
+    },
+    "Lasso": {
+      "quarters": [
+        {
+          "quarter": "2021-12",
+          "market_mean": -0.0867,
+          "market_pos_pct": 0.2456,
+          "top30_eq_return": 0.0193,
+          "top30_pw_return": 0.0193,
+          "excess_return": 0.106,
+          "win_rate": 0.3667,
+          "top30_min_ret": -0.2696,
+          "top30_max_ret": 0.5435
+        },
+        {
+          "quarter": "2022-03",
+          "market_mean": 0.0105,
+          "market_pos_pct": 0.4447,
+          "top30_eq_return": 0.1306,
+          "top30_pw_return": 0.1307,
+          "excess_return": 0.1202,
+          "win_rate": 0.7333,
+          "top30_min_ret": -0.3638,
+          "top30_max_ret": 0.8162
+        },
+        {
+          "quarter": "2022-06",
+          "market_mean": -0.092,
+          "market_pos_pct": 0.1893,
+          "top30_eq_return": -0.021,
+          "top30_pw_return": -0.021,
+          "excess_return": 0.071,
+          "win_rate": 0.3333,
+          "top30_min_ret": -0.3638,
+          "top30_max_ret": 0.9157
+        }
+      ],
+      "cum_eq": [
+        1.0,
+        1.0193,
+        1.1525,
+        1.1283
+      ],
+      "cum_pw": [
+        1.0,
+        1.0193,
+        1.1526,
+        1.1284
+      ],
+      "cum_mkt": [
+        1.0,
+        0.9133,
+        0.9229,
+        0.838
+      ],
+      "total_eq": 0.1283,
+      "total_pw": 0.1284,
+      "annual_eq": 0.1746,
+      "sharpe": 1.11,
+      "mdd": 0.021,
+      "total_mkt": -0.162
+    },
+    "DecisionTree": {
+      "quarters": [
+        {
+          "quarter": "2021-12",
+          "market_mean": -0.0867,
+          "market_pos_pct": 0.2456,
+          "top30_eq_return": 0.0711,
+          "top30_pw_return": 0.0711,
+          "excess_return": 0.1578,
+          "win_rate": 0.6333,
+          "top30_min_ret": -0.208,
+          "top30_max_ret": 0.6538
+        },
+        {
+          "quarter": "2022-03",
+          "market_mean": 0.0105,
+          "market_pos_pct": 0.4447,
+          "top30_eq_return": 0.0619,
+          "top30_pw_return": 0.0619,
+          "excess_return": 0.0514,
+          "win_rate": 0.6,
+          "top30_min_ret": -0.1645,
+          "top30_max_ret": 0.777
+        },
+        {
+          "quarter": "2022-06",
+          "market_mean": -0.092,
+          "market_pos_pct": 0.1893,
+          "top30_eq_return": -0.0554,
+          "top30_pw_return": -0.0554,
+          "excess_return": 0.0366,
+          "win_rate": 0.2667,
+          "top30_min_ret": -0.3638,
+          "top30_max_ret": 0.9157
+        }
+      ],
+      "cum_eq": [
+        1.0,
+        1.0711,
+        1.1374,
+        1.0744
+      ],
+      "cum_pw": [
+        1.0,
+        1.0711,
+        1.1374,
+        1.0744
+      ],
+      "cum_mkt": [
+        1.0,
+        0.9133,
+        0.9229,
+        0.838
+      ],
+      "total_eq": 0.0744,
+      "total_pw": 0.0744,
+      "annual_eq": 0.1004,
+      "sharpe": 0.64,
+      "mdd": 0.0554,
+      "total_mkt": -0.162
+    },
+    "RandomForest": {
+      "quarters": [
+        {
+          "quarter": "2021-12",
+          "market_mean": -0.0867,
+          "market_pos_pct": 0.2456,
+          "top30_eq_return": 0.0446,
+          "top30_pw_return": 0.0455,
+          "excess_return": 0.1313,
+          "win_rate": 0.4333,
+          "top30_min_ret": -0.2487,
+          "top30_max_ret": 0.9157
+        },
+        {
+          "quarter": "2022-03",
+          "market_mean": 0.0105,
+          "market_pos_pct": 0.4447,
+          "top30_eq_return": 0.046,
+          "top30_pw_return": 0.0436,
+          "excess_return": 0.0355,
+          "win_rate": 0.6667,
+          "top30_min_ret": -0.1645,
+          "top30_max_ret": 0.777
+        },
+        {
+          "quarter": "2022-06",
+          "market_mean": -0.092,
+          "market_pos_pct": 0.1893,
+          "top30_eq_return": -0.1095,
+          "top30_pw_return": -0.1054,
+          "excess_return": -0.0175,
+          "win_rate": 0.1667,
+          "top30_min_ret": -0.3638,
+          "top30_max_ret": 0.9157
+        }
+      ],
+      "cum_eq": [
+        1.0,
+        1.0446,
+        1.0927,
+        0.9731
+      ],
+      "cum_pw": [
+        1.0,
+        1.0455,
+        1.0911,
+        0.9761
+      ],
+      "cum_mkt": [
+        1.0,
+        0.9133,
+        0.9229,
+        0.838
+      ],
+      "total_eq": -0.0269,
+      "total_pw": -0.0239,
+      "annual_eq": -0.0357,
+      "sharpe": -0.38,
+      "mdd": 0.1095,
+      "total_mkt": -0.162
+    },
+    "GradientBoosting": {
+      "quarters": [
+        {
+          "quarter": "2021-12",
+          "market_mean": -0.0867,
+          "market_pos_pct": 0.2456,
+          "top30_eq_return": 0.0666,
+          "top30_pw_return": 0.06,
+          "excess_return": 0.1532,
+          "win_rate": 0.4667,
+          "top30_min_ret": -0.2357,
+          "top30_max_ret": 0.9157
+        },
+        {
+          "quarter": "2022-03",
+          "market_mean": 0.0105,
+          "market_pos_pct": 0.4447,
+          "top30_eq_return": 0.1291,
+          "top30_pw_return": 0.1025,
+          "excess_return": 0.1186,
+          "win_rate": 0.7,
+          "top30_min_ret": -0.1971,
+          "top30_max_ret": 0.8162
+        },
+        {
+          "quarter": "2022-06",
+          "market_mean": -0.092,
+          "market_pos_pct": 0.1893,
+          "top30_eq_return": -0.1259,
+          "top30_pw_return": -0.1219,
+          "excess_return": -0.034,
+          "win_rate": 0.3,
+          "top30_min_ret": -0.3638,
+          "top30_max_ret": 0.6513
+        }
+      ],
+      "cum_eq": [
+        1.0,
+        1.0666,
+        1.2042,
+        1.0526
+      ],
+      "cum_pw": [
+        1.0,
+        1.06,
+        1.1686,
+        1.0262
+      ],
+      "cum_mkt": [
+        1.0,
+        0.9133,
+        0.9229,
+        0.838
+      ],
+      "total_eq": 0.0526,
+      "total_pw": 0.0262,
+      "annual_eq": 0.0707,
+      "sharpe": 0.29,
+      "mdd": 0.1259,
+      "total_mkt": -0.162
+    },
+    "XGBoost": {
+      "quarters": [
+        {
+          "quarter": "2021-12",
+          "market_mean": -0.0867,
+          "market_pos_pct": 0.2456,
+          "top30_eq_return": 0.0613,
+          "top30_pw_return": 0.0758,
+          "excess_return": 0.1479,
+          "win_rate": 0.5,
+          "top30_min_ret": -0.2271,
+          "top30_max_ret": 0.9157
+        },
+        {
+          "quarter": "2022-03",
+          "market_mean": 0.0105,
+          "market_pos_pct": 0.4447,
+          "top30_eq_return": 0.0781,
+          "top30_pw_return": 0.0836,
+          "excess_return": 0.0676,
+          "win_rate": 0.7,
+          "top30_min_ret": -0.3611,
+          "top30_max_ret": 0.8162
+        },
+        {
+          "quarter": "2022-06",
+          "market_mean": -0.092,
+          "market_pos_pct": 0.1893,
+          "top30_eq_return": -0.0669,
+          "top30_pw_return": -0.0643,
+          "excess_return": 0.0251,
+          "win_rate": 0.3,
+          "top30_min_ret": -0.3638,
+          "top30_max_ret": 0.488
+        }
+      ],
+      "cum_eq": [
+        1.0,
+        1.0613,
+        1.1441,
+        1.0676
+      ],
+      "cum_pw": [
+        1.0,
+        1.0758,
+        1.1658,
+        1.0907
+      ],
+      "cum_mkt": [
+        1.0,
+        0.9133,
+        0.9229,
+        0.838
+      ],
+      "total_eq": 0.0676,
+      "total_pw": 0.0907,
+      "annual_eq": 0.0911,
+      "sharpe": 0.51,
+      "mdd": 0.0669,
+      "total_mkt": -0.162
+    }
+  },
+  "model_metrics": {
+    "Ridge": {
+      "train_mae": 0.159475,
+      "train_rmse": 0.220911,
+      "train_r2": 0.036142,
+      "train_dir_acc": 0.5634,
+      "test_mae": 0.157134,
+      "test_rmse": 0.206366,
+      "test_r2": -0.23288,
+      "test_dir_acc": 0.5092
+    },
+    "Lasso": {
+      "train_mae": 0.16054,
+      "train_rmse": 0.222667,
+      "train_r2": 0.020761,
+      "train_dir_acc": 0.5442,
+      "test_mae": 0.170891,
+      "test_rmse": 0.210004,
+      "test_r2": -0.276739,
+      "test_dir_acc": 0.3278
+    },
+    "DecisionTree": {
+      "train_mae": 0.147645,
+      "train_rmse": 0.206735,
+      "train_r2": 0.155879,
+      "train_dir_acc": 0.653,
+      "test_mae": 0.174329,
+      "test_rmse": 0.22244,
+      "test_r2": -0.432431,
+      "test_dir_acc": 0.4557
+    },
+    "RandomForest": {
+      "train_mae": 0.136388,
+      "train_rmse": 0.192459,
+      "train_r2": 0.268434,
+      "train_dir_acc": 0.679,
+      "test_mae": 0.174183,
+      "test_rmse": 0.222084,
+      "test_r2": -0.427845,
+      "test_dir_acc": 0.4689
+    },
+    "GradientBoosting": {
+      "train_mae": 0.13861,
+      "train_rmse": 0.192065,
+      "train_r2": 0.271427,
+      "train_dir_acc": 0.6649,
+      "test_mae": 0.172212,
+      "test_rmse": 0.217674,
+      "test_r2": -0.371696,
+      "test_dir_acc": 0.4656
+    },
+    "XGBoost": {
+      "train_mae": 0.121843,
+      "train_rmse": 0.169644,
+      "train_r2": 0.431597,
+      "train_dir_acc": 0.7132,
+      "test_mae": 0.147266,
+      "test_rmse": 0.19229,
+      "test_r2": -0.070438,
+      "test_dir_acc": 0.5756
+    }
+  },
+  "fi_data": {
+    "Ridge": [
+      [
+        "log_MV",
+        0.047691
+      ],
+      [
+        "MV_rank",
+        0.031883
+      ],
+      [
+        "营业总收入(同比增长率)",
+        0.020579
+      ],
+      [
+        "净利润同比增长率_rank",
+        0.017441
+      ],
+      [
+        "MV",
+        0.016467
+      ],
+      [
+        "PE_cross_dispersion",
+        0.013596
+      ],
+      [
+        "EP",
+        0.011487
+      ],
+      [
+        "营业利润(同比增长率)_rank",
+        0.011484
+      ],
+      [
+        "市净率PB(MRQ)_rank",
+        0.011278
+      ],
+      [
+        "营业收入(同比增长率)",
+        0.011097
+      ]
+    ],
+    "Lasso": [
+      [
+        "净利润同比增长率_rank",
+        0.015685
+      ],
+      [
+        "营业利润(同比增长率)_rank",
+        0.007369
+      ],
+      [
+        "PE_cross_dispersion",
+        0.002549
+      ],
+      [
+        "市销率PS(TTM)",
+        0.000544
+      ],
+      [
+        "企业倍数(EV除EBITDA)",
+        0.0
+      ],
+      [
+        "市净率PB(MRQ)",
+        0.0
+      ],
+      [
+        "市现率PCF(现金净流量TTM)",
+        0.0
+      ],
+      [
+        "市现率PCF(经营现金流TTM)",
+        0.0
+      ],
+      [
+        "市盈率PE(TTM)",
+        0.0
+      ],
+      [
+        "市盈率PE(TTM,扣除非经常性损益)",
+        0.0
+      ]
+    ],
+    "DecisionTree": [
+      [
+        "PE_cross_dispersion",
+        0.374113
+      ],
+      [
+        "营业利润(同比增长率)_rank",
+        0.125728
+      ],
+      [
+        "企业倍数(EV除EBITDA)",
+        0.057348
+      ],
+      [
+        "市净率PB(MRQ)_rank",
+        0.050225
+      ],
+      [
+        "MV_rank",
+        0.041473
+      ],
+      [
+        "营业收入(同比增长率)_rank",
+        0.032432
+      ],
+      [
+        "EP_x_净利润增长",
+        0.030033
+      ],
+      [
+        "市现率PCF(经营现金流TTM)",
+        0.026606
+      ],
+      [
+        "EP",
+        0.024663
+      ],
+      [
+        "营业收入(同比增长率)",
+        0.020637
+      ]
+    ],
+    "RandomForest": [
+      [
+        "PE_cross_dispersion",
+        0.234357
+      ],
+      [
+        "净利润同比增长率_rank",
+        0.058446
+      ],
+      [
+        "营业利润(同比增长率)_rank",
+        0.051787
+      ],
+      [
+        "企业倍数(EV除EBITDA)",
+        0.050274
+      ],
+      [
+        "EP_x_净利润增长",
+        0.03397
+      ],
+      [
+        "市净率PB(MRQ)_rank",
+        0.030035
+      ],
+      [
+        "MV_rank",
+        0.029469
+      ],
+      [
+        "市净率PB(MRQ)",
+        0.02916
+      ],
+      [
+        "市现率PCF(经营现金流TTM)",
+        0.028979
+      ],
+      [
+        "EP",
+        0.027555
+      ]
+    ],
+    "GradientBoosting": [
+      [
+        "PE_cross_dispersion",
+        0.215124
+      ],
+      [
+        "净利润同比增长率_rank",
+        0.060418
+      ],
+      [
+        "企业倍数(EV除EBITDA)",
+        0.052129
+      ],
+      [
+        "营业利润(同比增长率)_rank",
+        0.041277
+      ],
+      [
+        "EP",
+        0.03687
+      ],
+      [
+        "净资产同比增长率",
+        0.031306
+      ],
+      [
+        "市净率PB(MRQ)",
+        0.030565
+      ],
+      [
+        "市净率PB(MRQ)_rank",
+        0.030468
+      ],
+      [
+        "EP_x_净利润增长",
+        0.029405
+      ],
+      [
+        "经营活动产生的现金流量净额(同比增长率)",
+        0.028996
+      ]
+    ],
+    "XGBoost": [
+      [
+        "PE_cross_dispersion",
+        0.114041
+      ],
+      [
+        "营业利润(同比增长率)_rank",
+        0.046208
+      ],
+      [
+        "净利润同比增长率_rank",
+        0.043286
+      ],
+      [
+        "MV_rank",
+        0.031503
+      ],
+      [
+        "市净率PB(MRQ)_rank",
+        0.030981
+      ],
+      [
+        "BP",
+        0.029254
+      ],
+      [
+        "EP",
+        0.028401
+      ],
+      [
+        "MV",
+        0.028241
+      ],
+      [
+        "营业收入(同比增长率)_rank",
+        0.027595
+      ],
+      [
+        "营业收入(同比增长率)",
+        0.027143
+      ]
+    ]
+  }
+}

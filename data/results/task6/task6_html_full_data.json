@@ -1,0 +1,527 @@
+{
+  "model_strategy_results": {
+    "Ridge": {
+      "quarters": [
+        {
+          "quarter": "2021-12",
+          "market_mean": -0.0867,
+          "market_median": -0.1204,
+          "market_pos_pct": 0.2456,
+          "top30_eq_return": 0.0837,
+          "top30_pw_return": 0.0179,
+          "excess_return": 0.1703,
+          "win_rate": 0.5,
+          "top30_min_ret": -0.2566,
+          "top30_max_ret": 0.9157,
+          "q1_bottom25": -0.1113,
+          "q4_top25": -0.0396,
+          "monotonic": true
+        },
+        {
+          "quarter": "2022-03",
+          "market_mean": 0.0105,
+          "market_median": -0.0196,
+          "market_pos_pct": 0.4447,
+          "top30_eq_return": 0.1491,
+          "top30_pw_return": 0.1538,
+          "excess_return": 0.1386,
+          "win_rate": 0.7667,
+          "top30_min_ret": -0.1908,
+          "top30_max_ret": 0.8162,
+          "q1_bottom25": -0.0431,
+          "q4_top25": 0.0677,
+          "monotonic": true
+        },
+        {
+          "quarter": "2022-06",
+          "market_mean": -0.092,
+          "market_median": -0.117,
+          "market_pos_pct": 0.1893,
+          "top30_eq_return": -0.0121,
+          "top30_pw_return": -0.0098,
+          "excess_return": 0.0799,
+          "win_rate": 0.4667,
+          "top30_min_ret": -0.274,
+          "top30_max_ret": 0.343,
+          "q1_bottom25": -0.1292,
+          "q4_top25": -0.0476,
+          "monotonic": true
+        }
+      ],
+      "total_eq": 0.2302,
+      "total_pw": 0.1629,
+      "total_mkt": -0.162,
+      "annual_eq": 0.3182,
+      "annual_mkt": -0.21,
+      "sharpe_eq": 2.0,
+      "sharpe_mkt": -2.7,
+      "mdd_eq": 0.0121,
+      "mdd_mkt": 0.162,
+      "cum_eq": [
+        1.0,
+        1.0837,
+        1.2453,
+        1.2302
+      ],
+      "cum_pw": [
+        1.0,
+        1.0179,
+        1.1745,
+        1.1629
+      ],
+      "cum_mkt": [
+        1.0,
+        0.9133,
+        0.9229,
+        0.838
+      ]
+    },
+    "Lasso": {
+      "quarters": [
+        {
+          "quarter": "2021-12",
+          "market_mean": -0.0867,
+          "market_median": -0.1204,
+          "market_pos_pct": 0.2456,
+          "top30_eq_return": 0.0193,
+          "top30_pw_return": 0.0193,
+          "excess_return": 0.106,
+          "win_rate": 0.3667,
+          "top30_min_ret": -0.2696,
+          "top30_max_ret": 0.5435,
+          "q1_bottom25": -0.0831,
+          "q4_top25": -0.0592,
+          "monotonic": true
+        },
+        {
+          "quarter": "2022-03",
+          "market_mean": 0.0105,
+          "market_median": -0.0196,
+          "market_pos_pct": 0.4447,
+          "top30_eq_return": 0.1306,
+          "top30_pw_return": 0.1307,
+          "excess_return": 0.1202,
+          "win_rate": 0.7333,
+          "top30_min_ret": -0.3638,
+          "top30_max_ret": 0.8162,
+          "q1_bottom25": -0.0499,
+          "q4_top25": 0.0758,
+          "monotonic": true
+        },
+        {
+          "quarter": "2022-06",
+          "market_mean": -0.092,
+          "market_median": -0.117,
+          "market_pos_pct": 0.1893,
+          "top30_eq_return": -0.021,
+          "top30_pw_return": -0.021,
+          "excess_return": 0.071,
+          "win_rate": 0.3333,
+          "top30_min_ret": -0.3638,
+          "top30_max_ret": 0.9157,
+          "q1_bottom25": -0.1085,
+          "q4_top25": -0.0642,
+          "monotonic": true
+        }
+      ],
+      "total_eq": 0.1282,
+      "total_pw": 0.1283,
+      "total_mkt": -0.162,
+      "annual_eq": 0.1745,
+      "annual_mkt": -0.21,
+      "sharpe_eq": 1.11,
+      "sharpe_mkt": -2.7,
+      "mdd_eq": 0.021,
+      "mdd_mkt": 0.162,
+      "cum_eq": [
+        1.0,
+        1.0193,
+        1.1524,
+        1.1282
+      ],
+      "cum_pw": [
+        1.0,
+        1.0193,
+        1.1525,
+        1.1283
+      ],
+      "cum_mkt": [
+        1.0,
+        0.9133,
+        0.9229,
+        0.838
+      ]
+    },
+    "DecisionTree": {
+      "quarters": [
+        {
+          "quarter": "2021-12",
+          "market_mean": -0.0867,
+          "market_median": -0.1204,
+          "market_pos_pct": 0.2456,
+          "top30_eq_return": 0.0711,
+          "top30_pw_return": 0.0711,
+          "excess_return": 0.1578,
+          "win_rate": 0.6333,
+          "top30_min_ret": -0.208,
+          "top30_max_ret": 0.6538,
+          "q1_bottom25": -0.1651,
+          "q4_top25": -0.0314,
+          "monotonic": true
+        },
+        {
+          "quarter": "2022-03",
+          "market_mean": 0.0105,
+          "market_median": -0.0196,
+          "market_pos_pct": 0.4447,
+          "top30_eq_return": 0.0619,
+          "top30_pw_return": 0.0619,
+          "excess_return": 0.0514,
+          "win_rate": 0.6,
+          "top30_min_ret": -0.1645,
+          "top30_max_ret": 0.777,
+          "q1_bottom25": 0.0136,
+          "q4_top25": 0.0341,
+          "monotonic": true
+        },
+        {
+          "quarter": "2022-06",
+          "market_mean": -0.092,
+          "market_median": -0.117,
+          "market_pos_pct": 0.1893,
+          "top30_eq_return": -0.0554,
+          "top30_pw_return": -0.0554,
+          "excess_return": 0.0366,
+          "win_rate": 0.2667,
+          "top30_min_ret": -0.3638,
+          "top30_max_ret": 0.9157,
+          "q1_bottom25": -0.1252,
+          "q4_top25": -0.0742,
+          "monotonic": true
+        }
+      ],
+      "total_eq": 0.0744,
+      "total_pw": 0.0744,
+      "total_mkt": -0.162,
+      "annual_eq": 0.1004,
+      "annual_mkt": -0.21,
+      "sharpe_eq": 0.64,
+      "sharpe_mkt": -2.7,
+      "mdd_eq": 0.0554,
+      "mdd_mkt": 0.162,
+      "cum_eq": [
+        1.0,
+        1.0711,
+        1.1374,
+        1.0744
+      ],
+      "cum_pw": [
+        1.0,
+        1.0711,
+        1.1374,
+        1.0744
+      ],
+      "cum_mkt": [
+        1.0,
+        0.9133,
+        0.9229,
+        0.838
+      ]
+    },
+    "RandomForest": {
+      "quarters": [
+        {
+          "quarter": "2021-12",
+          "market_mean": -0.0867,
+          "market_median": -0.1204,
+          "market_pos_pct": 0.2456,
+          "top30_eq_return": 0.0446,
+          "top30_pw_return": 0.0455,
+          "excess_return": 0.1313,
+          "win_rate": 0.4333,
+          "top30_min_ret": -0.2487,
+          "top30_max_ret": 0.9157,
+          "q1_bottom25": -0.173,
+          "q4_top25": -0.034,
+          "monotonic": true
+        },
+        {
+          "quarter": "2022-03",
+          "market_mean": 0.0105,
+          "market_median": -0.0196,
+          "market_pos_pct": 0.4447,
+          "top30_eq_return": 0.046,
+          "top30_pw_return": 0.0436,
+          "excess_return": 0.0355,
+          "win_rate": 0.6667,
+          "top30_min_ret": -0.1645,
+          "top30_max_ret": 0.777,
+          "q1_bottom25": 0.005,
+          "q4_top25": 0.0463,
+          "monotonic": true
+        },
+        {
+          "quarter": "2022-06",
+          "market_mean": -0.092,
+          "market_median": -0.117,
+          "market_pos_pct": 0.1893,
+          "top30_eq_return": -0.1095,
+          "top30_pw_return": -0.1054,
+          "excess_return": -0.0175,
+          "win_rate": 0.1667,
+          "top30_min_ret": -0.3638,
+          "top30_max_ret": 0.9157,
+          "q1_bottom25": -0.1259,
+          "q4_top25": -0.0806,
+          "monotonic": true
+        }
+      ],
+      "total_eq": -0.027,
+      "total_pw": -0.0239,
+      "total_mkt": -0.162,
+      "annual_eq": -0.0358,
+      "annual_mkt": -0.21,
+      "sharpe_eq": -0.38,
+      "sharpe_mkt": -2.7,
+      "mdd_eq": 0.1095,
+      "mdd_mkt": 0.162,
+      "cum_eq": [
+        1.0,
+        1.0446,
+        1.0927,
+        0.973
+      ],
+      "cum_pw": [
+        1.0,
+        1.0455,
+        1.0911,
+        0.9761
+      ],
+      "cum_mkt": [
+        1.0,
+        0.9133,
+        0.9229,
+        0.838
+      ]
+    },
+    "GradientBoosting": {
+      "quarters": [
+        {
+          "quarter": "2021-12",
+          "market_mean": -0.0867,
+          "market_median": -0.1204,
+          "market_pos_pct": 0.2456,
+          "top30_eq_return": 0.0666,
+          "top30_pw_return": 0.06,
+          "excess_return": 0.1532,
+          "win_rate": 0.4667,
+          "top30_min_ret": -0.2357,
+          "top30_max_ret": 0.9157,
+          "q1_bottom25": -0.1708,
+          "q4_top25": -0.0268,
+          "monotonic": true
+        },
+        {
+          "quarter": "2022-03",
+          "market_mean": 0.0105,
+          "market_median": -0.0196,
+          "market_pos_pct": 0.4447,
+          "top30_eq_return": 0.1291,
+          "top30_pw_return": 0.1025,
+          "excess_return": 0.1186,
+          "win_rate": 0.7,
+          "top30_min_ret": -0.1971,
+          "top30_max_ret": 0.8162,
+          "q1_bottom25": -0.0192,
+          "q4_top25": 0.0544,
+          "monotonic": true
+        },
+        {
+          "quarter": "2022-06",
+          "market_mean": -0.092,
+          "market_median": -0.117,
+          "market_pos_pct": 0.1893,
+          "top30_eq_return": -0.1259,
+          "top30_pw_return": -0.1219,
+          "excess_return": -0.034,
+          "win_rate": 0.3,
+          "top30_min_ret": -0.3638,
+          "top30_max_ret": 0.6513,
+          "q1_bottom25": -0.1171,
+          "q4_top25": -0.0756,
+          "monotonic": true
+        }
+      ],
+      "total_eq": 0.0527,
+      "total_pw": 0.0262,
+      "total_mkt": -0.162,
+      "annual_eq": 0.0708,
+      "annual_mkt": -0.21,
+      "sharpe_eq": 0.29,
+      "sharpe_mkt": -2.7,
+      "mdd_eq": 0.1259,
+      "mdd_mkt": 0.162,
+      "cum_eq": [
+        1.0,
+        1.0666,
+        1.2043,
+        1.0527
+      ],
+      "cum_pw": [
+        1.0,
+        1.06,
+        1.1687,
+        1.0262
+      ],
+      "cum_mkt": [
+        1.0,
+        0.9133,
+        0.9229,
+        0.838
+      ]
+    },
+    "XGBoost": {
+      "quarters": [
+        {
+          "quarter": "2021-12",
+          "market_mean": -0.0867,
+          "market_median": -0.1204,
+          "market_pos_pct": 0.2456,
+          "top30_eq_return": 0.0613,
+          "top30_pw_return": 0.0758,
+          "excess_return": 0.1479,
+          "win_rate": 0.5,
+          "top30_min_ret": -0.2271,
+          "top30_max_ret": 0.9157,
+          "q1_bottom25": -0.1595,
+          "q4_top25": -0.0253,
+          "monotonic": true
+        },
+        {
+          "quarter": "2022-03",
+          "market_mean": 0.0105,
+          "market_median": -0.0196,
+          "market_pos_pct": 0.4447,
+          "top30_eq_return": 0.0781,
+          "top30_pw_return": 0.0836,
+          "excess_return": 0.0676,
+          "win_rate": 0.7,
+          "top30_min_ret": -0.3611,
+          "top30_max_ret": 0.8162,
+          "q1_bottom25": -0.0193,
+          "q4_top25": 0.048,
+          "monotonic": true
+        },
+        {
+          "quarter": "2022-06",
+          "market_mean": -0.092,
+          "market_median": -0.117,
+          "market_pos_pct": 0.1893,
+          "top30_eq_return": -0.0669,
+          "top30_pw_return": -0.0643,
+          "excess_return": 0.0251,
+          "win_rate": 0.3,
+          "top30_min_ret": -0.3638,
+          "top30_max_ret": 0.488,
+          "q1_bottom25": -0.1277,
+          "q4_top25": -0.0723,
+          "monotonic": true
+        }
+      ],
+      "total_eq": 0.0676,
+      "total_pw": 0.0908,
+      "total_mkt": -0.162,
+      "annual_eq": 0.0912,
+      "annual_mkt": -0.21,
+      "sharpe_eq": 0.51,
+      "sharpe_mkt": -2.7,
+      "mdd_eq": 0.0669,
+      "mdd_mkt": 0.162,
+      "cum_eq": [
+        1.0,
+        1.0613,
+        1.1442,
+        1.0676
+      ],
+      "cum_pw": [
+        1.0,
+        1.0758,
+        1.1657,
+        1.0908
+      ],
+      "cum_mkt": [
+        1.0,
+        0.9133,
+        0.9229,
+        0.838
+      ]
+    }
+  },
+  "quarters": [
+    "2021-12",
+    "2022-03",
+    "2022-06"
+  ],
+  "model_metrics": {
+    "Ridge": {
+      "train_mae": 0.159475,
+      "train_rmse": 0.220911,
+      "train_r2": 0.036142,
+      "train_dir_acc": 0.5634,
+      "test_mae": 0.157134,
+      "test_rmse": 0.206366,
+      "test_r2": -0.23288,
+      "test_dir_acc": 0.5092
+    },
+    "Lasso": {
+      "train_mae": 0.16054,
+      "train_rmse": 0.222667,
+      "train_r2": 0.020761,
+      "train_dir_acc": 0.5442,
+      "test_mae": 0.170891,
+      "test_rmse": 0.210004,
+      "test_r2": -0.276739,
+      "test_dir_acc": 0.3278
+    },
+    "DecisionTree": {
+      "train_mae": 0.147645,
+      "train_rmse": 0.206735,
+      "train_r2": 0.155879,
+      "train_dir_acc": 0.653,
+      "test_mae": 0.174329,
+      "test_rmse": 0.22244,
+      "test_r2": -0.432431,
+      "test_dir_acc": 0.4557
+    },
+    "RandomForest": {
+      "train_mae": 0.136388,
+      "train_rmse": 0.192459,
+      "train_r2": 0.268434,
+      "train_dir_acc": 0.679,
+      "test_mae": 0.174183,
+      "test_rmse": 0.222084,
+      "test_r2": -0.427845,
+      "test_dir_acc": 0.4689
+    },
+    "GradientBoosting": {
+      "train_mae": 0.13861,
+      "train_rmse": 0.192065,
+      "train_r2": 0.271427,
+      "train_dir_acc": 0.6649,
+      "test_mae": 0.172212,
+      "test_rmse": 0.217674,
+      "test_r2": -0.371696,
+      "test_dir_acc": 0.4656
+    },
+    "XGBoost": {
+      "train_mae": 0.121843,
+      "train_rmse": 0.169644,
+      "train_r2": 0.431597,
+      "train_dir_acc": 0.7132,
+      "test_mae": 0.147266,
+      "test_rmse": 0.19229,
+      "test_r2": -0.070438,
+      "test_dir_acc": 0.5756
+    }
+  }
+}

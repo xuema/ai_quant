@@ -1,0 +1,316 @@
+{
+  "models": {
+    "LogisticRegression": {
+      "auc": 0.4286,
+      "acc": 0.456,
+      "prec": 0.459,
+      "rec": 0.4444,
+      "f1": 0.4516,
+      "cm": [
+        [
+          29,
+          33
+        ],
+        [
+          35,
+          28
+        ]
+      ]
+    },
+    "KNN": {
+      "auc": 0.4891,
+      "acc": 0.472,
+      "prec": 0.4783,
+      "rec": 0.5238,
+      "f1": 0.5,
+      "cm": [
+        [
+          26,
+          36
+        ],
+        [
+          30,
+          33
+        ]
+      ]
+    },
+    "SVM": {
+      "auc": 0.4793,
+      "acc": 0.496,
+      "prec": 0.5,
+      "rec": 0.4286,
+      "f1": 0.4615,
+      "cm": [
+        [
+          35,
+          27
+        ],
+        [
+          36,
+          27
+        ]
+      ]
+    },
+    "DecisionTree": {
+      "auc": 0.5607,
+      "acc": 0.536,
+      "prec": 0.5641,
+      "rec": 0.3492,
+      "f1": 0.4314,
+      "cm": [
+        [
+          45,
+          17
+        ],
+        [
+          41,
+          22
+        ]
+      ]
+    },
+    "AdaBoost": {
+      "auc": 0.5289,
+      "acc": 0.512,
+      "prec": 0.5139,
+      "rec": 0.5873,
+      "f1": 0.5481,
+      "cm": [
+        [
+          27,
+          35
+        ],
+        [
+          26,
+          37
+        ]
+      ]
+    },
+    "XGBoost": {
+      "auc": 0.5684,
+      "acc": 0.56,
+      "prec": 0.5714,
+      "rec": 0.5079,
+      "f1": 0.5378,
+      "cm": [
+        [
+          38,
+          24
+        ],
+        [
+          31,
+          32
+        ]
+      ]
+    },
+    "RandomForest": {
+      "auc": 0.51,
+      "acc": 0.512,
+      "prec": 0.5161,
+      "rec": 0.5079,
+      "f1": 0.512,
+      "cm": [
+        [
+          32,
+          30
+        ],
+        [
+          31,
+          32
+        ]
+      ],
+      "best_params": {
+        "max_depth": 10,
+        "min_samples_leaf": 3,
+        "min_samples_split": 10,
+        "n_estimators": 50
+      },
+      "cv_auc": 0.5236
+    },
+    "GradientBoosting": {
+      "auc": 0.5095,
+      "acc": 0.496,
+      "prec": 0.5,
+      "rec": 0.4286,
+      "f1": 0.4615,
+      "cm": [
+        [
+          35,
+          27
+        ],
+        [
+          36,
+          27
+        ]
+      ],
+      "best_params": {
+        "learning_rate": 0.01,
+        "max_depth": 3,
+        "min_samples_split": 5,
+        "n_estimators": 50
+      },
+      "cv_auc": 0.5416
+    }
+  },
+  "best_model": "XGBoost",
+  "n_features": 79,
+  "n_samples": 621,
+  "features": [
+    "open",
+    "close",
+    "high",
+    "low",
+    "vol",
+    "amount",
+    "pct_chg",
+    "change",
+    "amp",
+    "turnover_rate",
+    "ma_d5",
+    "ma_s5",
+    "ma_d10",
+    "ma_s10",
+    "ma_d20",
+    "ma_s20",
+    "ma510",
+    "ma520",
+    "ma1020",
+    "vol5",
+    "vol10",
+    "vol20",
+    "vr",
+    "vr5_20",
+    "ver",
+    "rsi6",
+    "rsi12",
+    "rsi24",
+    "rsi56",
+    "macd",
+    "macds",
+    "macdh",
+    "e5",
+    "e29",
+    "ed5",
+    "ed29",
+    "wr10",
+    "wr14",
+    "rsv",
+    "K",
+    "D",
+    "J",
+    "cr",
+    "mom5",
+    "mom10",
+    "mom20",
+    "pp20",
+    "pp60",
+    "atr",
+    "bbp",
+    "gap",
+    "intd",
+    "sr",
+    "crp",
+    "rm5",
+    "ru5",
+    "rm10",
+    "ru10",
+    "rm20",
+    "ru20",
+    "tm5",
+    "td",
+    "dow",
+    "rl1",
+    "rl2",
+    "rl3",
+    "rl4",
+    "rl5",
+    "wr42",
+    "expma_ratio_5_29",
+    "expma_diff_5_29",
+    "vol_ratio_8_89",
+    "cr_ma11",
+    "cr_ma19",
+    "cr_ma35",
+    "cr_ma53",
+    "cr_signal",
+    "rsi_of_rsi12",
+    "rsi_12_56_spread"
+  ],
+  "top10_features": [
+    [
+      "macds",
+      0.0257
+    ],
+    [
+      "e5",
+      0.0256
+    ],
+    [
+      "rl5",
+      0.0248
+    ],
+    [
+      "gap",
+      0.021
+    ],
+    [
+      "J",
+      0.0205
+    ],
+    [
+      "rsi56",
+      0.0198
+    ],
+    [
+      "intd",
+      0.0184
+    ],
+    [
+      "vol5",
+      0.018
+    ],
+    [
+      "rsi6",
+      0.0177
+    ],
+    [
+      "amp",
+      0.0171
+    ],
+    [
+      "cr_ma35",
+      0.0163
+    ],
+    [
+      "sr",
+      0.0159
+    ],
+    [
+      "rsv",
+      0.0157
+    ],
+    [
+      "rl3",
+      0.0156
+    ],
+    [
+      "td",
+      0.0152
+    ]
+  ],
+  "benchmark": -0.1664,
+  "strategies": {
+    "060": {
+      "name": "0.60/0.40",
+      "buy": 0.6,
+      "sell": 0.4,
+      "trades": 125,
+      "wins": 63,
+      "win_rate": 50.4,
+      "strat_ret": -0.0275,
+      "excess": 0.1388,
+      "sharpe": -0.3,
+      "max_dd": -0.1016,
+      "pos_mean": 25.0
+    }
+  }
+}

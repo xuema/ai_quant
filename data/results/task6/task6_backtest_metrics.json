@@ -1,0 +1,35 @@
+{
+  "Top30_Equal_Weight": {
+    "total_return": -0.0269,
+    "annual_return": -0.0357,
+    "sharpe_ratio": -0.3775,
+    "max_drawdown": 0.1095,
+    "quarterly_returns": {
+      "2021-12-31": 0.044647,
+      "2022-03-31": 0.046017,
+      "2022-06-30": -0.109493
+    }
+  },
+  "Top30_Predicted_Weight": {
+    "total_return": -0.0239,
+    "annual_return": -0.0317,
+    "sharpe_ratio": -0.3655,
+    "max_drawdown": 0.1054,
+    "quarterly_returns": {
+      "2021-12-31": 0.045471,
+      "2022-03-31": 0.043633,
+      "2022-06-30": -0.10535
+    }
+  },
+  "Market_Benchmark": {
+    "total_return": -0.162,
+    "annual_return": -0.2099,
+    "sharpe_ratio": -2.6989,
+    "max_drawdown": 0.162,
+    "quarterly_returns": {
+      "2021-12-31": -0.086679,
+      "2022-03-31": 0.010479,
+      "2022-06-30": -0.091977
+    }
+  }
+}
