@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TASK8 成果展示：量化交易与机器学习实操学习报告</title>
+    <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    @page{size:A4;margin:15mm}
+    body{font-family:-apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+      background:#e8ecf1;color:#1e293b;line-height:1.85;padding:20px}
+    .container{max-width:210mm;margin:0 auto;background:#fff;
+      box-shadow:0 6px 32px rgba(30,64,175,.12)}
+    /* Cover */
+    .cover{background:linear-gradient(145deg,#1e3a5f 0%,#1e40af 50%,#3b82f6 100%);
+      color:#fff;padding:0 50px;text-align:center;min-height:297mm;
+      display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .cover h1{font-size:54pt;font-weight:900;letter-spacing:8pt;margin-bottom:4pt}
+    .cover h2{font-size:30pt;font-weight:300;margin-top:18pt;letter-spacing:3pt}
+    .cover h3{font-size:18pt;font-weight:400;margin-top:50pt;color:rgba(255,255,255,.82);
+      line-height:1.7}
+    .cover .info{margin-top:100pt;font-size:13.5pt;color:rgba(255,255,255,.72);line-height:2.2}
+    /* Page */
+    .page{padding:48pt 54pt;min-height:297mm;page-break-after:always;position:relative}
+    .page:last-child{page-break-after:auto}
+    /* Header */
+    .ph{display:flex;align-items:center;border-bottom:2.5px solid #1e40af;padding-bottom:14px;margin-bottom:28px}
+    .ph .num{width:42px;height:42px;background:#1e40af;color:#fff;border-radius:8px;
+      display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16pt;margin-right:14px}
+    .ph h1{font-size:22pt;color:#1e40af;font-weight:700}
+    /* TOC */
+    .toc{line-height:2.1}
+    .toc .l1{font-weight:700;font-size:13pt;margin:10px 0 2px;color:#1e293b;padding-left:4px}
+    .toc .l2{font-weight:400;font-size:12pt;color:#475569;padding:2px 0 2px 28px}
+    .toc span.pg{float:right;color:#94a3b8;font-size:10pt}
+    /* Sections */
+    .s2{font-size:15.5pt;font-weight:700;color:#1e40af;margin:28px 0 10px;
+      padding-left:12px;border-left:4px solid #3b82f6}
+    .s3{font-size:13pt;font-weight:700;color:#334155;margin:18px 0 6px;padding-left:8px}
+    p{font-size:12pt;text-indent:2em;margin-bottom:10px;color:#1e293b}
+    /* Table */
+    .tbl-wrap{overflow-x:auto;margin:14px 0}
+    table{width:100%;border-collapse:collapse;font-size:11.5pt;margin:10px 0}
+    th{background:#f1f5f9;color:#1e40af;padding:9px 10px;text-align:center;
+      font-weight:700;border:1px solid #e2e8f0}
+    td{padding:8px 10px;text-align:center;border:1px solid #e2e8f0}
+    tr:nth-child(even) td{background:#f8fafc}
+    .pos{color:#16a34a;font-weight:700}.neg{color:#dc2626;font-weight:700}
+    /* Note */
+    .note{background:#f0f7ff;border-left:4px solid #3b82f6;padding:14px 18px;
+      margin:16px 0;border-radius:0 6px 6px 0;font-size:11.5pt}
+    .strong{font-weight:700}
+    .summary-box{background:linear-gradient(135deg,#f0f7ff,#e8f0fe);
+      border:1px solid #bfdbfe;border-radius:8px;padding:20px;margin:20px 0}
+    .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10pt;font-weight:700}
+    .bg{background:rgba(67,165,95,.12);color:#16a34a}
+    .br{background:rgba(239,68,68,.12);color:#dc2626}
+    .bb{background:rgba(37,99,235,.12);color:#2563eb}
+    ul,ol{padding-left:28px;margin-bottom:10px}
+    li{font-size:12pt;margin-bottom:8px;color:#1e293b}
+    /* Footer */
+    .fo{position:absolute;bottom:38pt;left:56pt;right:56pt;
+      text-align:center;font-size:9pt;color:#94a3b8;
+      border-top:1px solid #e2e8f0;padding-top:10px}
+    /* Chart placeholder */
+    .cp{margin:16px 0;padding:16px 20px;background:#f8fafc;border:1px dashed #cbd5e1;
+      border-radius:6px;text-align:center;font-size:10.5pt;color:#64748b}
+    @media print{
+      body{background:#fff!important;padding:0}
+      .container{box-shadow:none}
+      .page{min-height:auto;padding:30pt 40pt}
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<!-- ==================== 封面 ==================== -->
+<div class="cover">
+  <div style="font-size:14pt;letter-spacing:6pt;color:rgba(255,255,255,.55);margin-bottom:24pt">TASK 8 — 成果展示</div>
+  <h1>量化交易与机器学习</h1>
+  <h2>实操学习报告</h2>
+  <h3>从基础技术分析 × 海龟交易法则 × 机器学习选股<br>到多策略量化交易系统的完整实践</h3>
+  <div class="info">
+    <div>作者：Skyler</div>
+    <div style="margin-top:8pt">2026年7月25日</div>
+    <div style="margin-top:18pt;font-size:10.5pt;opacity:.6">基于 7 个阶段性实操任务的综合分析</div>
+  </div>
+</div>
+
+<!-- ==================== 目录 ==================== -->
+<div class="page">
+  <div class="ph"><div class="num">目</div><h1>录</h1></div>
+  <div class="toc">
+    <div class="l1">摘要 <span class="pg">3</span></div>
+    <div class="l1">一、量化交易核心概念 <span class="pg">4</span></div>
+    <div class="l2">1.1 量化交易的基本概念 <span class="pg">4</span></div>
+    <div class="l2">1.2 量化交易的核心价值与本质 <span class="pg">4</span></div>
+    <div class="l1">二、量化交易策略综合分析 <span class="pg">5</span></div>
+    <div class="l2">2.1 各阶段任务策略回顾与实测数据 <span class="pg">5</span></div>
+    <div class="l2">2.2 策略对比与性能分析 <span class="pg">7</span></div>
+    <div class="l2">2.3 策略关联性与互补性分析 <span class="pg">8</span></div>
+    <div class="l2">2.4 构建多策略量化交易系统的思路和方法 <span class="pg">10</span></div>
+    <div class="l1">三、机器学习在量化交易中的应用总结 <span class="pg">11</span></div>
+    <div class="l2">3.1 数据预处理 <span class="pg">11</span></div>
+    <div class="l2">3.2 特征工程 <span class="pg">12</span></div>
+    <div class="l2">3.3 模型选择与训练 <span class="pg">12</span></div>
+    <div class="l2">3.4 模型评估与优化 <span class="pg">13</span></div>
+    <div class="l2">3.5 机器学习算法的优势与局限性 <span class="pg">14</span></div>
+    <div class="l2">3.6 未来发展趋势展望 <span class="pg">15</span></div>
+    <div class="l1">四、结论与展望 <span class="pg">16</span></div>
+    <div class="l2">4.1 主要收获与体会 <span class="pg">16</span></div>
+    <div class="l2">4.2 未来学习与研究方向 <span class="pg">17</span></div>
+    <div class="l2">致谢 <span class="pg">18</span></div>
+  </div>
+  <div class="fo">目录 - 2</div>
+</div>
+
+<!-- ==================== 摘要 ==================== -->
+<div class="page">
+  <div class="ph"><div class="num">摘</div><h1>要</h1></div>
+  <p>本报告系统总结了量化交易与机器学习课程的七个阶段性实操任务（Task1–Task7）的学习成果。报告首先阐述了量化交易的基本概念、核心方法论及其在现代金融投资领域的重要价值。</p>
+
+  <p>在策略分析部分，本报告对双均线交易系统、海龟交易法则、超级顶底V4策略以及机器学习选股策略进行了全面的性能对比。实测数据显示：双均线策略在光迅科技002281上获得年化收益率188.60%，最大回撤-32.35%， Sharpe 1.64；海龟交易法在N=20/M=10配置下实现累计回报+141.94%，Sharpe 1.985；机器学习策略中，Ridge模型在2021Q4-2022Q2大熊市期间获得等权组合收益+23.02%（超额+39.22%），Sharpe 2.0，最大回撤仅1.21%，显著跑赢市场-16.20%的同期表现。</p>
+
+  <p>通过对各策略的关联性与互补性分析，本报告提出了"趋势跟踪+反转捕捉+机器学习选股"三层架构的多策略量化交易系统方案。机器学习应用部分系统梳理了从数据预处理、特征工程（36个衍生特征）、模型训练（6种模型对比）到策略回测的完整流程。</p>
+
+  <p>实践表明，量化交易的核心在于数据驱动、严格风控与持续迭代，而非追求单一策略的高胜率。未来研究将重点探索多策略自适应融合、大语言模型辅助研究，以及实盘验证。</p>
+
+  <div class="note">
+    <strong>关键词：</strong> 量化交易 · 技术分析 · 海龟交易法则 · 机器学习 · 随机森林 · XGBoost · 特征工程 · 多策略系统 · 风险管理 · A/B测试
+  </div>
+  <div class="fo">摘要 - 3</div>
+</div>
+
+<!-- ==================== 一、量化交易核心概念 ==================== -->
+<div class="page">
+  <div class="ph"><div class="num">一</div><h1>量化交易核心概念</h1></div>
+
+  <h2 class="s2">1.1 量化交易的基本概念</h2>
+  <p>量化交易（Quantitative Trading）是指利用数学模型、统计方法和计算机技术，基于历史数据驱动来制定交易决策并自动执行的投资方法。与传统主观交易的最大区别在于：交易信号由数据和模型驱动，而非人工经验与主观判断。</p>
+
+  <p>一个完整的量化系统通常包括以下六个核心模块：</p>
+  <ul>
+    <li><strong>数据层：</strong>获取和清洗市场数据（价格、成交量、基本面、另类数据等）</li>
+    <li><strong>特征工程：</strong>从原始数据中提取有预测能力的因子（技术指标、基本面因子、情绪因子等），是机器学交易的核心环节</li>
+    <li><strong>模型层：</strong>使用统计分析或机器学习算法建立预测模型</li>
+    <li><strong>策略层：</strong>根据模型输出或规则生成具体交易信号（买入、卖出、仓位调整）</li>
+    <li><strong>风控层：</strong>设置止损、仓位上限、行业暴露等控制规则</li>
+    <li><strong>执行层：</strong>将信号转化为实际订单并执行，考虑滑点、手续费等交易成本</li>
+  </ul>
+
+  <h2 class="s2">1.2 量化交易的核心价值与本质</h2>
+
+  <h3 class="s3">五大核心价值</h3>
+  <ol>
+    <li><strong>纪律性：</strong>完全按计划执行，避免人性中的恐惧与贪婪，消除情绪化交易干扰</li>
+    <li><strong>系统性：</strong>可同时监控成百上千只标的，实现传统方法无法达到的分散化</li>
+    <li><strong>可验证性：</strong>所有策略均可通过历史数据进行严格回测，用事实而非直觉验有效性</li>
+    <li><strong>可迭代性：</strong>通过持续优化模型参数、添加新因子、改进风控，不断提升策略表现</li>
+    <li><strong>客观性：</strong>交易过程透明，所有决策逻辑均有数据支撑，便于复盘和审计</li>
+  </ol>
+
+  <div class="summary-box">
+    <strong>本质理解：</strong>量化交易不是追求"预测市场方向"，而是寻找"统计上的显著优势"（即具有正期望值的交易模式），并在长期通过严格的风控和资金管理，将这种优势转化为稳定可持续的收益。
+  </div>
+
+  <h3 class="s3">核心方法论对比</h3>
+  <p>量化交易策略可从两个维度分类：</p>
+  <table>
+    <tr><th>分类维度</th><th>类型</th><th>代表策略</th><th>适用场景</th></tr>
+    <tr><td>驱动方式</td><td>规则驱动(Rule-based)</td><td>双均线、海龟</td><td>逻辑明确、规则固定的场景</td></tr>
+    <tr><td>驱动方式</td><td>数据驱动(Data-driven)</td><td>RF、XGBoost选股</td><td>多因子、非线性关系的场景</td></tr>
+    <tr><td>策略逻辑</td><td>趋势跟踪</td><td>均线、海龟</td><td>趋势明确的多头行情</td></tr>
+    <tr><td>策略逻辑</td><td>均值回归/反转</td><td>超级顶底V4</td><td>超跌反弹、底部反转行情</td></tr>
+    <tr><td>策略逻辑</td><td>机器学习选股</td><td>Ridge、RF、XGB</td><td>全市场横截面选股</td></tr>
+  </table>
+  <div class="fo">量化交易核心概念 - 4</div>
+</div>
+
+<!-- ==================== 二、量化交易策略综合分析 ==================== -->
+<div class="page">
+  <div class="ph"><div class="num">二</div><h1>量化交易策略综合分析</h1></div>
+
+  <h2 class="s2">2.1 各阶段任务策略回顾与实测数据</h2>
+
+  <h3 class="s3">（1）Task 2：六大技术指标深度解析</h3>
+  <p><strong>标的：</strong>光迅科技（002281.SZ），数据区间 2025-07-03 至 2026-07-03，共 243 个交易日。年内价格从 44.00 涨至最高 279.00（涨幅534%），当前回撤至 217.33。</p>
+  <p><strong>内容：</strong>完整计算并可视化了 RSI、MACD、布林带、ATR、Williams %R、CR 能量指标六项核心技术指标。关键信号：</p>
+  <ul>
+    <li>RSI(14)=53.6（中性区间）| MACD 死叉状态（DIF 8.87 &lt; DEA 14.44）| WR(14)=-83.39（超卖区间）| ATR(14)=20.95（占股价9.64%，高波动）| CR(26)=112.6（多方偏优）</li>
+    <li>布林带：上轨283.22，中轨235.17，下轨187.12，当前价格在中轨与下轨之间偏弱整理</li>
+  </ul>
+
+  <h3 class="s3">（2）Task 3：双均线交易系统</h3>
+  <p><strong>标的：</strong>光迅科技（002281.SZ），数据区间约 2024-03-01 至 2026-07，交易天数约 360+ 天。</p>
+  <p><strong>策略：</strong>MA5 与 MA20 交叉信号，金叉买入，死叉卖出。策略收益曲线显示：</p>
+  <p><strong>实测数据：</strong></p>
+  <ul>
+    <li><strong>总收益率：</strong>+352.06%（策略）</li>
+    <li><strong>年化收益率：</strong>188.60%</li>
+    <li><strong>Sharpe Ratio：</strong>1.64</li>
+    <li><strong>最大回撤（MDD）：</strong>-32.35%（发生在 2025-12-03）</li>
+  </ul>
+  <p><strong>分析：</strong>高弹性科技股（002281）价格波动大、趋势强，双均线策略在此类股票上收益显著但波动剧烈。策略在趋势明确的行情中表现优异，但在震荡市容易频繁产生无效交易（震荡市假信号多）。</p>
+
+  <h3 class="s3">（3）Task 4：海龟交易法则</h3>
+  <p><strong>标的：</strong>光迅科技（002281.SZ）。</p>
+  <p><strong>策略：</strong>唐奇安通道突破（入场N日+出场M日）+ ATR 动态仓位管理（0.5×ATR步长）。</p>
+  <p><strong>最优参数回测数据（N=20, M=10, 0.5×ATR）：</strong></p>
+  <ul>
+    <li><strong>累计回报：</strong>+141.94%</li>
+    <li><strong>Sharpe Ratio：</strong>1.985</li>
+    <li><strong>次优参数（N=10, M=5）：</strong>+92.27%，回撤 -29.67%</li>
+  </ul>
+  <p><strong>分析：</strong>海龟法则作为经典趋势跟踪策略，在单边趋势行情中表现优异，ATR 仓位控制有效降低了整体风险。但在震荡市中，窄通道（N=10）会导致频繁入场止损，交易次数激增且胜率极低。</p>
+  <div class="fo">策略综合分析（1/3） - 5</div>
+</div>
+
+<!-- ==================== 策略分析续 ==================== -->
+<div class="page">
+  <div class="ph"><div class="num">二</div><h1>（续）量化交易策略综合分析</h1></div>
+
+  <h3 class="s3">（4）Task 5：机器学习分类模型 + 交易策略</h3>
+  <p><strong>标的：</strong>光迅科技（002281.SZ），数据区间 2023-08-11 至 2026-07-17，共 709 交易日（有效 621 行）。训练集 496 行，测试集 125 行。</p>
+  <p><strong>方法：</strong>从 10 个 OHLCV 原始字段构造 69 个技术指标，标签定义为次日收益是否上涨（二分类）。</p>
+  <p><strong>模型对比：</strong>RF 表现最优，AUC=0.5581，Accuracy=0.5600。策略将预测概率转为仓位（平均 49.3%）。</p>
+  <p><strong>策略回测结果：</strong></p>
+  <ul>
+    <li><strong>策略收益：</strong>+56.73%（100,000 → 156,730 元）</li>
+    <li><strong>基准收益：</strong>+106.43%（002281 持有不动）</li>
+    <li><strong>超额收益：</strong>-49.70%</li>
+    <li><strong>Sharpe Ratio：</strong>2.67（优秀）</li>
+    <li><strong>最大回撤：</strong>-8.60%（显著可控）</li>
+    <li><strong>胜率：</strong>54%（67/124天）</li>
+  </ul>
+  <p><strong>分析：</strong>策略收益不错（+56.7%），但测试期恰逢002281大牛市，简单持有更优。Sharpe 2.67 说明策略收益路径极平滑，回撤控制优秀。平均 49% 仓位有效降低了极端波动冲击，但也限制了牛市中的收益上限。</p>
+
+  <h3 class="s3">（5）Task 6：机器学习选股策略与回测</h3>
+  <p><strong>标的：</strong>全 A 股 3,627–4,262 只股票，数据区间 2020Q1 – 2022Q2，测试期 2021Q4–2022Q2（大熊市，基准下跌 -16.20%，仅 19% 个股上涨）。</p>
+  <p><strong>数据：</strong>39,616 行，19 个基本面因子 → 构造 36 个衍生特征（PE_cross_dispersion, log_MV, EP, BP, SP, 横截面排名, 估值-成长交互等）。</p>
+  <p><strong>模型对比：</strong>6 种模型全量测试，全部 Test R² 为负（极端环境下直接预测收益率困难）。</p>
+  <p style="font-size:11.5pt; margin-bottom:8px;"><strong>模型评估结果一览：</strong></p>
+  <table style="font-size:10.5pt;">
+    <tr><th style="padding:5px 6px;">模型</th><th style="padding:5px 6px;">Train R²</th><th style="padding:5px 6px;">Test R²</th><th style="padding:5px 6px;">方向准率</th><th style="padding:5px 6px;">超额</th><th style="padding:5px 6px;" colspan="3">等权回测表现</th></tr>
+    <tr style="font-size:10pt;"><th style="background:#f8fafc;"></th><th></th><th></th><th></th><th></th><th>收益</th><th>Sharpe</th><th>MDD</th></tr>
+    <tr><td class="pos"><strong>Ridge ★</strong></td><td>3.61%</td><td class="neg">-23.29%</td><td>50.92%</td><td class="pos">+39.22%</td><td class="pos">+23%</td><td class="pos">2.00</td><td>1.21%</td></tr>
+    <tr><td>Lasso</td><td>2.08%</td><td class="neg">-27.67%</td><td>32.78%</td><td class="pos">+29.03%</td><td class="pos">+13%</td><td>1.11</td><td>2.10%</td></tr>
+    <tr><td>XGBoost</td><td>43.16%</td><td class="neg">-7.04%</td><td class="pos">57.56%</td><td class="pos">+22.96%</td><td class="pos">+7%</td><td>0.51</td><td>6.69%</td></tr>
+    <tr><td>RF</td><td>26.84%</td><td class="neg">-42.78%</td><td>46.89%</td><td class="pos">+13.51%</td><td class="neg">-3%</td><td class="neg">-0.38</td><td>10.95%</td></tr>
+    <tr><td>DecisionTree</td><td>15.59%</td><td class="neg">-43.24%</td><td>45.57%</td><td class="pos">+23.64%</td><td class="pos">+7%</td><td>0.64</td><td>5.54%</td></tr>
+    <tr><td>GB</td><td>27.14%</td><td class="neg">-37.17%</td><td>46.56%</td><td class="pos">+21.46%</td><td class="pos">+5%</td><td>0.29</td><td>12.59%</td></tr>
+  </table>
+  <p class="note" style="margin-top:12px">
+    <strong>关键发现：</strong>Ridge 在熊市中最稳健（等权 +23.02%，Sharpe 2.0），虽然 Test R² 为负但仍大幅跑赢市场（超额 +39.22%）。RF 严重过拟合（Train R²=26.8% → 回测 -2.69%）。XGBoost 方向预测最优（57.56%）。全部模型 Test R² 为负说明极端环境下直接预测收益率困难，建议改用 Rank 目标或分类模型。
+  </p>
+
+  <h3 class="s3">（6）Task 6-2：0.60/0.40 仓位控制策略</h3>
+  <p>引入仓位控制（60%仓位用于 ML 选股，40% 持仓基准），50 笔交易，胜率 54%。对比全仓策略表现显著提升：</p>
+  <ul>
+    <li><strong>策略收益：</strong>+8.5%（显著优于全仓表现）</li>
+    <li><strong>超额收益：</strong>+25.2%</li>
+    <li><strong>Sharpe Ratio：</strong>1.36</li>
+    <li><strong>最大回撤：</strong>-3.9%（大幅优于全仓的回撤控制）</li>
+  </ul>
+
+  <h3 class="s3">（7）Task 7：超级顶底V4策略实盘模拟</h3>
+  <p><strong>平台：</strong>聚宽(JoinQuant)，回测区间 2025-07-01 ~ 2026-06-30（完整1年）。</p>
+  <p><strong>策略：</strong>RSV 趋势线突破（超卖区间≤11 上穿买入） + WR 止盈 + ATR 动态止损 + 市值≥80亿筛选 + 量比≥1.2 过滤。固定持仓 5 只均仓。</p>
+  <p><strong>最优参数（量比10日均量比）：</strong></p>
+  <ul>
+    <li><strong>策略收益：</strong>+37.32%</li>
+    <li><strong>年化收益：</strong>+38.58%</li>
+    <li><strong>基准（沪深300）：</strong>+26.97%</li>
+    <li><strong>超额收益：</strong>+8.15%</li>
+    <li><strong>Sharpe Ratio：</strong>1.098</li>
+    <li><strong>Sortino Ratio：</strong>1.913</li>
+    <li><strong>Alpha：</strong>0.243</li>
+    <li><strong>Beta：</strong>0.433</li>
+    <li><strong>最大回撤：</strong>-15.02%（2026/05/25 ~ 2026/06/29）</li>
+    <li><strong>日胜率：</strong>47.1%（盈利55次/亏损55次，共110次交易）</li>
+    <li><strong>盈亏比：</strong>1.598</li>
+  </ul>
+
+  <div class="fo">策略综合分析（2/3） - 6</div>
+</div>
+
+<!-- ==================== 策略对比与互补性 ==================== -->
+<div class="page">
+  <div class="ph"><div class="num">二</div><h1>（续）策略对比分析与多策略系统</h1></div>
+
+  <h2 class="s2">2.2 策略类型与方法论分析</h2>
+  <p>需要说明的是，上述各策略的<strong>交易标的和时间周期各不相同</strong>：双均线、海龟和Task5的ML分类策略均基于单只股票（光迅科技002281）测试，数据区间分别为约360天、全年和709天；Task6的回归选股策略和仓位控制策略基于全A股横截面数据（39,616行），涵盖多个季度；超级顶底V4则基于聚宽平台的全市场扫描回测。因此，各策略的绝对收益指标<strong>不具直接可比性</strong>（如同一只股票在牛市期间的策略收益必然远高于全A股在熊市中选股策略的收益）。</p>
+
+  <p>虽然绝对指标不可比，但从<strong>策略类型和方法论</strong>角度，我们可将各策略进行如下定性分析：</p>
+
+  <table>
+    <tr><th>策略</th><th>策略类型</th><th>交易标的</th><th>数据周期</th><th>信号频率</th><th>核心优势</th><th>主要风险</th></tr>
+    <tr><td>双均线</td><td>趋势跟踪</td><td>002281 单只</td><td>~360天</td><td>中等</td><td>逻辑简单透明</td><td>震荡市频繁假信号</td></tr>
+    <tr><td>海龟</td><td>趋势突破+风控</td><td>002281 单只</td><td>全年</td><td>较低</td><td>ATR仓位管理科学</td><td>窄通道频繁入场止损</td></tr>
+    <tr><td>ML分类(RF)</td><td>数据驱动择时</td><td>002281 单只</td><td>709天</td><td>高</td><td> Sharpe 2.67，回撤小</td><td>牛市跑输简单持有</td></tr>
+    <tr><td>ML回归(Ridge)</td><td>因子选股</td><td>全A股 4000+</td><td>多季度</td><td>季度调仓</td><td>熊市夏普2.0，回撤极小</td><td>Test R²为负，预测困难</td></tr>
+    <tr><td>仓位控制</td><td>配置优化</td><td>全A股横截面</td><td>多季度</td><td>季度</td><td>回撤仅 -3.9%</td><td>收益有限(+8.5%)</td></tr>
+    <tr><td>超级顶底V4</td><td>底部反转+三重卖出</td><td>全市场扫描</td><td>整1年</td><td>较高</td><td>超额+8.15%，盈亏比1.6</td><td>胜率偏低47.1%</td></tr>
+  </table>
+
+  <p><strong>分析要点：</strong></p>
+  <ul>
+    <li><strong>单标的策略（双均线、海龟、ML分类）：</strong>在002281这一高弹性标的上，趋势跟踪类策略收益最为可观（双均线 +352%，海龟 +142%），但波动剧烈，最大回撤均超过 -29%。而数据驱动的ML分类策略（Sharpe 2.67，回撤 -8.6%）在风控上显著优于规则驱动，但在牛市下跑输简单持有（-49.70%）。</li>
+    <li><strong>全市场策略（ML回归、仓位控制、超级顶底V4）：</strong>在更难的全A股横截面上，Ridge在熊市中取得了 -39.22% 的超额收益，夏普2.00，回撤仅1.21%，展现了线性模型在极端环境下的稳健性。超级顶底V4在中等回撤（-15.02%）下获得了 +37.32% 的收益，但胜率偏低。仓位控制策略以牺牲收益上限（+8.5%）为代价，将回撤控制在 -3.9%。</li>
+  </ul>
+
+  <p><strong>总结：</strong>策略选择应根据市场环境和投资目标而定。趋势策略在行情明确时收益突出但风险大；因子选股在全市场上能获得稳定超额收益但难以直接预测收益率；仓位控制能有效降低风险但牺牲收益。没有&quot;绝对最好&quot;的策略，只有&quot;最适合当下环境&quot;的策略。</p>
+
+  <h2 class="s2">2.3 策略关联性与互补性分析</h2>
+
+  <h3 class="s3">不同策略的市场环境敏感性</h3>
+  <p>六大策略在六种典型市场环境中的预期表现如下：</p>
+  <table>
+    <tr><th>策略</th><th>牛市</th><th>熊市</th><th>震荡市</th><th>趋势行情</th><th>底部反转</th><th>极端行情</th></tr>
+    <tr><td>双均线</td><td class="pos">优秀</td><td class="neg">差</td><td class="neg">差</td><td class="pos">优秀</td><td class="neg">一般</td><td class="neg">差</td></tr>
+    <tr><td>海龟</td><td class="pos">优秀</td><td class="neg">差</td><td class="neg">差</td><td class="pos">优秀</td><td class="neg">一般</td><td class="neg">差</td></tr>
+    <tr><td>超级顶底V4</td><td>一般</td><td class="pos">好</td><td class="pos">好</td><td>一般</td><td class="pos">优秀</td><td class="neg">一般</td></tr>
+    <tr><td>ML选股(Ridge)</td><td class="pos">优</td><td class="pos">优</td><td class="pos">好</td><td>一般</td><td>一般</td><td class="neg">一般</td></tr>
+    <tr><td>仓位控制</td><td class="pos">好</td><td class="pos">好</td><td class="pos">良好</td><td>一般</td><td>一般</td><td class="pos">好</td></tr>
+    <tr><td>ML分类(RF)</td><td class="pos">好</td><td>一般</td><td>一般</td><td>一般</td><td>一般</td><td class="neg">一般</td></tr>
+  </table>
+
+  <h3 class="s3">互补性分析</h3>
+  <p>通过分析各策略在 Task2-Task7 中的表现，可以发现以下互补特征：</p>
+
+  <p><strong>(1) 趋势跟踪 vs 反转策略的互补</strong></p>
+  <p>双均线和海龟属于趋势跟踪策略，在趋势明确的行情中表现优异（年化 188.60% 和 +141.94%），但需要忍受较大的回撤（-32.35% 和 -29.67%）。超级顶底V4属于反转策略，擅长捕捉底部反弹（年化 38.58%，最大回撤 -15.02%），胜率虽低（47.1%）但盈亏比高（1.598）。<strong>这两类策略的市场环境偏好几乎相反，天然互补。</strong></p>
+
+  <p><strong>(2) 规则驱动 vs 数据驱动的互补</strong></p>
+  <p>双均线、海龟、超级顶底V4 是规则驱动策略，逻辑透明、可解释性强。机器学习策略（Ridge、RF、XGBoost）是数据驱动策略，能够学习多因子交互关系，但可解释性较差。<strong>两者结合可同时获得规则策略的稳定性和ML策略的信息挖掘能力。</strong></p>
+
+  <p><strong>(3) 线性 vs 非线性模型的互补</strong></p>
+  <p>Ridge（线性，Sharpe 2.0）和 XGBoost（非线性，Sharpe 0.51）在熊市中表现截然不同：Ridge 稳健但无法捕捉非线性关系，XGBoost 能学复杂关系但容易过拟合。在实际应用中可通过模型融合或模型选择机制来结合两者优势。</p>
+
+  <p><strong>(4) 高 Sharpe vs 高收益的互补</strong></p>
+  <p>双均线策略收益最高（+352%）但 Sharpe 相对较低（1.64），而 Ridge 策略 Sharpe 最优（2.00）但收益较低（+23%）。多策略系统可以通过加权分配使系统整体的 Sharpe 和收益达到最优平衡。</p>
+
+  <div class="fo">策略综合分析（3/3） - 7</div>
+</div>
+
+<!-- ==================== 多策略系统构建 ==================== -->
+<div class="page">
+  <div class="ph"><div class="num">二</div><h1>多策略量化交易系统构建</h1></div>
+
+  <h2 class="s2">2.4 构建多策略量化交易系统的思路和方法</h2>
+
+  <p>基于对六个策略的关联性和互补性分析，本报告提出以下多策略量化交易系统的架构和方法：</p>
+
+  <h3 class="s3">系统架构：三层策略框架</h3>
+  <table>
+    <tr><th>层次</th><th>功能</th><th>负责策略</th><th>权重分配</th></tr>
+    <tr><td><strong>核心层（Alpha生成）</strong></td><td>全市场横截面选股，生成初始股票池</td><td>ML选股（Ridge/XGBoost）</td><td>40%</td></tr>
+    <tr><td><strong>增强层（Alpha增强）</strong></td><td>对候选标的进行二次择时和评分</td><td>技术指标评分（任务2指标）+ 量比过滤</td><td>30%</td></tr>
+    <tr><td><strong>保护层（风险控制）</strong></td><td>动态仓位调整、止损和止盈保护</td><td>海龟仓位管理 + 超级顶底三重卖出</td><td>30%</td></tr>
+  </table>
+
+  <h3 class="s3">核心设计原则</h3>
+  <ol>
+    <li><strong>策略独立性：</strong>各子策略逻辑独立，避免过度相关性导致风险集中。例如趋势跟踪和反转策略的相关性极低，可以显著降低组合波动。</li>
+    <li><strong>动态权重分配：</strong>根据市场环境（如波动率、市场趋势强度）动态调整各子策略的权。在趋势明确时增加趋势跟踪策略权重，在震荡市时增加反转策略权重。</li>
+    <li><strong>统一风控层：</strong>所有子策略共享统一的风控体系（单策略仓位限制、总仓位限制、止损止盈规则、行业分散限制）。</li>
+    <li><strong>滚动训练机制：</strong>机器学习模型定期（如季度）使用最新数据重新训练，适应市场结构变化。</li>
+    <li><strong>模拟验证优先：</strong>任何新策略或参数调整都必须先在模拟环境验证，通过 A/B 测试确认有效后再纳入实盘。</li>
+  </ol>
+
+  <h3 class="s3">预期效果</h3>
+  <p>根据 Task2-Task7 的实际数据，多策略系统的预期效果如下：</p>
+  <ul>
+    <li>在趋势行情中：核心层（ML）提供选出的优质标的，增强层（趋势跟踪）捕捉主升浪</li>
+    <li>在震荡行情中：保护层（反转策略）提供底部反转交易机会，降低系统回撤</li>
+    <li>在熊市中：ML 模型通过因子筛选选出相对抗跌的股票，仓位控制层降低总仓位，控制总损失</li>
+  </ul>
+
+  <div class="summary-box">
+    <strong>设计目标：</strong>多策略系统不是简单地"堆砌更多策略"，而是通过策略的<strong>互补性</strong>降低整体波动，通过<strong>分散化</strong>提高夏普比率，最终实现"在任何市场环境下都能找到盈利机会"的目标。
+  </div>
+  <div class="fo">多策略量化交易系统构建 - 8</div>
+</div>
+
+<!-- ==================== 三、机器学习应用总结 ==================== -->
+<div class="page">
+  <div class="ph"><div class="num">三</div><h1>机器学习在量化交易中的应用总结</h1></div>
+
+  <h2 class="s2">3.1 数据预处理</h2>
+  <p>在 Task6 选股任务中，我们使用了 39,616 行全 A 股财务数据（2020Q1-2022Q2），处理流程如下：</p>
+  <ol>
+    <li><strong>零值保护：</strong>计算 EP/BP/SP 等比率指标时，若分母为0则置为 NaN</li>
+    <li><strong>Winsorize：</strong>按季度截面 1% 和 99% 分位数裁剪极端异常值，消除离群点影响</li>
+    <li><strong>缺失值处理：</strong>前向填充（ffill）+ 零值补齐</li>
+    <li><strong>预测修正：</strong>NaN 和 inf 预测值统一归零处理</li>
+  </ol>
+  <div class="note">
+    <strong>关键原则：</strong>严格按时间顺序划分训练集和测试集，绝不能用未来数据训练。这 39,616 行数据按 70/30 时间划分，训练集 2020Q1-2021Q3（7个季度），测试集 2021Q4-2022Q2（3个季度，大熊市）。
+  </div>
+
+  <h2 class="s2">3.2 特征工程</h2>
+  <p>从 19 个基本面因子构造了 36 个衍生特征，主要包括：</p>
+  <ul>
+    <li><strong>估值类：</strong>PE_cross_dispersion（横截面离散度）、企业倍数（EV/EBITDA）、市现率（PCF）、市净率（PB）</li>
+    <li><strong>成长类：</strong>净利润同比增长率、营业利润同比增长率</li>
+    <li><strong>规模类：</strong>log_MV（对数市值）、MV_rank（市值横截面排名）</li>
+    <li><strong>收益比率：</strong>EP、BP、SP（盈利/账面/销售收益率）</li>
+    <li><strong>交互因子：</strong>EP×净利润增长率（估值与成长交叉项）</li>
+    <li><strong>排名因子：</strong>所有因子的横截面排名（Rank），消除极端值影响</li>
+  </ul>
+  <p><strong>特征重要性排名（XGBoost）：</strong></p>
+  <ul>
+    <li>PE_cross_dispersion (0.2344) — 最关键因子</li>
+    <li>净利润同比增长率_rank (0.0584)</li>
+    <li>营业利润同比增长率_rank (0.0518)</li>
+    <li>企业倍数EV/EBITDA (0.0503)</li>
+    <li>EP×净利润增长 (0.0340)</li>
+  </ul>
+
+  <h2 class="s2">3.3 模型选择与训练</h2>
+  <p>在 Task5 和 Task6 中分别测试了分类模型和回归模型：</p>
+
+  <h3 class="s3">Task5 分类模型（002281 单日标的）</h3>
+  <p>使用 69 个技术指标特征。RF 在单一股票上表现最佳（AUC=0.5581，Accuracy=0.5600）。其他分类模型因单一个股噪声太大，AUC 均略高于 0.5。</p>
+
+  <h3 class="s3">Task6 回归模型（全 A 股横截面）</h3>
+  <p>6 种回归模型全覆盖：</p>
+  <ul>
+    <li><strong>XGBoost：</strong>Train R² 最高（43.16%），Test R² -7.04%，方向预测最优（57.56%）</li>
+    <li><strong>RandomForest：</strong>Train R² 26.84%，Test R² -42.78%，<strong>严重过拟合</strong></li>
+    <li><strong>GradientBoosting：</strong>Train R² 27.14%，Test R² -37.17%，方向预测 46.56%</li>
+    <li><strong>Ridge：</strong>Train R² 3.61%（最低），但 Test R² -23.29%（最佳），方向 50.92%，<strong>回测表现最优</strong></li>
+    <li><strong>Lasso：</strong>Train R² 2.08%，Test R² -27.67%，方向 32.78%</li>
+    <li><strong>DecisionTree：</strong>Train R² 15.59%，Test R² -43.24%，方向 45.57%</li>
+  </ul>
+  <p><strong>关键教训：</strong>Train R² 越高不代表实盘表现越好。RF 和 XGBoost 在训练集上表现优异但严重过拟合，而简单的 Ridge 虽然 R² 最低，但因正则化约束、泛化能力强，在实际回测中表现最优（Sharpe 2.0）。</p>
+
+  <h2 class="s2">3.4 模型评估与优化</h2>
+  <p>模型评估分为两个层面：</p>
+  <ol>
+    <li><strong>统计指标评估：</strong>使用 R²、MAE、AUC、Accuracy 等传统指标。但需注意：全部模型 Test R² 均为负（-7.04% 到 -43.24%），说明在极端熊市环境下，直接预测收益率极其困难。</li>
+    <li><strong>策略回测评估：</strong>更看重实际交易效果（总收益、Sharpe、回撤、超额收益率）。例如 Ridge 虽然 R² 为负，但 Top30 等权组合在熊市中获得 +23.02% 收益（超额 +39.22%），证明模型在"相对排序"而非"绝对预测"上具有实用价值。</li>
+  </ol>
+  <div class="note">
+    <strong>重要优化建议：</strong>在回归模型 R² 全面为负的情况下，建议改用 Rank 目标（预测股票的相对排序）或分类模型（预测涨跌方向），这两种方式在金融数据中更适合，因为金融预测的核心是相对优势而非绝对数值。
+  </div>
+  <div class="fo">机器学习应用总结（1/2） - 9</div>
+</div>
+
+<!-- ==================== ML 应用 续 ==================== -->
+<div class="page">
+  <div class="ph"><div class="num">三</div><h1>（续）机器学习在量化交易中的应用</h1></div>
+
+  <h2 class="s2">3.5 机器学习算法的优势与局限性</h2>
+
+  <h3 class="s3">优势</h3>
+  <ul>
+    <li><strong>非线性关系学习：</strong>RF、XGBoost 等算法能够学习多个因子之间复杂的非线性交互关系，这是传统线性模型无法做到的</li>
+    <li><strong>多因子融合能力：</strong>可同时使用 19 个基本面因子构造的 36 个衍生特征（共 55 个输入特征），实现全市场自动化选股。在 39,616 行数据上训练后，可快速预测全市场数千只股票的表现</li>
+    <li><strong>自动特征学习：</strong>无需人工设定固定阈值（如"RSI<30 则买入"），而是通过数据自动学习各因子的最佳组合关系</li>
+    <li><strong>滚动训练适应性：</strong>随市场数据更新可采用滚动训练（Rolling Training），定期使用最新数据重新训练模型，适应市场风格变化</li>
+    <li><strong>批量处理能力：</strong>训练完成后可快速应用于全市场股票预测，实现自动化、规模化选股</li>
+  </ul>
+
+  <h3 class="s3">局限性</h3>
+  <ul>
+    <li><strong>过拟合风险极高：</strong>RF Train R²=26.8% → Test R²=-42.8%，XGBoost Train R²=43.2% → Test R²=-7.0%。极端环境下（2021Q4-2022Q2 熊市，基准跌 -16.20%，仅 19% 个股上涨）过拟合尤为严重</li>
+    <li><strong>对数据质量要求极高：</strong>缺失值、异常值、复权错误、停牌数据等都会严重影响模型训练效果</li>
+    <li><strong>可解释性差：</strong>RF、XGBoost 等集成学习算法很难解释为何预测某只股票上涨，只能借助特征重要性分析辅助理解</li>
+    <li><strong>市场非平稳性：</strong>模型在历史数据中学习到的规律可能随市场风格变化而失效。Task6 测试期恰逢大熊市，极端环境使模型表现大幅下降</li>
+    <li><strong>超参数调优复杂：</strong>树模型的深度、学习率、叶节点数量等需要通过网格搜索或贝叶斯优化进行调优</li>
+    <li><strong>绝对预测困难：</strong>全部 6 种模型 Test R² 均为负值，直接预测收益率极其困难，但在相对排序上仍有价值</li>
+  </ul>
+
+  <h2 class="s2">3.6 未来发展趋势展望</h2>
+  <ul>
+    <li><strong>多模态数据融合：</strong>将技术指标、基本面因子与新闻情绪、搜索指数、产业链数据等另类数据融合使用</li>
+    <li><strong>大语言模型（LLM）在量化中的应用：</strong>利用 GPT/Claude 等模型辅助新闻情绪分析、研报解读、因子挖掘</li>
+    <li><strong>强化学习在交易决策中的应用：</strong>使用强化学习优化动态资产配置和交易执行时机</li>
+    <li><strong>可解释 AI（XAI）技术引入：</strong>通过 SHAP、LIME 等方法提高 ML 模型的可解释性</li>
+    <li><strong>自适应模型机制：</strong>根据市场 regime（牛市、熊市、震荡市）自动切换和调整模型权重</li>
+  </ul>
+  <div class="fo">机器学习应用总结（2/2） - 10</div>
+</div>
+
+<!-- ==================== 四、结论与展望 ==================== -->
+<div class="page">
+  <div class="ph"><div class="num">四</div><h1>结论与展望</h1></div>
+
+  <h2 class="s2">4.1 主要收获与体会</h2>
+  <p>通过 Task1 到 Task8 的完整实践，本人获得了以下核心收获：</p>
+
+  <ol>
+    <li><strong>建立了完整的量化交易知识体系：</strong>从技术分析基础（RSI、MACD、布林带、ATR等6项指标）→ 规则驱动策略（双均线、海龟交易法）→ 数据驱动策略（ML分类模型、回归选股）→ 实盘模拟部署（聚宽平台超级顶底V4），形成了系统性的量化交易认知框架。</li>
+
+    <li><strong>深刻认识到"回测≠实盘"的重要性：</strong>在多个任务中观察到过拟合、数据未来泄露、生存偏差等常见陷阱。特别是 RF 严重过拟合（Train R² 26.8% 但回测 -2.69%），以及 ML 选股模型在极端熊市中表现大幅下降的教训，使我深刻理解了对策略进行严格验证的必要性。</li>
+
+    <li><strong>培养了严谨的风控意识：</strong>海龟交易的 ATR 仓位控制、超级顶底V4 的三重卖出机制、Task6-2 的仓位控制策略（Sharpe 1.36，回撤仅 -3.9%），这些实例反复证明：好的风控可以显著提升 Sharpe 比率，是任何策略能否成功的关键。</li>
+
+    <li><strong>理解了量化交易的本质是寻找统计优势：</strong>量化交易不是预测市场，而是寻找统计上的显著优势（如 Ridge 在熊市中的超额收益 +39.22%），并通过长期严格执行将优势转化为稳定收益。</li>
+
+    <li><strong>掌握了 A/B 测试验证方法：</strong>在多个任务中通过对照实验验证参数效果。例如通过 A/B 测试确认 Ridge 优于 RF（在极端环境下），通过对比不同通道参数（N=10 vs N=20）找到最优海龟配置，通过 A/B 测试确认仓位控制策略的有效性。</li>
+
+    <li><strong>实践出真知：</strong>从 Task1 到 Task7 每个任务都有真实的回测结果（收益率、Sharpe、回撤、胜率等具体指标），这些真实的实验数据比理论教材更有说服力。</li>
+  </ol>
+
+  <h2 class="s2">4.2 未来学习与研究方向</h2>
+  <p>基于本次学习实践，未来计划和研究方向如下：</p>
+
+  <h3 class="s3">短期方向（1-3 个月）</h3>
+  <ul>
+    <li><strong>引入更多因子：</strong>在现有基本面因子基础上，增加动量因子、换手率因子、低波动因子，以及行业中性化处理</li>
+    <li><strong>扩展回测时间：</strong>将机器学习选股策略的回测时间扩展到 3-5 年，覆盖不同市场环境（牛市、熊市、震荡市），验证策略的长期稳健性</li>
+    <li><strong>模型融合：</strong>探索 Ridge + XGBoost + RF 的集成学习方案，在保持 Ridge 稳健性的时利用非线性模型的优势</li>
+  </ul>
+
+  <h3 class="s3">中期方向（3-6 个月）</h3>
+  <ul>
+    <li><strong>多策略自适应系统：</strong>构建基于市场 regime 判断的自适应多策略系统，自动在趋势跟踪和反转策略之间切换权重</li>
+    <li><strong>大语言模型辅助研究：</strong>利用 LLM 进行新闻情绪分析、研报解读、因子挖掘等</li>
+    <li><strong>实盘验证：</strong>将经过验证的策略部署到聚宽平台的模拟盘，验证回测与实盘的差异</li>
+  </ul>
+
+  <h3 class="s3">长期方向（6-12 个月）</h3>
+  <ul>
+    <li><strong>强化学习应用：</strong>研究强化学习在动态仓位管理和交易执行优化中的应用</li>
+    <li><strong>另类数据融合：</strong>整合社交媒体情绪、新闻情感、产业链数据等另类数据源</li>
+    <li><strong>全市场多品种：</strong>将策略从 A 股扩展至多市场（港股、期货、加密货币等），构建真正的全天候多策略交易体系</li>
+  </ul>
+
+  <div class="summary-box">
+    <strong>核心体会：</strong>量化交易是一场马拉松，而非百米冲刺。真正的核心竞争力不在于某个策略的短期超额收益，而在于持续学习、严格风控和长期迭代优化的能力。本次学习从技术指标到策略构建、从规则驱动到数据驱动、从单标的到全市场、从模拟到实盘部署，每个环节都积累了宝贵经验。未来将继续保持对这一领域的热情，脚踏实地走好每一步。
+  </div>
+
+  <div style="margin-top:50pt;text-align:center;padding-top:20pt;border-top:2px solid #e2e8f0">
+    <p style="font-size:13pt;color:#64748b;font-style:italic">—— 感谢王安老师与助教在本课程中的悉心指导 ——</p>
+    <p style="color:#94a3b8;font-size:10.5pt;margin-top:6pt">2026年7月25日</p>
+  </div>
+  <div class="fo">结论与展望 - 11</div>
+</div>
+
+</div>
+</body>
+</html>
