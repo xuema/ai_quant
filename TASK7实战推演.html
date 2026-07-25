@@ -1,511 +1,374 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TASK7 实战推演 - 策略实盘部署与交易实战</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: "PingFang SC", "PingFang HK", "Heiti SC", "Microsoft YaHei", sans-serif;
-    background: #f5f5f5;
-    color: #333;
-    line-height: 1.8;
-  }
-  .page {
-    width: 210mm;
-    min-height: 297mm;
-    margin: 20px auto;
-    background: white;
-    padding: 40pt 50pt 60pt 50pt;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-    page-break-after: always;
-    position: relative;
-  }
-  @media print {
-    body { background: white; }
-    .page { box-shadow: none; margin: 0; padding: 40pt 50pt 40pt 50pt; min-height: auto; }
-  }
-  /* Footer */
-  .footer {
-    position: absolute; bottom: 30px; left: 50px; right: 50px;
-    text-align: center; font-size: 8pt; color: #999;
-    border-top: 1px solid #eee; padding-top: 8px;
-  }
-
-  /* Cover */
-  .cover {
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    min-height: 297mm; text-align: center; padding-bottom: 80px;
-  }
-  .cover h1 { font-size: 36pt; color: #b22222; font-weight: bold; margin-bottom: 2pt; letter-spacing: 4pt; }
-  .cover h2 { font-size: 28pt; color: #333; font-weight: bold; margin-bottom: 8pt; }
-  .cover h3 { font-size: 18pt; color: #555; font-weight: normal; margin-bottom: 20pt; }
-  .cover .divider { width: 50%; height: 2px; background: #b22222; margin: 10pt 0 30pt; }
-  .cover h4 { font-size: 16pt; color: #0066cc; font-weight: bold; margin-bottom: 4pt; }
-  .cover h5 { font-size: 13pt; color: #666; font-weight: normal; margin-bottom: 30pt; }
-  .cover .info { font-size: 11pt; color: #555; }
-  .cover .info p { margin: 6pt 0; }
-
-  /* Section titles */
-  .section-title {
-    font-size: 18pt; font-weight: bold; color: #333;
-    border-left: 4px solid #0066cc; padding-left: 15px; margin-bottom: 20px;
-  }
-  .section-subtitle {
-    font-size: 11pt; color: #666; margin-top: -12px; margin-bottom: 20px; padding-left: 19px;
-  }
-
-  /* Content */
-  h3 { font-size: 14pt; font-weight: bold; color: #333; margin: 18pt 0 8pt; }
-  h4 { font-size: 12pt; font-weight: bold; color: #0066cc; margin: 12pt 0 6pt; }
-
-  p {
-    font-size: 10.5pt; margin: 4px 0; padding-left: 20px;
-    line-height: 1.9;
-  }
-  p.indent { padding-left: 36px; }
-
-  .blank { height: 10px; }
-  .blank2 { height: 16px; }
-
-  /* Checklist */
-  ul.check { list-style: none; padding-left: 20px; }
-  ul.check li {
-    font-size: 10.5pt; padding: 4px 0; line-height: 1.9;
-  }
-  ul.check li.ok { color: #2b5c2b; }
-  ul.check li.warn { color: #cc4444; }
-  ul.check li.ok::before { content: "✅ "; }
-  ul.check li.warn::before { content: "⚠️ "; }
-
-  ol.steps { padding-left: 40px; }
-  ol.steps li {
-    font-size: 10.5pt; padding: 3px 0; line-height: 1.9;
-  }
-
-  /* Table */
-  table {
-    width: 90%; margin: 16px auto; border-collapse: collapse; font-size: 9.5pt;
-  }
-  table th {
-    background: #2d2d2d; color: white; padding: 10px 12px; text-align: left; font-weight: bold;
-  }
-  table td {
-    padding: 8px 12px; border-bottom: 1px solid #e0e0e0;
-  }
-  table tr:nth-child(even) td { background: #f4f0e8; }
-  .pos { color: #006600; font-weight: bold; }
-  .neg { color: #cc0000; font-weight: bold; }
-
-  /* Images */
-  .img-block {
-    margin: 16px 0; text-align: center;
-  }
-  .img-block img {
-    max-width: 100%; border: 1px solid #ddd; border-radius: 4px;
-  }
-  .img-block .caption {
-    font-size: 9.5pt; color: #666; margin-top: 8px;
-  }
-
-  /* Summary box */
-  .summary-box {
-    background: #f0f4f8; border-left: 4px solid #0066cc;
-    padding: 14px 20px; margin: 16px 0; border-radius: 4px;
-  }
-  .summary-box p { padding-left: 0; line-height: 1.85; }
-
-  /* Experience items */
-  .exp-item {
-    margin: 12px 0; padding: 10px 14px;
-    background: #fafafa; border-radius: 6px;
-    border-left: 3px solid #e0e0e0;
-  }
-  .exp-item strong { color: #333; }
-  .exp-item p { padding-left: 0; font-size: 10pt; }
-  .exp-item p.indent { padding-left: 24px; font-size: 10pt; }
-  .exp-item.lesson { border-left-color: #cc4444; }
-  .exp-item.success { border-left-color: #2b5c2b; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TASK7 实战推演：策略实盘部署与交易实战</title>
+    <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    @page{size:A4;margin:15mm}
+    body{font-family:-apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+      background:#e8ecf1;color:#1e293b;line-height:1.85;padding:20px}
+    .container{max-width:210mm;margin:0 auto;background:#fff;
+      box-shadow:0 6px 32px rgba(30,64,175,.12)}
+    /* Cover */
+    .cover{background:#fff;
+      color:#1e293b;padding:0 50px;text-align:center;min-height:297mm;
+      display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .cover .tag{font-size:14pt;letter-spacing:6pt;color:#64748b;margin-bottom:24pt}
+    .cover .divider{width:80px;height:3px;background:linear-gradient(90deg,#b91c1c,#ef4444);margin:20px auto;border-radius:2px}
+    .cover h1{font-size:54pt;font-weight:900;letter-spacing:8pt;color:#1e293b;margin-bottom:4pt}
+    .cover h2{font-size:30pt;font-weight:300;margin-top:18pt;letter-spacing:3pt;color:#334155}
+    .cover h3{font-size:18pt;font-weight:400;margin-top:50pt;color:#475569;
+      line-height:1.7}
+    .cover .info{margin-top:80pt;font-size:13.5pt;color:#64748b;line-height:2.2}
+    /* Page */
+    .page{padding:48pt 54pt;min-height:297mm;page-break-after:always;position:relative}
+    .page:last-child{page-break-after:auto}
+    /* Header */
+    .ph{display:flex;align-items:center;border-bottom:2.5px solid #b91c1c;padding-bottom:14px;margin-bottom:28px}
+    .ph .num{width:42px;height:42px;background:#b91c1c;color:#fff;border-radius:8px;
+      display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16pt;margin-right:14px}
+    .ph h1{font-size:22pt;color:#b91c1c;font-weight:700}
+    /* Sections */
+    .s2{font-size:15.5pt;font-weight:700;color:#b91c1c;margin:28px 0 10px;
+      padding-left:12px;border-left:4px solid #ef4444}
+    .s3{font-size:13pt;font-weight:700;color:#334155;margin:18px 0 6px;padding-left:8px}
+    p{font-size:12pt;text-indent:2em;margin-bottom:10px;color:#1e293b}
+    /* Table */
+    .tbl-wrap{overflow-x:auto;margin:14px 0}
+    table{width:100%;border-collapse:collapse;font-size:11pt;margin:10px 0}
+    th{background:#fef2f2;color:#b91c1c;padding:9px 10px;text-align:center;
+      font-weight:700;border:1px solid #fecaca}
+    td{padding:8px 10px;text-align:center;border:1px solid #fecaca}
+    tr:nth-child(even) td{background:#fef9f9}
+    .pos{color:#16a34a;font-weight:700}.neg{color:#dc2626;font-weight:700}
+    /* Note */
+    .note{background:#fef2f2;border-left:4px solid #ef4444;padding:14px 18px;
+      margin:16px 0;border-radius:0 6px 6px 0;font-size:11.5pt}
+    .summary-box{background:linear-gradient(135deg,#fef2f2,#fde8e8);
+      border:1px solid #fca5a5;border-radius:8px;padding:20px;margin:20px 0}
+    ul,ol{padding-left:28px;margin-bottom:10px}
+    li{font-size:12pt;margin-bottom:8px;color:#1e293b}
+    /* Image block */
+    .img-block{margin:20px 0;text-align:center;padding:16px;background:#f8fafc;
+      border-radius:8px;border:1px solid #e2e8f0}
+    .img-block img{max-width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    .img-block figcaption{font-size:10.5pt;color:#64748b;margin-top:10px}
+    /* Footer */
+    .fo{position:absolute;bottom:38pt;left:56pt;right:56pt;
+      text-align:center;font-size:9pt;color:#94a3b8;
+      border-top:1px solid #e2e8f0;padding-top:10px}
+    @media print{
+      body{background:#fff!important;padding:0}
+      .container{box-shadow:none}
+      .page{min-height:auto;padding:30pt 40pt}
+    }
+    </style>
 </head>
 <body>
+<div class="container">
 
-<!-- ==================== PAGE 1: Cover ==================== -->
-<div class="page cover">
-  <h1>TASK7</h1>
-  <h2>实战推演</h2>
-  <h3>策略实盘部署与交易实战</h3>
+<!-- ==================== 封面 ==================== -->
+<div class="cover">
+  <div class="tag">TASK 7 — 实战推演</div>
   <div class="divider"></div>
-  <h4>超级顶底 V4 策略</h4>
-  <h5>JoinQuant 平台实现</h5>
+  <h1>策略实盘部署</h1>
+  <h2>与交易实战</h2>
+  <h3>超级顶底 V4 策略<br>聚宽 (JoinQuant) 平台实盘模拟</h3>
+  <div class="divider"></div>
   <div class="info">
-    <p>策略周期: 2025-07-01 ~ 2026-06-30</p>
-    <p>基准: 沪深300 (000300.XSHG)</p>
-    <p>初始资金: 100,000元</p>
-    <p>固定持仓: 5只均仓</p>
-    <p>量比窗口: 10日均线</p>
-    <p>报告日期: 2026-07-25</p>
+    <div>策略周期: 2025-07-01 ~ 2026-06-30</div>
+    <div>基准: 沪深300 (000300.XSHG)</div>
+    <div>初始资金: 100,000 元</div>
+    <div>固定持仓: 5只均仓</div>
+    <div>量比窗口: 10日均线</div>
+    <div style="margin-top:18pt;font-size:10.5pt;color:#94a3b8">报告日期: 2026年7月25日</div>
   </div>
-  <div class="footer" style="border-top:none; padding-top:0;">策略实盘部署与交易实战报告 | 版本 V4 | 2026-07-25</div>
 </div>
 
-<!-- ==================== PAGE 2: Sec 1 Strategy ==================== -->
+<!-- ==================== 一、策略方案概述 ==================== -->
 <div class="page">
-  <div class="section-title">一、策略方案概述</div>
+  <div class="ph"><div class="num">一</div><h1>策略方案概述</h1></div>
 
-  <h3>1.1 策略核心理念</h3>
-  <p>本策略基于超级顶底指标系统，结合趋势线突破信号与WR指标，在中大盘股中寻找底部反转机会。核心逻辑：当趋势线从超卖区域（&le;11）上穿时买入，当趋势线进入超买区域（&gt;89）下穿时卖出，同时配合ATR动态止损和WR高位止盈。</p>
+  <h2 class="s2">1.1 策略核心理念</h2>
+  <p>本报告基于超级顶底 V4 策略（spec_v4.md），该策略基于 RSV 趋势线突破信号与 WR 指标，在中大盘股中寻找底部反转机会。核心逻辑：当趋势线从超卖区域（≤11）上穿时买入，当趋势线进入超买区域（>89）下穿时卖出，同时配合 ATR 动态止损和 WR 高位止盈。</p>
 
-  <h3>1.2 核心指标体系</h3>
-  <h4>RSV与趋势线</h4>
-  <p>RSV = (CLOSE - LLV(LOW,27)) / (HHV(HIGH,27) - LLV(LOW,27)) &times; 100</p>
-  <p>趋势线 = 3 &times; SMA(RSV,5,1) - 2 &times; SMA(SMA(RSV,5,1),3,1)</p>
-  <p>值域约0-100，反映股价在27日区间中的相对位置</p>
+  <h2 class="s2">1.2 核心指标体系</h2>
 
-  <h4>WR (Williams %R)</h4>
-  <p>WR(42) = (HHV(HIGH,42) - CLOSE) / (HHV(HIGH,42) - LLV(LOW,42)) &times; 100</p>
+  <h3 class="s3">RSV 与趋势线</h3>
+  <p><strong>RSV</strong> = (CLOSE − LLV(LOW,27)) / (HHV(HIGH,27) − LLV(LOW,27)) × 100</p>
+  <p><strong>趋势线</strong> = 3 × SMA(RSV,5,1) − 2 × SMA(SMA(RSV,5,1),3,1)</p>
+  <p>值域约 0–100，反映股价在 27 日区间中的相对位置。</p>
 
-  <h4>ATR(14)</h4>
-  <p>真实波动范围14日平均，用于动态止损计算</p>
+  <h3 class="s3">WR (Williams %R)</h3>
+  <p><strong>WR(42)</strong> = (HHV(HIGH,42) − CLOSE) / (HHV(HIGH,42) − LLV(LOW,42)) × 100</p>
+  <p>衡量股价与 42 日区间的关系，用于判断超买超卖状态。</p>
 
-  <div class="blank"></div>
+  <h3 class="s3">ATR (14)</h3>
+  <p>真实波动范围 14 日平均，用于动态止损计算。ATR 能捕捉跳空缺口，比单纯 H−L 更全面反映每日真实风险。</p>
 
-  <h3>1.3 买入规则</h3>
-  <p>条件: 趋势线上穿11 + 量比 &gt; 1.2 + 市值 &ge; 80亿元</p>
-  <p>评分公式: score = max(0, 100 &times; (1 - (趋势线-11)/25)) + min(30, (量比-1.0) &times; 30)</p>
-  <p>趋势线越接近11得分越高；量比越大加成越高（最高30分）</p>
-
-  <div class="blank"></div>
-
-  <h3>1.4 卖出规则（三重机制，优先级从高到低）</h3>
-  <p>(1) <strong>ATR止损:</strong> 现价 &lt; 最高价 - 2 &times; ATR(14) &#x2192; 防止大幅回撤</p>
-  <p>(2) <strong>WR止盈:</strong> WR(42) &gt; 45 且 趋势线 &gt; 50 &#x2192; 高位回落提前锁定利润</p>
-  <p>(3) <strong>趋势线卖出:</strong> 趋势线下穿89 &#x2192; 经典顶部确认卖出</p>
-
-  <div class="blank"></div>
-
-  <h3>1.5 仓位管理 &amp; 每日流程</h3>
-  <p>固定持仓5只均仓。09:00更新候选池(~240只) &#x2192; 09:30 ATR/WR检查 + 扫描交易 &#x2192; 15:30输出日志</p>
-
-  <div class="footer">策略实盘部署与交易实战报告 | 版本 V4 | 2026-07-25</div>
-</div>
-
-<!-- ==================== PAGE 3: Sec 2 Parameter Comparison ==================== -->
-<div class="page">
-  <div class="section-title">二、参数调整: 10日 vs 20日均量比</div>
-  <p class="section-subtitle">量比周期对策略表现的影响分析</p>
-
-  <h3>调整目的</h3>
-  <p>将量比的计算基准从10日平均改为20日平均，20日均线更平滑，能过滤更多短线噪音。</p>
-
-  <table>
-    <tr><th>指标</th><th>10日均量比</th><th>20日均量比</th><th>变化</th></tr>
-    <tr><td>策略收益</td><td class="pos">37.32%</td><td>12.85%</td><td class="neg">-24.47%</td></tr>
-    <tr><td>年化收益</td><td class="pos">38.58%</td><td>13.25%</td><td class="neg">-25.33%</td></tr>
-    <tr><td>超额收益</td><td class="pos">+8.15%</td><td class="neg">-11.12%</td><td class="neg">-19.27%</td></tr>
-    <tr><td>基准(沪深300)</td><td>26.97%</td><td>26.97%</td><td>相同</td></tr>
-    <tr><td>夏普比率</td><td class="pos">1.098</td><td>0.345</td><td class="neg">-0.753</td></tr>
-    <tr><td>胜率</td><td>47.1%</td><td>52.5%</td><td class="pos">+5.4%</td></tr>
-    <tr><td>盈亏比</td><td class="pos">1.598</td><td>1.317</td><td class="neg">-0.281</td></tr>
-    <tr><td>最大回撤</td><td>15.02%</td><td>18.02%</td><td class="neg">+3.00%</td></tr>
-    <tr><td>信息比率</td><td class="pos">0.335</td><td class="neg">-0.553</td><td class="neg">-0.888</td></tr>
-    <tr><td>盈利次数</td><td>55次</td><td>42次</td><td class="neg">-13次</td></tr>
-    <tr><td>亏损次数</td><td>55次</td><td>38次</td><td class="neg">-17次</td></tr>
-    <tr><td>总交易次数</td><td>110次</td><td>80次</td><td class="neg">-30次</td></tr>
-  </table>
-
-  <div class="blank2"></div>
-
-  <h3>对比分析与结论</h3>
-  <p>10日均量比方案在所有核心指标上明显优于20日均线方案：</p>
-  <p class="indent">- 策略收益37.32%远高于20日均线的12.85%</p>
-  <p class="indent">- 超额收益 +8.15%(正) vs -11.12%(负)</p>
-  <p class="indent">- 夏普比率 1.098 vs 0.345，风险调整后收益显著更好</p>
-
-  <div class="blank"></div>
-  <p><strong>为什么10日均量比反而更好？</strong></p>
-  <p class="indent">- 本策略是"底部反转"策略，需要灵敏捕捉"异动放量"</p>
-  <p class="indent">- 20日基准过于平滑，把有意义的短期放量信号也过滤了</p>
-  <p class="indent">- 10日基准能更快响应成交量边际变化，更适合反转策略</p>
-
-  <div class="blank2"></div>
-  <p><strong>决策: 保持量比周期为10日均线，不做调整。</strong></p>
-
-  <div class="footer">策略实盘部署与交易实战报告 | 版本 V4 | 2026-07-25</div>
-</div>
-
-<!-- ==================== PAGE 4: Charts ==================== -->
-<div class="page">
-  <div class="section-title">二(续): 回测收益曲线对比</div>
-
-  <div class="img-block">
-    <img src="vol_window10.png" alt="10日均量比收益曲线">
-    <p class="caption">图1: 10日均量比 -- 策略收益37.32%, 夏普1.098, 回撤15.02%</p>
-  </div>
-
-  <div class="img-block">
-    <img src="vol_window20.png" alt="20日均量比收益曲线">
-    <p class="caption">图2: 20日均量比 -- 策略收益12.85%, 夏普0.345, 回撤18.02%</p>
-  </div>
-
-  <div class="footer">策略实盘部署与交易实战报告 | 版本 V4 | 2026-07-25</div>
-</div>
-
-<!-- ==================== PAGE 5: Sec 3 Simulation ==================== -->
-<div class="page">
-  <div class="section-title">三、实盘模拟部署</div>
-  <p class="section-subtitle">聚宽平台模拟交易设置与运行状态</p>
-
-  <h3>3.1 平台与执行环境</h3>
-  <p>聚宽(JoinQuant)量化交易平台 - Python策略引擎</p>
-  <p>基准: 沪深300 (000300.XSHG) | 初始资金: 10万元</p>
-  <p>真实价格模式: set_option("use_real_price", True)</p>
-
-  <div class="blank"></div>
-
-  <h3>3.2 交易成本模型</h3>
-  <p>买入佣金: 0.03% | 卖出佣金: 0.03% | 印花税: 0.1% | 最低佣金: 5元</p>
-  <p>（未计入滑点，实际交易需额外考虑0.1%-0.3%滑点）</p>
-
-  <div class="blank"></div>
-
-  <h3>3.3 策略代码架构</h3>
-  <p><code>initialize()</code>          — 初始化参数、费率、调度器</p>
-  <p><code>before_market_open()</code>  — 开盘前更新候选池（市值过滤）</p>
-  <p><code>market_open()</code>         — 开盘时 ATR/WR检查 + 信号扫描 + 交易</p>
-  <p><code>after_market_close()</code>  — 收盘后输出持仓和净值日志</p>
-  <p class="indent" style="font-size:9.5pt; color:#666;">辅助函数: _sma_td(), _trend(), _atr_val(), _wr_val(), _score()</p>
-
-  <div class="blank"></div>
-
-  <h3>3.4 调度时序</h3>
-  <p>09:00 开盘前 &#x2192; 全A股 &#x2192; 去ST + 市值过滤 &#x2192; 候选池(~240只)</p>
-  <p>09:30 开盘时 &#x2192; ATR/WR检查 &#x2192; 信号扫描 &#x2192; 卖出 &#x2192; 补仓</p>
-  <p>15:30 收盘后 &#x2192; 输出持仓数 / 净值 / 可用现金</p>
-
-  <div class="blank"></div>
-
-  <h3>3.5 数据范围与候选池</h3>
-  <p>回测区间: 2025-07-01 ~ 2026-06-30（完整1年）</p>
-  <p>股票池: 全A股(ST剔除), 市值 &ge; 80亿元, 候选池约236-252只</p>
-  <p>持仓上限: 5只, 均仓配置, 单只约20%资金</p>
-
-  <div class="blank"></div>
-
-  <h3>3.6 模拟运行状态</h3>
-  <p>策略已在聚宽平台成功部署并运行完整回测周期</p>
-  <p>每日产生完整交易日志（买卖决策、持仓变化、佣金等）</p>
-  <p>初始5只信号: 000422(12.01元), 000932(4.38元), 000962(16.28元), 000048(15.99元)</p>
-
-  <div class="footer">策略实盘部署与交易实战报告 | 版本 V4 | 2026-07-25</div>
-</div>
-
-<!-- ==================== PAGE 6: Sec 4 Part 1 ==================== -->
-<div class="page">
-  <div class="section-title">四、实盘表现评估与风险分析</div>
-
-  <h3>4.1 收益表现总览（量比周期=10日）</h3>
-
-  <table>
-    <tr><th>指标</th><th>数值</th><th>评价</th></tr>
-    <tr><td>策略收益</td><td class="pos">37.32%</td><td>优于基准</td></tr>
-    <tr><td>年化收益</td><td class="pos">38.58%</td><td>较高回报</td></tr>
-    <tr><td>沪深300基准</td><td>26.97%</td><td>—</td></tr>
-    <tr><td>超额收益</td><td class="pos">+8.15%</td><td>跑赢大盘</td></tr>
-    <tr><td>夏普比率</td><td class="pos">1.098</td><td>优秀</td></tr>
-    <tr><td>索提诺比率</td><td class="pos">1.913</td><td>下行控制好</td></tr>
-    <tr><td>最大回撤</td><td>15.02%</td><td>中等水平</td></tr>
-    <tr><td>日胜率</td><td>47.1%</td><td>略低于50%</td></tr>
-    <tr><td>盈亏比</td><td class="pos">1.598</td><td>盈幅大于亏幅</td></tr>
-    <tr><td>阿尔法</td><td class="pos">0.243</td><td>超额收益存在</td></tr>
-    <tr><td>贝塔</td><td class="pos">0.433</td><td>低相关性</td></tr>
-    <tr><td>信息比率</td><td>0.335</td><td>中等</td></tr>
-  </table>
-
-  <div class="blank2"></div>
-
-  <h3>4.2 风险暴露分析</h3>
-
-  <p><strong>回撤风险:</strong> 最大回撤15.02%（区间: 2026/05/25 ~ 2026/06/29）</p>
-  <p class="indent">与沪深300同步回调，市场系统性下跌时防御有限</p>
-  <p class="indent">建议: 增加大盘择时过滤（大盘在20日均线以下时降低仓位）</p>
-
-  <div class="blank"></div>
-  <p><strong>胜率偏低:</strong> 110次交易中盈利55次，亏损55次</p>
-  <p class="indent">盈亏比1.598弥补了胜率不足，属于"亏小赚大"型策略</p>
-
-  <div class="blank"></div>
-  <p><strong>持仓集中度:</strong> 5只股票 + 均仓20%，单只黑天鹅影响较大</p>
-  <p class="indent">建议: 增加单只股票最大仓位限制（如不超过15%）</p>
-
-  <div class="blank"></div>
-  <p><strong>交易成本:</strong> 110次交易佣金和印花税侵蚀部分收益</p>
-  <p class="indent">日志显示每笔佣金约5元 ~ 115元不等</p>
-  <p class="indent">建议: 增加最小持仓天数限制，降低换手率</p>
-
-  <div class="blank2"></div>
-
-  <h3>4.3 交易日志分析</h3>
-  <p><strong>信号:</strong> 日均检查240只，产生9~45个买入信号，量比过滤3~8个，卖出1~7个</p>
-  <p><strong>卖出:</strong> ATR(000006) | WR止盈(000962/000422/000048/000582/000703)</p>
-  <p class="indent" style="font-size:9pt; color:#666;">信号卖出(000932 少见) | 补仓正常 | 少数小额失败</p>
-
-  <div class="footer">策略实盘部署与交易实战报告 | 版本 V4 | 2026-07-25</div>
-</div>
-
-<!-- ==================== PAGE 7: Sec 4 Part 2 Evaluation ==================== -->
-<div class="page">
-  <div class="section-title">四(续): 综合评价</div>
-
-  <h3>4.4 综合评价总结</h3>
-  <ul class="check">
-    <li class="ok">超额收益 +8.15%（37.32% vs 26.97%）</li>
-    <li class="ok">夏普比率 1.098，索提诺比率 1.913</li>
-    <li class="ok">贝塔 0.433，收益独立性强</li>
-    <li class="ok">三重卖出机制有效（ATR + WR + 趋势线）</li>
-    <li class="warn">最大回撤 15.02% — 系统下跌时防御有限</li>
-    <li class="warn">胜率 47.1% — 略低于一半，依赖盈亏比</li>
-    <li class="warn">110次交易成本需持续关注（佣金5~115元）</li>
-    <li class="warn">极端跳空风险 — 20%仓位下影响大</li>
-    <li class="warn">positions残留WARNING，代码健壮性需加强</li>
+  <h2 class="s2">1.3 买入规则</h2>
+  <p><strong>入场条件：</strong>趋势线上穿 11 + 量比 > 1.2 + 市值 ≥ 80 亿元</p>
+  <p><strong>评分公式：</strong>score = max(0, 100 × (1 − (趋势线 − 11) / 25)) + min(30, (量比 − 1.0) × 30)</p>
+  <ul>
+    <li>趋势线越接近 11，得分越高（最高 100 分）</li>
+    <li>量比越大，加成越高（最高 30 分）</li>
+    <li>候选池按评分从高到低排序选入</li>
   </ul>
 
-  <div class="blank2"></div>
+  <h2 class="s2">1.4 卖出规则（三重机制）</h2>
+  <table>
+    <tr><th>优先级</th><th>卖出机制</th><th>触发条件</th><th>保护目的</th></tr>
+    <tr><td>1</td><td><strong>ATR 动态止损</strong></td><td>现价 < 最高价 − 2 × ATR(14)</td><td>防止大幅回撤</td></tr>
+    <tr><td>2</td><td><strong>WR 高位止盈</strong></td><td>WR(42) > 45 且 趋势线 > 50</td><td>高位回落锁定利润</td></tr>
+    <tr><td>3</td><td><strong>趋势线卖出</strong></td><td>趋势线跌破 89</td><td>经典顶部确认</td></tr>
+  </table>
 
-  <h3>4.5 关键发现</h3>
+  <h2 class="s2">1.5 仓位管理与每日流程</h2>
+  <p>固定持仓 <strong>5 只均仓</strong>（单只约 20% 资金）。有空位时按评分从高到低补入。有卖出信号的股票必须卖出，无卖出信号的股票继续持有，不被新信号替换。</p>
+  <p><strong>每日执行流程（代码：jq_super_top_bottom_v4.py）：</strong></p>
+  <table>
+    <tr><th>时间</th><th>任务</th><th>说明</th></tr>
+    <tr><td>09:00</td><td><code>before_market_open()</code></td><td>全A股 → 去ST → 市值≥80亿 → 候选池更新（~240只）</td></tr>
+    <tr><td>09:30</td><td><code>market_open()</code></td><td>ATR检查 + WR检查 → 信号扫描 → 卖出 → 补仓</td></tr>
+    <tr><td>15:30</td><td><code>after_market_close()</code></td><td>输出持仓数、总资产、可用现金</td></tr>
+  </table>
+  <div class="fo">策略方案概述 — 2</div>
+</div>
+
+<!-- ==================== 二、参数调整对比 ==================== -->
+<div class="page">
+  <div class="ph"><div class="num">二</div><h1>参数调整：10 日 vs 20 日均量比</h1></div>
+
+  <h2 class="s2">2.1 调整目的与方法</h2>
+  <p>将量比的计算基准从 <strong>10 日</strong>平均改为 <strong>20 日</strong>平均。20 日均量比的目的是过滤更多短线噪音，让信号更平滑。我们保持其他所有参数不变，仅改变 vol_window（10 vs 20），在相同回测区间（2025-07-01 ~ 2026-06-30）进行 A/B 对比。</p>
+
+  <h2 class="s2">2.2 回测数据对比</h2>
+  <table>
+    <tr><th>指标</th><th class="bg">10日均量比</th><th>20日均量比</th><th>差异</th></tr>
+    <tr><td><strong>策略收益</strong></td><td class="pos"><strong>+37.32%</strong></td><td>+12.85%</td><td class="pos">+24.47%</td></tr>
+    <tr><td><strong>年化收益</strong></td><td class="pos"><strong>+38.58%</strong></td><td>+13.25%</td><td class="pos">+25.33%</td></tr>
+    <tr><td><strong>基准（沪深300）</strong></td><td>+26.97%</td><td>+26.97%</td><td>相同</td></tr>
+    <tr><td><strong>超额收益</strong></td><td class="pos"><strong>+8.15%</strong></td><td class="neg">−11.12%</td><td class="pos">+19.27%</td></tr>
+    <tr><td><strong>Sharpe Ratio</strong></td><td class="pos"><strong>1.098</strong></td><td>0.345</td><td class="pos">+0.753</td></tr>
+    <tr><td><strong>Sortino Ratio</strong></td><td class="pos"><strong>1.913</strong></td><td>0.820</td><td class="pos">+1.093</td></tr>
+    <tr><td><strong>Alpha</strong></td><td class="pos"><strong>+0.243</strong></td><td class="neg">−0.176</td><td class="pos">+0.419</td></tr>
+    <tr><td><strong>Beta</strong></td><td class="pos"><strong>0.433</strong></td><td class="neg">0.750</td><td class="pos">−0.317</td></tr>
+    <tr><td><strong>最大回撤</strong></td><td>−15.02%</td><td>−18.02%</td><td class="pos">−3.00%</td></tr>
+    <tr><td><strong>日胜率</strong></td><td>47.1%</td><td>52.5%</td><td>−5.4%</td></tr>
+    <tr><td><strong>盈亏比</strong></td><td class="pos"><strong>1.598</strong></td><td>1.317</td><td class="pos">+0.281</td></tr>
+    <tr><td><strong>盈利次数 / 亏损次数</strong></td><td>55 / 55</td><td>42 / 38</td><td></td></tr>
+    <tr><td><strong>总交易次数</strong></td><td>110 次</td><td>80 次</td><td>−30 次</td></tr>
+  </table>
+
+  <h2 class="s2">2.3 回测收益曲线</h2>
+
+  <div class="img-block">
+    <img src="task7/vol_window10.png" alt="10日均量比收益曲线">
+    <figcaption>图 1：10 日均量比 — 策略收益 +37.32%，Sharpe 1.098，最大回撤 −15.02%</figcaption>
+  </div>
+
+  <div class="img-block">
+    <img src="task7/vol_window20.png" alt="20日均量比收益曲线">
+    <figcaption>图 2：20 日均量比 — 策略收益 +12.85%，Sharpe 0.345，最大回撤 −18.02%</figcaption>
+  </div>
+
+  <h2 class="s2">2.4 对比分析与结论</h2>
+  <p><strong>10 日均量比在所有核心指标上显著优于 20 日均量比：</strong></p>
+  <ul>
+    <li>策略收益 +37.32% 远高于 20 日均量的 +12.85%</li>
+    <li>超额收益 +8.15%（正向） vs −11.12%（负向），10 日策略明显跑赢基准</li>
+    <li>Sharpe 1.098 vs 0.345，风险调整后收益显著更优</li>
+    <li>Alpha +0.243（正超额） vs −0.176（负超额）</li>
+    <li>Beta 0.433 vs 0.750，10 日策略与大盘相关性更低，收益更独立</li>
+  </ul>
+
   <div class="summary-box">
-    <p>WR止盈是最主要的退出方式（5/7次），ATR止损及时止损，趋势线信号卖出发生<strong>较少</strong>。说明底部反转策略以WR判断顶部<strong>更为关键</strong>。</p>
-    <div class="blank"></div>
-    <p>日志也揭示了代码边界情况：positions残留警告、小额订单失败等。这些在回测指标中<strong>无法反映</strong>，但实际交易中会<strong>累积影响</strong>。</p>
+    <p><strong>核心结论：</strong></p>
+    <p><strong>为什么 10 日反而更好？</strong>本策略是"底部反转"策略，核心逻辑是捕捉超卖反弹。这类策略的关键在于"灵敏性"——需要快速响应成交量的边际变化。而 20 日过于平滑，把有意义的短期放量信号也过滤了。10 日窗口虽然可能带来一些假信号，但在底部反转场景下，<strong>"灵敏"</strong>比<strong>"平滑"</strong>更重要。</p>
+    <p style="margin-top:10px"><strong>决策：保持量比周期为 10 日均线，不做调整。</strong></p>
   </div>
 
-  <div class="footer">策略实盘部署与交易实战报告 | 版本 V4 | 2026-07-25</div>
+  <div class="fo">参数调整对比 — 3</div>
 </div>
 
-<!-- ==================== PAGE 8: Sec 5 Part 1 Experience ==================== -->
+<!-- ==================== 三、实盘模拟部署 ==================== -->
 <div class="page">
-  <div class="section-title">五、经验与教训总结</div>
-  <p class="section-subtitle">策略实现与优化过程中的关键收获</p>
+  <div class="ph"><div class="num">三</div><h1>实盘模拟部署</h1></div>
 
-  <h3>5.1 成功经验</h3>
+  <h2 class="s2">3.1 平台与执行环境</h2>
+  <table>
+    <tr><th>项目</th><th>配置</th></tr>
+    <tr><td>执行平台</td><td>聚宽 (JoinQuant) 量化交易平台 — Python 策略引擎</td></tr>
+    <tr><td>基准</td><td>沪深 300 (000300.XSHG)</td></tr>
+    <tr><td>初始资金</td><td>10 万元</td></tr>
+    <tr><td>真实价格</td><td>set_option("use_real_price", True)</td></tr>
+    <tr><td>买入佣金</td><td>0.03%（最低 5 元）</td></tr>
+    <tr><td>卖出佣金</td><td>0.03%（最低 5 元）</td></tr>
+    <tr><td>印花税</td><td>0.1%</td></tr>
+  </table>
 
-  <div class="exp-item success">
-    <strong>(1) 指标体系的层次化设计有效</strong>
-    <p>趋势线（找底）+ WR（判顶）+ ATR（保命），三维度各司其职。</p>
-    <p class="indent">如果只用趋势线买卖，无法及时应对极端行情。</p>
-    <p class="indent">三重机制互相补充，避免了"赚了不跑、亏了死扛"的问题。</p>
-  </div>
+  <h2 class="s2">3.2 策略代码架构</h2>
+  <p>策略代码文件：<code>jq_super_top_bottom_v4.py</code></p>
+  <p>核心函数结构如下：</p>
+  <table>
+    <tr><th>函数</th><th>功能</th><th>执行时间</th></tr>
+    <tr><td><code>initialize()</code></td><td>初始化参数、费率、调度器</td><td>策略启动时</td></tr>
+    <tr><td><code>_sma_td(series, n)</code></td><td>计算 SMA（趋势方向）</td><td>辅助工具</td></tr>
+    <tr><td><code>_trend(prices, n)</code></td><td>RSV 趋势线 = 3×SMA−2×SMA(SMA)</td><td>核心计算</td></tr>
+    <tr><td><code>_atr_val(sec, days)</code></td><td>真实波幅 N 日平均</td><td>风控计算</td></tr>
+    <tr><td><code>_wr_val(sec, days)</code></td><td>Williams %R</td><td>止盈计算</td></tr>
+    <tr><td><code>_score(trend_val, vol_ratio)</code></td><td>综合评分 = 趋势得分 + 量比加分</td><td>选股排序</td></tr>
+    <tr><td><code>before_market_open()</code></td><td>全A股 → 去ST → 市值过滤 → 候选池</td><td>09:00</td></tr>
+    <tr><td><code>market_open()</code></td><td>ATR 止损 + WR 止盈 + 信号扫描 + 交易执行</td><td>09:30</td></tr>
+    <tr><td><code>after_market_close()</code></td><td>输出持仓、总资产、可用现金</td><td>15:30 收盘后</td></tr>
+  </table>
 
-  <div class="exp-item success">
-    <strong>(2) 10日均量比优于20日均 — 推翻直觉偏见</strong>
-    <p>通过A/B测试发现更短的量比窗口反而产生更好结果。</p>
-    <p class="indent">在底部反转策略中，"灵敏"比"平滑"更重要。</p>
-  </div>
+  <h2 class="s2">3.3 调度时序</h2>
+  <p><strong>09:00 开盘前：</strong>获取全 A 股列表 → 剔除 ST → 市值过滤（≥ 80 亿）→ 更新候选池（约 236–252 只）</p>
+  <p><strong>09:30 开盘时：</strong>ATR 止损检查 → WR 止盈检查 → 信号扫描（趋势线上跨 11 + 量比 ≥ 1.2）→ 执行卖出 → 按评分补仓</p>
+  <p><strong>15:30 收盘后：</strong>输出持仓数、总资产、可用现金到日志</p>
 
-  <div class="exp-item success">
-    <strong>(3) 三重卖出机制的必要性</strong>
-    <p>日志显示不同股票使用不同退出方式：ATR止损及时止损，</p>
-    <p class="indent">WR止盈提前锁定利润，信号卖出作为终极兜底。</p>
-  </div>
-
-  <div class="exp-item success">
-    <strong>(4) 回测与日志分析互为补充</strong>
-    <p>仅看指标不够全面，日志揭示了代码边界情况（小额订单</p>
-    <p class="indent">失败、positions残留等），这些是回测指标无法反映的。</p>
-  </div>
-
-  <div class="exp-item success">
-    <strong>(5) 参数驱动优于硬编码</strong>
-    <p>将所有参数集中在g.变量中，修改一处即可影响全局，</p>
-    <p class="indent">极大提高了A/B测试的效率，方便后续迭代优化。</p>
-  </div>
-
-  <div class="footer">策略实盘部署与交易实战报告 | 版本 V4 | 2026-07-25</div>
+  <h2 class="s2">3.4 初始信号与运行状态</h2>
+  <p>策略已在聚宽平台成功部署并运行完整回测周期（2025-07-01 ~ 2026-06-30，完整 1 年）。</p>
+  <p>初始 5 只信号（部分）：000422（12.01 元）、000932（4.38 元）、000962（16.28 元）、000048（15.99 元）</p>
+  <p>每日产生完整交易日志（买卖决策、持仓变化、佣金、退出原因等）。</p>
+  <div class="fo">实盘模拟部署 — 4</div>
 </div>
 
-<!-- ==================== PAGE 9: Sec 5 Part 2 Lessons ==================== -->
+<!-- ==================== 四、实盘表现评估与风险分析 ==================== -->
 <div class="page">
-  <div class="section-title">五(续): 教训与改进方向</div>
+  <div class="ph"><div class="num">四</div><h1>实盘表现评估与风险分析</h1></div>
 
-  <h3>5.2 教训</h3>
+  <h2 class="s2">4.1 收益表现总览（量比窗口 = 10 日）</h2>
+  <table>
+    <tr><th>指标</th><th>数值</th><th>评价</th></tr>
+    <tr><td><strong>策略收益</strong></td><td class="pos"><strong>+37.32%</strong></td><td>优于基准（+26.97%）</td></tr>
+    <tr><td><strong>年化收益</strong></td><td class="pos"><strong>+38.58%</strong></td><td>较高回报</td></tr>
+    <tr><td><strong>超额收益</strong></td><td class="pos"><strong>+8.15%</strong></td><td>跑赢大盘</td></tr>
+    <tr><td><strong>Sharpe Ratio</strong></td><td class="pos"><strong>1.098</strong></td><td>良好</td></tr>
+    <tr><td><strong>Sortino Ratio</strong></td><td class="pos"><strong>1.913</strong></td><td>下行控制优秀</td></tr>
+    <tr><td><strong>Alpha</strong></td><td class="pos"><strong>+0.243</strong></td><td>超额收益存在</td></tr>
+    <tr><td><strong>Beta</strong></td><td class="pos"><strong>0.433</strong></td><td>低相关性，收益独立</td></tr>
+    <tr><td><strong>最大回撤</strong></td><td class="neg">−15.02%</td><td>中等水平</td></tr>
+    <tr><td><strong>日胜率</strong></td><td>47.1%（55 盈 / 55 亏）</td><td>略低于 50%</td></tr>
+    <tr><td><strong>盈亏比</strong></td><td class="pos"><strong>1.598</strong></td><td>盈幅 > 亏幅</td></tr>
+    <tr><td><strong>总交易次数</strong></td><td>110 次</td><td>较高（约 2 天/次）</td></tr>
+  </table>
 
-  <div class="exp-item lesson">
-    <strong>(1) Spec与代码不一致导致回测偏差（关键教训！）</strong>
-    <p>spec中 VOL_MIN=1.2 但代码中 VOL_MIN=1.0，</p>
-    <p class="indent">导致"夏普过高"假象，混入了大量低质量信号。</p>
-    <p class="indent"><strong>教训:</strong> spec和代码必须同步，每次修改必做对照回测。</p>
-  </div>
+  <h2 class="s2">4.2 风险暴露分析</h2>
 
-  <div class="exp-item lesson">
-    <strong>(2) 缺少大盘环境判断</strong>
-    <p>策略是纯自下而上的选股，没有考虑大盘趋势。</p>
-    <p class="indent">市场系统性下跌时（回测末期15%回撤）缺乏整体防守。</p>
-    <p class="indent"><strong>建议:</strong> 增加大盘择时模块（如沪深300均线判断）。</p>
-  </div>
+  <p><strong>回撤风险：</strong>最大回撤 −15.02%（区间：2026/05/25 ~ 2026/06/29）。与沪深 300 同步回调，市场系统性下跌时防御有限。建议：增加大盘择时过滤（大盘在 20 日均线以下时降低仓位）。</p>
 
-  <div class="exp-item lesson">
-    <strong>(3) 极端跳空保护不足</strong>
-    <p>ATR止损在正常交易日有效，但大幅跳空低开时，</p>
-    <p class="indent">实际成交价可能远低于止损线，造成意外损失。</p>
-    <p class="indent"><strong>建议:</strong> 增加开盘幅度检测逻辑，设置跳空保护。</p>
-  </div>
+  <p><strong>胜率偏低：</strong>110 次交易中盈利 55 次，亏损 55 次，胜率仅 47.1%。但盈亏比 1.598 弥补了胜率不足，属于"亏小赚大"型策略。</p>
 
-  <div class="exp-item lesson">
-    <strong>(4) 代码健壮性需要加强</strong>
-    <p>日志中大量的positions字典残留警告、小额订单失败，</p>
-    <p class="indent">说明代码的边界情况处理不够完善。</p>
-    <p class="indent"><strong>建议:</strong> 增加卖出确认机制和最小持仓金额过滤。</p>
-  </div>
+  <p><strong>持仓集中度：</strong>5 只股票 + 均仓 20%，单只黑天鹅影响较大。建议：增加单只股票最大仓位限制（如不超过 15%）。</p>
 
-  <div class="exp-item lesson">
-    <strong>(5) 候选池规模与交易成本的优化空间</strong>
-    <p>当前方法每次只查询前500只股票做市值过滤，在极端</p>
-    <p class="indent">情况下可能遗漏符合条件的股票。</p>
-    <p class="indent">回测虽计入佣金和印花税，但未考虑实际交易中的</p>
-    <p class="indent">滑点成本和冲击成本，高频策略中会影响实际收益。</p>
-  </div>
+  <p><strong>交易成本：</strong>110 次交易佣金和印花税侵蚀部分收益。日志显示每笔佣金约 5 元 ~ 115 元不等。建议：增加最小持仓天数限制，降低换手率。</p>
 
-  <div class="footer">策略实盘部署与交易实战报告 | 版本 V4 | 2026-07-25</div>
-</div>
+  <h2 class="s2">4.3 交易日志深度分析</h2>
+  <p>从 <code>log_vol_window10.txt</code> 中提取的关键信息：</p>
 
-<!-- ==================== PAGE 10: Sec 5 Part 3 Future + Summary ==================== -->
-<div class="page">
-  <div class="section-title">五(续): 后续优化方向与总结</div>
+  <h3 class="s3">信号筛选效率</h3>
+  <ul>
+    <li>日均检查约 240 只股票</li>
+    <li>日均产生 9 ~ 45 个买入信号</li>
+    <li>日均 3 ~ 8 个信号因量比 &lt; 1.2 被过滤（占比约 15%–20%）</li>
+    <li>日均 1 ~ 7 个信号卖出</li>
+  </ul>
 
-  <h3>5.3 后续优化方向</h3>
+  <h3 class="s3">卖出触发统计</h3>
+  <table>
+    <tr><th>卖出机制</th><th>触发案例</th><th>数量</th></tr>
+    <tr><td><strong>ATR 止损</strong></td><td>000006.XSHE（peak=6.51, stop=6.25, now=6.19）</td><td>少量</td></tr>
+    <tr><td><strong>WR 止盈（主力退出）</strong></td><td>000962（WR=69.4）、000422（WR=80.4）<br>000048（WR=46.8）、000582（WR=58.1）、000703（WR=59.6）</td><td>主要退出方式</td></tr>
+    <tr><td><strong>趋势线卖出</strong></td><td>000932.XSHE（趋势线跌破 89）</td><td>较少</td></tr>
+  </table>
 
-  <ol class="steps">
-    <li><strong>大盘择时过滤:</strong> 沪深300在20日均线下方时减半仓位</li>
-    <li><strong>非均仓分配:</strong> 考虑评分权重或波动率加权</li>
-    <li><strong>行业分散限制:</strong> 同一行业不超过2只</li>
-    <li><strong>止损冷却:</strong> ATR止损后5个交易日不再入场</li>
-    <li><strong>滑点模型:</strong> 更真实模拟交易成本</li>
-    <li><strong>扩展回测:</strong> 2-3年验证不同市况</li>
-    <li><strong>跳空保护:</strong> 开盘幅度检测</li>
-    <li><strong>候选池优化:</strong> 分批查询</li>
-    <li><strong>代码重构:</strong> 清理边界处理异常</li>
-  </ol>
+  <h3 class="s3">补仓与异常</h3>
+  <ul>
+    <li>有空位时立即补入新信号，按评分从高到低选入</li>
+    <li>偶尔因资金不足无法买入 100 股（如 000767、000761）</li>
+    <li>存在空仓等待时段</li>
+    <li>positions 字典残留 WARNING（不影响逻辑但需关注）</li>
+  </ul>
 
-  <div class="blank2"></div>
+  <h2 class="s2">4.4 综合评价总结</h2>
+  <table>
+    <tr><th>评价项</th><th>结论</th><th>状态</th></tr>
+    <tr><td>超额收益</td><td>+8.15%（37.32% vs 26.97%）— 跑赢大盘</td><td class="pos">✅ 良好</td></tr>
+    <tr><td>Sharpe / Sortino</td><td>1.098 / 1.913 — 风险调整后收益优秀</td><td class="pos">✅ 良好</td></tr>
+    <tr><td>Beta</td><td>0.433 — 低相关性，收益独立性强</td><td class="pos">✅ 良好</td></tr>
+    <tr><td>三重卖出机制</td><td>WR 止盈为主力退出 + ATR 止损保护 — 运作有效</td><td class="pos">✅ 良好</td></tr>
+    <tr><td>Alpha</td><td>+0.243 — 超额收益稳定存在</td><td class="pos">✅ 良好</td></tr>
+    <tr><td>最大回撤</td><td>−15.02% — 系统下跌时防御有限</td><td class="neg">⚠️ 关注</td></tr>
+    <tr><td>胜率</td><td>47.1% — 略低于一半，依赖盈亏比 1.598</td><td class="neg">⚠️ 关注</td></tr>
+    <tr><td>交易成本</td><td>110 次交易，佣金 5~115 元/笔，成本需持续关注</td><td class="neg">⚠️ 关注</td></tr>
+    <tr><td>跳空风险</td><td>ATR 对大幅跳空低开无效，20% 仓位下单只影响大</td><td class="neg">⚠️ 关注</td></tr>
+  </table>
 
-  <h3>总结</h3>
   <div class="summary-box">
-    <p>超级顶底V4策略在一年回测中实现了 <strong>37.32%收益率</strong>（超额+8.15%），夏普比率1.098，贝塔0.433。三重卖出机制有效运作，WR止盈为主要退出方式。</p>
-    <div class="blank"></div>
-    <p><strong>关键教训</strong>是Spec与代码必须严格同步；<strong>关键经验</strong>是A/B测试验证参数、回测与日志互补分析。后续需增加大盘择时、优化仓位管理、扩展回测周期。</p>
+    <p><strong>综合评价：</strong>超级顶底 V4 策略在 1 年回测周期中实现了 <strong>+37.32%</strong> 的收益（超额 +8.15%），Sharpe 1.098，Beta 0.433。WR 止盈是最主要的退出方式，ATR 止损作为兜底保护，三重机制运行有效。主要改进方向：增加大盘择时、降低持仓集中度、增加跳空保护和最小持仓天数限制。</p>
   </div>
-
-  <div class="blank2"></div>
-
-  <div style="text-align:center; margin-top:40px; color:#999; font-size:10pt;">
-    <p>— 报告完毕 —</p>
-    <p>超级顶底 V4 策略实盘推演报告</p>
-    <p>2026-07-25</p>
-  </div>
-
-  <div class="footer">策略实盘部署与交易实战报告 | 版本 V4 | 2026-07-25</div>
+  <div class="fo">实盘表现评估 — 5</div>
 </div>
 
+<!-- ==================== 五、经验与教训总结 ==================== -->
+<div class="page">
+  <div class="ph"><div class="num">五</div><h1>经验与教训总结</h1></div>
+
+  <h2 class="s2">5.1 成功经验</h2>
+
+  <p><strong>(1) 指标体系的层次化设计有效</strong></p>
+  <p style="padding-left:2em;">趋势线（找底）+ WR（判顶）+ ATR（保命），三维度各司其职。如果只用趋势线买卖，无法及时应对极端行情。三重机制互相补充，避免了"赚了不跑、亏了死扛"的问题。</p>
+
+  <p><strong>(2) 10 日均量比优于 20 日均 — 推翻直觉偏见</strong></p>
+  <p style="padding-left:2em;">通过 A/B 测试发现更短的量比窗口反而产生更好结果。在底部反转策略中，"灵敏"比"平滑"更重要。</p>
+
+  <p><strong>(3) 三重卖出机制的必要性</strong></p>
+  <p style="padding-left:2em;">日志显示不同股票使用不同退出方式：ATR 止损及时止损，WR 止盈提前锁定利润，信号卖出作为终极兜底。WR 止盈是最主要的退出方式（5/7 次）。</p>
+
+  <p><strong>(4) 回测与日志分析互为补充</strong></p>
+  <p style="padding-left:2em;">仅看指标不够全面。日志揭示了代码边界情况（小额订单失败、positions 残留等），这些是回测指标无法反映的，但实际交易中会累积影响。</p>
+
+  <p><strong>(5) 参数驱动优于硬编码</strong></p>
+  <p style="padding-left:2em;">将所有参数集中在 <code>g.</code> 变量中，修改一处即可影响全局，极大提高了 A/B 测试的效率，方便后续迭代优化。</p>
+
+  <h2 class="s2">5.2 教训与改进方向</h2>
+
+  <p><strong>(1) Spec 与代码不一致导致回测偏差（关键教训！）</strong></p>
+  <p style="padding-left:2em;">spec 中 VOL_MIN = 1.2 但代码中 VOL_MIN = 1.0，导致"夏普过高"假象，混入了大量低质量信号。<strong>教训：</strong>spec 和代码必须同步，每次修改必做对照回测。</p>
+
+  <p><strong>(2) 缺少大盘环境判断</strong></p>
+  <p style="padding-left:2em;">策略是纯自下而上的选股，没有考虑大盘趋势。市场系统性下跌时（回测末期 15% 回撤）缺乏整体防守。<strong>建议：</strong>增加大盘择时模块（如沪深 300 均线判断）。</p>
+
+  <p><strong>(3) 极端跳空保护不足</strong></p>
+  <p style="padding-left:2em;">ATR 止损在正常交易日有效，但大幅跳空低开时，实际成交价可能远低于止损线。建议：增加开盘幅度检测逻辑，设置跳空保护。</p>
+
+  <p><strong>(4) 代码健壮性需要加强</strong></p>
+  <p style="padding-left:2em;">日志中大量的 positions 字典残留警告、小额订单失败，说明代码的边界情况处理不够完善。建议增加卖出确认机制和最小持仓金额过滤。</p>
+
+  <h2 class="s2">5.3 后续优化方向</h2>
+  <table>
+    <tr><th>优先级</th><th>优化方向</th><th>预期效果</th></tr>
+    <tr><td>🥇 高</td><td>增加大盘择时过滤（沪深 300 在 20 日均线下方时减半仓位）</td><td>降低系统性回撤</td></tr>
+    <tr><td>🥇 高</td><td>增加开盘跳空检测与保护机制</td><td>减少极端损失</td></tr>
+    <tr><td>🥈 中</td><td>非均仓分配（考虑评分权重或波动率加权）</td><td>提高收益效率</td></tr>
+    <tr><td>🥈 中</td><td>行业分散限制（同一行业不超过 2 只）</td><td>降低集中度风险</td></tr>
+    <tr><td>🥈 中</td><td>ATR 止损后再入场冷却期（5 个交易日）</td><td>避免重复触发</td></tr>
+    <tr><td>🥉 低</td><td>增加滑点模型更真实模拟交易成本</td><td>提高回测真实性</td></tr>
+    <tr><td>🥉 低</td><td>扩展回测至 2-3 年验证不同市况</td><td>验证长期稳定性</td></tr>
+    <tr><td>🥉 低</td><td>优化候选池查询（分批查询）</td><td>提高数据完整性</td></tr>
+    <tr><td>🥉 低</td><td>代码重构：清理边界处理，加强异常处理机制</td><td>提高健壮性</td></tr>
+  </table>
+
+  <div class="summary-box">
+    <p><strong>核心体会：</strong>量化交易是一场马拉松，不是百米冲刺。从技术指标解析（Task 2）→ 趋势跟踪（Task 3、4）→ 机器学习选股（Task 5、6）→ 实盘模拟部署（Task 7），每一阶段都加深了对"数据驱动 + 严格风控 + 持续迭代"核心理念的理解。超级顶底 V4 策略作为本次学习的实践成果，在一年回测中实现了超额收益，但仍有诸多优化空间。未来需重点关注大盘择时、风控机制和多策略融合。</p>
+  </div>
+  <div class="fo">经验与教训总结 — 6</div>
+</div>
+
+</div>
 </body>
 </html>
